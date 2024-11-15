@@ -1,0 +1,28 @@
+[data-style="vertical"]::view-transition-new(root) {
+  animation: reveal 1s;
+  clip-path: inset(0 0 0 0);
+  z-index: 2;
+}
+
+[data-style="vertical"]::view-transition-old(root) {
+  z-index: -1;
+  animation: none;
+}
+
+@keyframes reveal {
+  from {
+    clip-path: inset(var(--from));
+  }
+}
+
+[data-theme="dark"] {
+  --from: 0 0 100% 0;
+}
+
+[data-theme="light"] {
+  --from: 100% 0 0 0;
+}
+
+[data-theme="system"] {
+  --from: 0 100% 0 0;
+}

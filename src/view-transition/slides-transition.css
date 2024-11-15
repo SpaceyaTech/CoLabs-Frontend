@@ -1,0 +1,119 @@
+@property --column-one {
+  inherits: true;
+  initial-value: 0;
+  syntax: "<number>";
+}
+
+@property --column-two {
+  inherits: true;
+  initial-value: 0;
+  syntax: "<number>";
+}
+
+@property --column-three {
+  inherits: true;
+  initial-value: 0;
+  syntax: "<number>";
+}
+
+@property --column-four {
+  inherits: true;
+  initial-value: 0;
+  syntax: "<number>";
+}
+
+@property --column-five {
+  inherits: true;
+  initial-value: 0;
+  syntax: "<number>";
+}
+
+@keyframes one {
+  from {
+    --column-one: 100;
+  }
+}
+
+@keyframes two {
+  from {
+    --column-two: 100;
+  }
+}
+
+@keyframes three {
+  from {
+    --column-three: 100;
+  }
+}
+
+@keyframes four {
+  from {
+    --column-four: 100;
+  }
+}
+
+@keyframes five {
+  from {
+    --column-five: 100;
+  }
+}
+
+[data-style="slides"]::view-transition-new(root) {
+  clip-path: polygon(
+    /*	1st column */ 0 100%,
+    0 calc(var(--column-one) * 1%),
+    20% calc(var(--column-one) * 1%),
+    20% 100%,
+    /*	2nd column */ 20% 100%,
+    20% calc(var(--column-two) * 1%),
+    40% calc(var(--column-two) * 1%),
+    40% 100%,
+    /*	3rd column */ 40% 100%,
+    40% calc(var(--column-three) * 1%),
+    60% calc(var(--column-three) * 1%),
+    60% 100%,
+    /*	4th column */ 60% 100%,
+    60% calc(var(--column-four) * 1%),
+    80% calc(var(--column-four) * 1%),
+    80% 100%,
+    /*	5th column */ 80% 100%,
+    80% calc(var(--column-five) * 1%),
+    100% calc(var(--column-five) * 1%),
+    100% 100%
+  );
+}
+
+[data-style="slides"]::view-transition-new(root) {
+  --speed: 0.625;
+  --columns: 5;
+  animation:
+    one calc(var(--speed) * 1s) calc(sin((0 / 5) * 45deg) * var(--speed) * 1s),
+    two calc(var(--speed) * 1s) calc(sin((1 / 5) * 45deg) * var(--speed) * 1s),
+    three calc(var(--speed) * 1s) calc(sin((2 / 5) * 45deg) * var(--speed) * 1s),
+    four calc(var(--speed) * 1s) calc(sin((3 / 5) * 45deg) * var(--speed) * 1s),
+    five calc(var(--speed) * 1s) calc(sin((4 / 5) * 45deg) * var(--speed) * 1s);
+  animation-fill-mode: both;
+  animation-timing-function: linear(
+    0 0%,
+    0.0027 3.64%,
+    0.0106 7.29%,
+    0.0425 14.58%,
+    0.0957 21.87%,
+    0.1701 29.16%,
+    0.2477 35.19%,
+    0.3401 41.23%,
+    0.5982 55.18%,
+    0.7044 61.56%,
+    0.7987 68.28%,
+    0.875 75%,
+    0.9297 81.25%,
+    0.9687 87.5%,
+    0.9922 93.75%,
+    1 100%
+  );
+  z-index: 2;
+}
+
+[data-style="slides"]::view-transition-old(root) {
+  animation: none;
+}

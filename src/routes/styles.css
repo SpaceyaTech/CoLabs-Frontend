@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+
+  /* background: canvas;
+    color: canvasText; */
+}
+
+
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+  8. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+
+}
+
+/* Hide the default scroll bar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-accent-content;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-accent/60;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-accent;
+}
+
+
+@layer base {
+  :root {
+    --chart-1:var(--wa);
+    --chart-2:var(--in);
+    --chart-3:var(--a);
+    --sidebar-background:var(--b1);
+    --sidebar-foreground:var(--bc);
+    --sidebar-primary:var(--p);
+    --sidebar-primary-foreground:var(--pc);
+    --sidebar-accent:var(--a);
+    --sidebar-accent-foreground:var(--ac);
+    --sidebar-border:var(--bc);
+    --sidebar-ring: var(--n);
+    /* --chart-1: 173 58% 39%;
+    --chart-2: 12 76% 61%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%; */
+}
+  .dark {
+    --chart-1:var(--wa);
+    --chart-2:var(--in);
+    --chart-3:var(--a);
+    --sidebar-background:var(--b1);
+    --sidebar-foreground:var(--bc);
+    --sidebar-primary:var(--p);
+    --sidebar-primary-foreground:var(--pc);
+    --sidebar-accent:var(--a);
+    --sidebar-accent-foreground:var(--ac);
+    --sidebar-border:var(--bc);
+    --sidebar-ring: var(--n);
+    /* --chart-1: 220 70% 50%;
+    --chart-5: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-2: 340 75% 55%; */
+  }
+}
+
+  /* end of digital clock styles */
+
+  @layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
