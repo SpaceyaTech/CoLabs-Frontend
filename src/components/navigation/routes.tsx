@@ -75,6 +75,12 @@ export const routes = [
     icon: <User />,
     children: undefined,
   },
+  {
+    name: "Settings",
+    href: "/settings",
+    icon: <Settings />,
+    children: undefined,
+  },
 ] as const;
 
 export const landingPageRoutes = [
