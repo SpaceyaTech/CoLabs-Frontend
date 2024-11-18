@@ -21,7 +21,7 @@ import { Route as DashboardTeamsIndexImport } from './routes/dashboard/teams/ind
 import { Route as DashboardProjectsIndexImport } from './routes/dashboard/projects/index'
 import { Route as DashboardOsProjectsIndexImport } from './routes/dashboard/os-projects/index'
 import { Route as DashboardMembersIndexImport } from './routes/dashboard/members/index'
-import { Route as DashboardLeaderboardsIndexImport } from './routes/dashboard/leaderboards./index'
+import { Route as DashboardLeaderboardsIndexImport } from './routes/dashboard/leaderboards/index'
 import { Route as DashboardInboxIndexImport } from './routes/dashboard/inbox/index'
 import { Route as DashboardHackathonsIndexImport } from './routes/dashboard/hackathons/index'
 import { Route as DashboardChallengesIndexImport } from './routes/dashboard/challenges/index'
@@ -427,7 +427,7 @@ export const routeTree = rootRoute
       "parent": "/dashboard"
     },
     "/dashboard/leaderboards/": {
-      "filePath": "dashboard/leaderboards./index.tsx",
+      "filePath": "dashboard/leaderboards/index.tsx",
       "parent": "/dashboard"
     },
     "/dashboard/members/": {
