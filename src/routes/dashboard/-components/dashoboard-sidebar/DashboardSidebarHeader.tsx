@@ -1,4 +1,4 @@
-import { Castle, LayoutDashboard } from "lucide-react";
+import { LayoutDashboard } from "lucide-react";
 import { useSidebar } from "@/components/ui/sidebar";
 import { Link, useLocation } from "@tanstack/react-router";
 interface DashboardSidebarHeaderProps {}
