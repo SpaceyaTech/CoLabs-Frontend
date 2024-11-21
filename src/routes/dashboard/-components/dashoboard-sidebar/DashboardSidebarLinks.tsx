@@ -23,7 +23,7 @@ export function DashboardSidebarLinks({}: DashboardSidebarLinksProps) {
   const { pathname } = useLocation();
   return (
     <SidebarGroup className="h-full bg-base-100">
-      <SidebarGroupLabel>House keeping</SidebarGroupLabel>
+      <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
       <SidebarMenu className="gap-2">
         {dashboard_routes.map((item) => {
           return (
@@ -37,13 +37,15 @@ export function DashboardSidebarLinks({}: DashboardSidebarLinksProps) {
                   >
                     <TooltipTrigger
                       asChild
-                      className={pathname === item.href
-                        ? `flex w-full gap-3 rounded-lg bg-primary/30 p-1`
-                        : `flex w-full gap-3 rounded-sm p-1 hover:bg-base-300`}
+                      className={
+                        pathname === item.href
+                          ? `flex w-full gap-3 rounded-lg bg-primary/30 p-1`
+                          : `flex w-full gap-3 rounded-sm p-1 hover:bg-base-300`
+                      }
                     >
-                      <span className="flex w-full h-full gap-3 items-center justify-betweenrounded-sm p-1">
+                      <span className="justify-betweenrounded-sm flex h-full w-full items-center gap-3 p-1">
                         <Link
-                          className="flex w-full gap-3 rounded-sm "
+                          className="flex w-full gap-3 rounded-sm"
                           to={item.href}
                           onClick={() => {
                             if (isMobile) {
@@ -55,7 +57,8 @@ export function DashboardSidebarLinks({}: DashboardSidebarLinksProps) {
                           <button className="size-6 text-primary">
                             {item.icon}
                           </button>
-                          {state === "expanded" && (
+                          {/* {isMobile&&<span className="text-lg">{item.name}</span>} */}
+                          {(state === "expanded" || isMobile) && (
                             <span className="text-lg">{item.name}</span>
                           )}
                         </Link>
@@ -63,7 +66,7 @@ export function DashboardSidebarLinks({}: DashboardSidebarLinksProps) {
                         {item.href === "/dashboard/teams" && <Plus />}
                       </span>
                     </TooltipTrigger>
-                    <TooltipContent>{item.name}</TooltipContent>
+                    <TooltipContent side={"right"}>{item.name}</TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
               </SidebarMenuButton>
