@@ -14,9 +14,10 @@ import { Separator } from "@/components/ui/separator";
 import { Outlet } from "@tanstack/react-router";
 import { DashboardSidebarHeader } from "./DashboardSidebarHeader";
 import { DashboardSidebarLinks } from "./DashboardSidebarLinks";
-import { DashboardSidebaruser } from "./DashboardSidebaruser";
 import { TSRBreadCrumbs } from "@/lib/tanstack/router/TSRBreadCrumbs";
 import { DashboardTheme } from "./DashboardTheme";
+import { DashboardLayoutHeader } from "../dashboard-layout/DashboardLayoutHeader";
+import { DashboardSidebarActions } from "./DashboardSidebarActions";
 
 interface DashboardLayoutProps {
   sidebar_props: React.ComponentProps<typeof Sidebar>;
@@ -25,22 +26,10 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ sidebar_props }: DashboardLayoutProps) {
   return (
     <SidebarProvider defaultOpen={false}>
-      <Sidebar className="" collapsible="icon" {...sidebar_props}>
-        <SidebarHeader>
-          <DashboardSidebarHeader />
-        </SidebarHeader>
-        <SidebarContent>
-          <DashboardSidebarLinks />
-        </SidebarContent>
-        <SidebarFooter>
-          {/* <ThemeToggle /> */}
-          <DashboardTheme />
-          <DashboardSidebaruser />
-        </SidebarFooter>
-        <SidebarRail />
-      </Sidebar>
       <SidebarInset>
-        <header className="sticky top-0 z-30 flex h-16  items-center gap-2 bg-base-100 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+        <div className="h-full " >
+        <header className="sticky top-0 z-30 flex w-full flex-col gap-2 bg-base-100">
+          <DashboardLayoutHeader />
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
@@ -48,8 +37,23 @@ export function DashboardLayout({ sidebar_props }: DashboardLayoutProps) {
           </div>
         </header>
         {/* main content */}
-        <div>
+        <div className="flex  h-full w-full gap-2 ">
+          <Sidebar className="top-[20%]" collapsible="icon" {...sidebar_props}>
+            <SidebarHeader>
+              <DashboardSidebarHeader />
+            </SidebarHeader>
+            <SidebarContent>
+              <DashboardSidebarLinks />
+            </SidebarContent>
+            <SidebarFooter>
+              {/* <ThemeToggle /> */}
+              <DashboardTheme />
+              <DashboardSidebarActions />
+            </SidebarFooter>
+            <SidebarRail />
+          </Sidebar>
           <Outlet />
+        </div>
         </div>
       </SidebarInset>
     </SidebarProvider>
