@@ -1,0 +1,21 @@
+:root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.headerDiv {
+  /* border: 1px solid red; */
+  text-align: center;
+  height: auto;
+  width: 50%;
+}
+.leaderBoard {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+.leaderBoardInner {
+  display: flex;
+  flex-direction: row;
+}

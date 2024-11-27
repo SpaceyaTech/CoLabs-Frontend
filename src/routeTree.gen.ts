@@ -25,6 +25,7 @@ import { Route as DashboardLeaderboardsIndexImport } from './routes/dashboard/le
 import { Route as DashboardInboxIndexImport } from './routes/dashboard/inbox/index'
 import { Route as DashboardHackathonsIndexImport } from './routes/dashboard/hackathons/index'
 import { Route as DashboardChallengesIndexImport } from './routes/dashboard/challenges/index'
+import { Route as DashboardChallengesExampleDataImport } from './routes/dashboard/challenges/ExampleData'
 
 // Create/Update Routes
 
@@ -114,6 +115,13 @@ const DashboardChallengesIndexRoute = DashboardChallengesIndexImport.update({
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
 
+const DashboardChallengesExampleDataRoute =
+  DashboardChallengesExampleDataImport.update({
+    id: '/challenges/ExampleData',
+    path: '/challenges/ExampleData',
+    getParentRoute: () => DashboardLayoutRoute,
+  } as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -159,6 +167,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileIndexImport
       parentRoute: typeof rootRoute
+    }
+    '/dashboard/challenges/ExampleData': {
+      id: '/dashboard/challenges/ExampleData'
+      path: '/challenges/ExampleData'
+      fullPath: '/dashboard/challenges/ExampleData'
+      preLoaderRoute: typeof DashboardChallengesExampleDataImport
+      parentRoute: typeof DashboardLayoutImport
     }
     '/dashboard/challenges/': {
       id: '/dashboard/challenges/'
@@ -223,6 +238,7 @@ declare module '@tanstack/react-router' {
 
 interface DashboardLayoutRouteChildren {
   DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardChallengesExampleDataRoute: typeof DashboardChallengesExampleDataRoute
   DashboardChallengesIndexRoute: typeof DashboardChallengesIndexRoute
   DashboardHackathonsIndexRoute: typeof DashboardHackathonsIndexRoute
   DashboardInboxIndexRoute: typeof DashboardInboxIndexRoute
@@ -235,6 +251,7 @@ interface DashboardLayoutRouteChildren {
 
 const DashboardLayoutRouteChildren: DashboardLayoutRouteChildren = {
   DashboardIndexRoute: DashboardIndexRoute,
+  DashboardChallengesExampleDataRoute: DashboardChallengesExampleDataRoute,
   DashboardChallengesIndexRoute: DashboardChallengesIndexRoute,
   DashboardHackathonsIndexRoute: DashboardHackathonsIndexRoute,
   DashboardInboxIndexRoute: DashboardInboxIndexRoute,
@@ -256,6 +273,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/profile': typeof ProfileIndexRoute
+  '/dashboard/challenges/ExampleData': typeof DashboardChallengesExampleDataRoute
   '/dashboard/challenges': typeof DashboardChallengesIndexRoute
   '/dashboard/hackathons': typeof DashboardHackathonsIndexRoute
   '/dashboard/inbox': typeof DashboardInboxIndexRoute
@@ -272,6 +290,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/profile': typeof ProfileIndexRoute
+  '/dashboard/challenges/ExampleData': typeof DashboardChallengesExampleDataRoute
   '/dashboard/challenges': typeof DashboardChallengesIndexRoute
   '/dashboard/hackathons': typeof DashboardHackathonsIndexRoute
   '/dashboard/inbox': typeof DashboardInboxIndexRoute
@@ -290,6 +309,7 @@ export interface FileRoutesById {
   '/auth/': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/profile/': typeof ProfileIndexRoute
+  '/dashboard/challenges/ExampleData': typeof DashboardChallengesExampleDataRoute
   '/dashboard/challenges/': typeof DashboardChallengesIndexRoute
   '/dashboard/hackathons/': typeof DashboardHackathonsIndexRoute
   '/dashboard/inbox/': typeof DashboardInboxIndexRoute
@@ -309,6 +329,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard/'
     | '/profile'
+    | '/dashboard/challenges/ExampleData'
     | '/dashboard/challenges'
     | '/dashboard/hackathons'
     | '/dashboard/inbox'
@@ -324,6 +345,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/profile'
+    | '/dashboard/challenges/ExampleData'
     | '/dashboard/challenges'
     | '/dashboard/hackathons'
     | '/dashboard/inbox'
@@ -340,6 +362,7 @@ export interface FileRouteTypes {
     | '/auth/'
     | '/dashboard/'
     | '/profile/'
+    | '/dashboard/challenges/ExampleData'
     | '/dashboard/challenges/'
     | '/dashboard/hackathons/'
     | '/dashboard/inbox/'
@@ -391,6 +414,7 @@ export const routeTree = rootRoute
       "filePath": "dashboard/layout.tsx",
       "children": [
         "/dashboard/",
+        "/dashboard/challenges/ExampleData",
         "/dashboard/challenges/",
         "/dashboard/hackathons/",
         "/dashboard/inbox/",
@@ -413,6 +437,10 @@ export const routeTree = rootRoute
     },
     "/profile/": {
       "filePath": "profile/index.tsx"
+    },
+    "/dashboard/challenges/ExampleData": {
+      "filePath": "dashboard/challenges/ExampleData.tsx",
+      "parent": "/dashboard"
     },
     "/dashboard/challenges/": {
       "filePath": "dashboard/challenges/index.tsx",
