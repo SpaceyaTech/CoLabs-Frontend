@@ -103,6 +103,11 @@ export default function RepositoriesSection({ projects }: Props) {
           </div>
 
           <div className="mt-[30px] grid gap-x-8 gap-y-[30px] md:grid-cols-2 lg:grid-cols-3">
+            {searchedProjects.map((project, index) => (
+              <div
+                key={index}
+                className="relative isolate overflow-hidden rounded-[12px] border border-[#294740]/80 bg-[#413535]/[.53] px-4 pb-5 pt-7"
+              >
                 <CustomIcons.ossIcon className="absolute right-0 top-0 -z-[1]" />
                 <div className="flex justify-end">
                   <span className="rounded-full border border-[#f3faf8]/80 px-2.5 py-1 font-ff-poppins text-sm text-white">
