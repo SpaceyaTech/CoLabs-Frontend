@@ -36,4 +36,11 @@ export const feedbacks: Feedback[] = [
     title: "Tech Enthusiast",
     imageLink: "https://placehold.co/600x400.png",
   },
+  {
+    fullname: "Martin Okoth",
+    message:
+      "The collaboration features in Collabs are top-notch. It’s intuitive and easy to use.",
+    title: "Tech Enthusiast",
+    imageLink: "https://placehold.co/600x400.png",
+  },
 ];

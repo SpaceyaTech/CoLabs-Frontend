@@ -21,10 +21,7 @@ export const faqs: Faqs[] = [
         question: "Does Collabs have paid projects?",
         answer: "Yes, Collabs offers both paid and voluntary projects. Look for the payment badge on project listings."
       },
-      {
-        question: "If you have additional questions, we’d be happy to answer.",
-        answer: "Reach out to our support team anytime through the contact page or our provided email address."
-      },
+   
       {
         question: "Is there a package for startups?",
         answer: "Yes, Collabs offers tailored packages for startups to help them scale and find skilled collaborators."
@@ -33,8 +30,5 @@ export const faqs: Faqs[] = [
         question: "How do I register a Hackathon?",
         answer: "You can register a Hackathon by contacting us directly or filling out the Hackathon registration form on the platform."
       },
-      {
-        question: "Contact Us",
-        answer: "Email us at support@collabs.spaceyatech.com or use the chat feature on our website."
-      }
+    
 ]   
