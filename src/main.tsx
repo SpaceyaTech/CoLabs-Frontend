@@ -59,6 +59,8 @@ declare module "@tanstack/react-router" {
 
 function App() {
   useEffect(() => {
+    // other view transition styles include "angled", "wipe", "slides", "flip", "vertical"
+    // currently doesn't work in firefox
     document.documentElement.dataset.style = "vertical";
     themeChange(false);
   }, []);
