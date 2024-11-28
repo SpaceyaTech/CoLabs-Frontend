@@ -1,8 +1,8 @@
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { Toaster } from "react-hot-toast";
+import { TanStackRouterDevtools } from "./RouterDevttols";
 
 export function RootComponent() {
   return (
