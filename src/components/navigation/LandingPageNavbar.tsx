@@ -7,7 +7,7 @@ export function LandingPageNavbar({}: LandingPageNavbarProps) {
   const isLoading = useRouterState({ select: (s) => s.status === "pending" });
 
   return (
-    <header className="sticky top-0 z-30 flex  w-full flex-col items-center justify-between bg-base-200">
+    <header className="sticky top-0 z-30 flex  w-full flex-col items-center justify-between bg-base-200/520">
       <nav className="flex h-full w-full items-center justify-between gap-5 px-5 p-2">
         <Link to="/" className="btn btn-link btn-sm">
           <img src="/colabs.png" alt="logo" className="h-8 w-fit" />
