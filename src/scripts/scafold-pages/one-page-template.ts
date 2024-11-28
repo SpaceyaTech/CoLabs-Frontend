@@ -16,8 +16,7 @@ export const Route = createFileRoute('/${path}/$${pagename}/')({
 }
 // /-components/one${capitalpagename}/one${capitalpagename}Page
 export function rootOnePageComponentsTemplate(
-  pagename: string,
-  path: string,
+  pagename: string
 ) {
   const capitalpagename = pagename.charAt(0).toUpperCase() + pagename.slice(1);
   return `
