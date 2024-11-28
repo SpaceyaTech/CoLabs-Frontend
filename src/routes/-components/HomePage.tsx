@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import RepositoriesSection from "./RepositoriesSection";
 
 import { projects } from "@/data/projects";
+import { ToolsSection } from "./tools-section/ToolsSection";
 
 export function HomePage() {
   return (
@@ -17,6 +18,7 @@ export function HomePage() {
           Go to Dashboard
         </Link>
       </div>
+      <ToolsSection/>
       <RepositoriesSection projects={projects} />
     </div>
   );

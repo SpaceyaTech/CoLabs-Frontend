@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import { Description } from "@radix-ui/react-dialog";
 import shadcnTailwindPlugin from "./src/components/lib/shadcn-tailwind-config";
 export default {
   darkMode: ["class"],
@@ -20,7 +21,7 @@ export default {
             6: "#B4B1B1",
             7: "#635D5D",
             8: "#B3B8B7",
-            9: "#f3faf8",
+            9: "#f3faf8", //#B3B8B7CC
           },
           green: {
             1: "#14A97C",
@@ -54,7 +55,7 @@ export default {
       {
         collabs: {
           "color-scheme": "dark",
-          primary: "#1eb854",
+          primary: "#2D8067",
           "primary-content": "#000000",
           secondary: "#1db88e",
           "secondary-content": "#000c07",
@@ -62,10 +63,9 @@ export default {
           "accent-content": "#000c0b",
           neutral: "#19362d",
           "neutral-content": "#cdd3d1",
-          "base-100": "#171212",
-          "base-200": "#140f0f",
+          "base-100": "#16181D",
           "base-300": "#110c0d",
-          "base-content": "#cbc9c9",
+          "base-content": "#B3B8B7",
           success: "#00a96e",
           error: "#852e32",
           info: "#00b5ff",
