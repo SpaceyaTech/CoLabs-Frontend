@@ -46,7 +46,7 @@ export default function RepositoriesSection({ projects }: Props) {
 
   return (
     <section className="border-brand-green-5 border-y px-5 pb-16 pt-5">
-      <h2 className="text-brand-gray-8 text-center text-[31px]/[37px] font-semibold">
+      <h2 className="text-brand-gray-8 text-center text-[28px]/8 font-semibold md:text-[32px]/[38px]">
         Access the largest directory of open-source projects
       </h2>
       <p className="text-sm/base text-brand-gray-1/80 mt-[10px] text-center">
