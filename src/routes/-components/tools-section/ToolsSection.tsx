@@ -17,21 +17,21 @@ export function ToolsSection({}: ToolsSectionProps) {
         <div className="flex h-full w-full flex-col items-center justify-center p-[3%] md:flex-row">
           {/* gamification+ */}
           <div className="flex h-full w-full items-center justify-center rounded-xl border-[1px] border-[#294740]">
-            <img className="" src="/public/landing-page/gamification.svg" />
+            <img className="" src="/landing-page/gamification.svg" />
           </div>
           {/* community */}
           <div className="flex h-full w-full items-center justify-center">
-            <img className="" src="/public/landing-page/community.svg" />
+            <img className="" src="/landing-page/community.svg" />
           </div>
         </div>
       </div>
       <div className="flex h-full w-full flex-col items-center justify-center p-[3%] md:flex-row">
         {/* technologies */}
         <div className="flex h-full w-full items-center justify-center">
-          <img className="" src="/public/landing-page/tech.svg" />
+          <img className="" src="/landing-page/tech.svg" />
         </div>
         <div className="flex h-full w-full items-center justify-center">
-          <img className="" src="/public/landing-page/teams.svg" />
+          <img className="" src="/landing-page/teams.svg" />
         </div>
       </div>
     </div>
