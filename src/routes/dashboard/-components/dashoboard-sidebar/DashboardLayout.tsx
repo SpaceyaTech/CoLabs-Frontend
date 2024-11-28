@@ -18,14 +18,17 @@ import { TSRBreadCrumbs } from "@/lib/tanstack/router/TSRBreadCrumbs";
 import { DashboardTheme } from "./DashboardTheme";
 import { DashboardLayoutHeader } from "../dashboard-layout/DashboardLayoutHeader";
 import { DashboardSidebarActions } from "./DashboardSidebarActions";
+import { Helmet } from "@/components/wrappers/custom-helmet";
 
 interface DashboardLayoutProps {
   sidebar_props: React.ComponentProps<typeof Sidebar>;
 }
 
 export function DashboardLayout({ sidebar_props }: DashboardLayoutProps) {
+
   return (
     <SidebarProvider defaultOpen={false}>
+      <Helmet title="Dashboard" description="Dashboard" />
       <SidebarInset>
         <div className="h-full " >
         <header className="sticky top-0 z-30 flex w-full flex-col gap-2 bg-base-100">
