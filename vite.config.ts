@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     TanStackRouterVite({
       routeToken: "layout", // <-- Add this line
+      autoCodeSplitting:true
     }),
     react(),
     tsconfigPaths(),
