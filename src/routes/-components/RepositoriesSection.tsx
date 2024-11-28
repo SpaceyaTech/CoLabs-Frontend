@@ -72,7 +72,7 @@ export default function RepositoriesSection({ projects }: Props) {
           </div>
 
           <div className="mt-5">
-            <div className="flex items-center gap-3 overflow-x-scroll">
+            <div className="flex items-center gap-3 overflow-x-auto scroll-smooth">
               {filterLanguages.map((lang) => (
                 <button
                   key={lang}
