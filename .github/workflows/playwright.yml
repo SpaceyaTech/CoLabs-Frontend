@@ -17,6 +17,8 @@ jobs:
       run: npm install -g pnpm && pnpm install
     - name: Install Playwright Browsers
       run: pnpm exec playwright install --with-deps
+    - name: Start Vite dev server
+      run: pnpm exec vite --port 3000 &
     - name: Run Playwright tests
       run: pnpm exec playwright test
     - uses: actions/upload-artifact@v4
