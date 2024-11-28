@@ -9,6 +9,27 @@ export default {
         "ff-poppins": ["Poppins", "sans-serif"],
       },
       colors: {
+        brand: {
+          1: "#383C3A",
+          gray: {
+            1: "#C6C6C6",
+            2: "#989A9A",
+            3: "#8C9E99",
+            4: "#413535",
+            5: "#DED6D6",
+            6: "#B4B1B1",
+            7: "#635D5D",
+            8: "#B3B8B7",
+            9: "#f3faf8",
+          },
+          green: {
+            1: "#14A97C",
+            2: "#02FBB0",
+            3: "#19FDC7",
+            4: "#144E40",
+            5: "#294740",
+          },
+        },
         sidebar: {
           DEFAULT: "oklch(var(--sidebar-background))",
           foreground: "oklch(var(--sidebar-foreground))",
