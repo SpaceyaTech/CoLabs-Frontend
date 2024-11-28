@@ -1,7 +1,6 @@
 // /-components/form/create
 export function rootPageCreateFormComponentsTemplate(
-  pagename: string,
-  path: string,
+  pagename: string
 ) {
   const capitalpagename = pagename.charAt(0).toUpperCase() + pagename.slice(1);
   return `
@@ -68,8 +67,7 @@ export function Create${capitalpagename}Form() {
 }
 // /-components/form/update
 export function rootPageUpdateFormComponentsTemplate(
-  pagename: string,
-  path: string,
+  pagename: string
 ) {
   const capitalpagename = pagename.charAt(0).toUpperCase() + pagename.slice(1);
   return `
@@ -133,8 +131,7 @@ export function Update${capitalpagename}form({ item }: Update${capitalpagename}f
 }
 // /-components/form/base
 export function rootPageBaseFormComponentsTemplate(
-  pagename: string,
-  path: string,
+  pagename: string
 ) {
   const capitalpagename = pagename.charAt(0).toUpperCase() + pagename.slice(1);
   return `

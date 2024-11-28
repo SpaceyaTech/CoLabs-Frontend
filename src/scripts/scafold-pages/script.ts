@@ -49,15 +49,15 @@ async function scaffoldPage(pagename: string, path: string) {
 
   const baseForm = {
     path: `${rootPath}/-components/form/base.tsx`,
-    component: rootPageBaseFormComponentsTemplate(pagename, rootPath),
+    component: rootPageBaseFormComponentsTemplate(pagename),
   };
   const createForm = {
-    path: `${rootPath}/-components/form/create.tsx`,
-    component: rootPageCreateFormComponentsTemplate(pagename, rootPath),
+    path: `}/-components/form/create.tsx`,
+    component: rootPageCreateFormComponentsTemplate(pagename),
   };
   const updateForm = {
-    path: `${rootPath}/-components/form/update.tsx`,
-    component: rootPageUpdateFormComponentsTemplate(pagename, rootPath),
+    path: `}/-components/form/update.tsx`,
+    component: rootPageUpdateFormComponentsTemplate(pagename),
   };
 
   // const listComponent = {
@@ -70,7 +70,7 @@ async function scaffoldPage(pagename: string, path: string) {
   }
   const onepageComponent = {
     path: `${rootPath}/-components/one${pagename}/One${capitalpagename}Page.tsx`,
-    component: rootOnePageComponentsTemplate(pagename, rootPath),
+    component: rootOnePageComponentsTemplate(pagename),
   };
   const onepageDetailsComponent = {
     path: `${rootPath}/-components/one${pagename}/One${capitalpagename}Details.tsx`,
@@ -78,7 +78,7 @@ async function scaffoldPage(pagename: string, path: string) {
   }
   const queryOptions = {
     path: `${rootPath}/-query-options/${pagename}-query-option.ts`,
-    component: rootPageQeuryOptionsTemplate(pagename, rootPath),
+    component: rootPageQeuryOptionsTemplate(pagename),
   };
 
   const allPaths = [
@@ -131,20 +131,12 @@ function main() {
   if (!pagename) {
     throw new Error("No page name provided. try /dashboard/new")
   }
-  // console.log(`============= Creating page  ========== `,process.argv)
-  // console.log(`============= Creating page ${pagename} at ${components_path}  ========== `)
   return scaffoldPage(pagename,components_path)
 
 }
 
 main()
 .catch((err) => {
-  // console.log(" ===bad things happend ===", err.message)
+  console.log(" ===  something went wrong scaffolding ===", err.message)
 })
 
-// async function uwu(){
-//   console.log("uwu")
-//   await mkdir("./slime")
-//   await writeFile("./slime/uwu.txt","uwu")
-// }
-// uwu()
