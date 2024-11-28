@@ -2,13 +2,6 @@ import { Project } from "@/routes/-components/RepositoriesSection";
 
 export const projects: Project[] = [
   {
-    repository: "openai/chatgpt",
-    description:
-      "An AI-powered assistant that helps with complex queries and tasks.",
-    languages: ["TypeScript", "Python"],
-    link: "https://openai.com/",
-  },
-  {
     repository: "vercel/next.js",
     description:
       "A React-based framework for server-side rendering and static site generation.",
@@ -36,13 +29,6 @@ export const projects: Project[] = [
     link: "https://playwright.dev/",
   },
 
-  {
-    repository: "tailwindlabs/tailwindcss",
-    description:
-      "A utility-first CSS framework for creating custom designs directly in HTML.",
-    languages: ["CSS", "JavaScript"],
-    link: "https://tailwindcss.com/",
-  },
   {
     repository: "prisma/prisma",
     description: "A modern database toolkit for TypeScript and Node.js.",
