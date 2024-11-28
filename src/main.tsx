@@ -80,6 +80,7 @@ const viewer = useViewer();
   );
 }
 
+
 const rootElement = document.getElementById("app")!;
 
 if (!rootElement.innerHTML) {
