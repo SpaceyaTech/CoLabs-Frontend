@@ -1,5 +1,6 @@
 import { LandingPageNavbar } from "@/components/navigation/LandingPageNavbar";
 import { Link } from "@tanstack/react-router";
+import { ToolsSection } from "./tools-section/ToolsSection";
 
 export function HomePage() {
   return (
@@ -12,6 +13,7 @@ export function HomePage() {
         </p>
         <Link to="/dashboard" className="btn btn-outline">Go to Dashboard</Link>
       </div>
+      <ToolsSection/>
     </div>
   );
 }
