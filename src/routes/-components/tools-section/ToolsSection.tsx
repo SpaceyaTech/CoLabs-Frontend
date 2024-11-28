@@ -3,11 +3,11 @@ interface ToolsSectionProps {}
 export function ToolsSection({}: ToolsSectionProps) {
   return (
     <div className="flex h-full min-h-screen w-full flex-col items-center gap-2 border-y-[1px] border-[#294740] py-5">
-      <div className="w-full max-w-[525px] text-center">
-        <h1 className="text-3xl font-bold text-white">
+      <div className="w-full max-w-[600px] text-center">
+        <h1 className="text-4xl font-bold text-[#B3B8B7]">
           Get more than just pushing commits
         </h1>
-        <p className="max-w-[90%] pt-3 text-sm brightness-75">
+        <p className="max-w-[90%] pt-3 text-sm text-[#C6C6C6CC]">
           The more the merrier. Colabs allows you to create teams, participate
           in challenges and collect cool badges.
         </p>

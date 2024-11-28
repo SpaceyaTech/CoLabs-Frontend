@@ -6,7 +6,7 @@ import { TanStackRouterDevtools } from "./RouterDevttols";
 
 export function RootComponent() {
   return (
-    <div className="content min-h-screen bg-gradient-to-r from-base-100 via-primary/10 to-base-100 w-full">
+    <div className="content min-h-screen bg-gradient-to-r from-base-100 via-primary/20 to-base-100 w-full">
       <Outlet />
       <ReactQueryDevtools buttonPosition="bottom-right" />
       <TanStackRouterDevtools position="bottom-left" />
