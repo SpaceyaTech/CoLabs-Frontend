@@ -11,7 +11,7 @@ import { ValidRoutes } from "@/lib/tanstack/router/router-types";
   */
 export function usePageSearchQuery(path: ValidRoutes) {
   // @ts-expect-error : search parm below wwill exist when the compnent is usesd
-  const { sq } = useSearch({ from:`${path}/` });
+  const { sq, page } = useSearch({ from:`${path}/` });
   const navigate = useNavigate({ from:path });
   const [_, startTransition] = useTransition();
 
@@ -22,12 +22,23 @@ export function usePageSearchQuery(path: ValidRoutes) {
       startTransition(() => {
         navigate({
           search: {
+            page,
             sq: debouncedValue,
           },
         });
       });
 
     }
-  }, [debouncedValue, navigate, sq]);
-  return { debouncedValue, isDebouncing, keyword, setKeyword };
+  }, [debouncedValue, navigate, sq,page]);
+  function updatePage(page: number) {
+    startTransition(() => {
+      navigate({
+        search: {
+          page,
+          sq: debouncedValue,
+        },
+      });
+    })
+  }
+  return { debouncedValue, isDebouncing, keyword, setKeyword,page, updatePage };
 }

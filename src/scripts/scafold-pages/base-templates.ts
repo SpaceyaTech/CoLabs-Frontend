@@ -10,6 +10,7 @@ import { z } from "zod";
 import { ${capitalpagename}Page } from "@/routes/${path}/-components/${capitalpagename}Page";
 
 const searchparams = z.object({
+  page: z.number().optional(),
   sq: z.string().optional(),
 });
 
@@ -80,6 +81,8 @@ import { ItemNotFound } from "@/components/wrappers/ItemNotFound";
 import { ErrorWrapper } from "@/components/wrappers/ErrorWrapper";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
+import ResponsivePagination from "react-responsive-pagination";
+import { usePageSearchQuery } from "@/hooks/use-page-searchquery";
 import { Update${capitalpagename}form } from "@/routes/${path}/-components/form/update";
 import { ${pagename}ListQueryOptions } from "@/routes/${path}/-query-options/${pagename}-query-option";
 
@@ -88,7 +91,8 @@ interface ${capitalpagename}ListProps {
 }
 
 export function ${capitalpagename}List({ keyword = "" }: ${capitalpagename}ListProps) {
-  const query = useSuspenseQuery(${pagename}ListQueryOptions({ keyword }));
+  const { page,updatePage } = usePageSearchQuery("/${path}");
+  const query = useSuspenseQuery(${pagename}ListQueryOptions({ keyword,page }));
   const data = query.data;
   const error = query.error;
 
@@ -129,6 +133,15 @@ export function ${capitalpagename}List({ keyword = "" }: ${capitalpagename}ListP
           );
         })}
       </ul>
+            <div className="flex w-full items-center justify-center">
+        <ResponsivePagination
+          current={page ?? 1}
+          total={data.totalPages}
+          onPageChange={(e) => {
+            updatePage(e);
+          }}
+        />
+      </div>
     </div>
   );
 }
