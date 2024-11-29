@@ -10,13 +10,13 @@ import { writeFile, access, mkdir } from "node:fs/promises"
 async function scaffoldPage(pagename: string, path: string) {
   const roootDirpath = `./src/routes${ path}`
   // const roootDirpath = resolve("./src/routes",path)
-  await mkdir(roootDirpath, { recursive: true }).catch((err) => {
-    if (err instanceof Error) {
-      if (err.message.includes("EEXIST")) {
-      }else{
-        throw err
-      }
-    }
+  await mkdir(roootDirpath, { recursive: true }).catch(() => {
+    // if (err instanceof Error) {
+    //   if (err.message.includes("EEXIST")) {
+    //   }else{
+    //     throw err
+    //   }
+    // }
 
   })
   const capitalpagename = pagename.charAt(0).toUpperCase() + pagename.slice(1);

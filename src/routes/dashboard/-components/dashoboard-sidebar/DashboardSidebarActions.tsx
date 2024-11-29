@@ -1,4 +1,4 @@
-import { useSidebar } from "@/components/ui/sidebar";
+import { useSidebar } from "@/components/ui/sidebar-extras";
 import { DashboardLayoutActions } from "../dashboard-layout/DashboardLayoutActions";
 import { DashboardSidebaruser } from "./DashboardSidebaruser";
 

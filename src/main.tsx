@@ -1,17 +1,16 @@
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { createRouter } from "@tanstack/react-router";
 import {
   MutationCache,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { routeTree } from "./routeTree.gen";
-import React, { useEffect } from "react";
+import React from "react";
 import { RouterPendingComponent } from "./lib/tanstack/router/RouterPendingComponent";
 import { RouterErrorComponent } from "./lib/tanstack/router/routerErrorComponent";
 import { RouterNotFoundComponent } from "./lib/tanstack/router/RouterNotFoundComponent";
-import { themeChange } from "theme-change";
-import { useViewer } from "./lib/tanstack/query/use-viewer";
+import { App } from "./App";
 
 export const queryClient = new QueryClient({
   mutationCache: new MutationCache({
@@ -37,7 +36,7 @@ export const queryClient = new QueryClient({
 
 
 // Set up a Router instance
-const router = createRouter({
+export const router = createRouter({
   routeTree,
   defaultPreload: "intent",
   defaultViewTransition:true,
@@ -57,28 +56,7 @@ declare module "@tanstack/react-router" {
   }
 }
 
-function App() {
-  useEffect(() => {
-    // other view transition styles include "angled", "wipe", "slides", "flip", "vertical"
-    // currently doesn't work in firefox
-    document.documentElement.dataset.style = "vertical";
-    themeChange(false);
-  }, []);
 
-const viewer = useViewer();
-  return (
-    <>
-      <RouterProvider
-        router={router}
-        defaultPreload="intent"
-        context={{
-          queryClient,
-          viewer:viewer.userQuery.data,
-        }}
-      />
-    </>
-  );
-}
 
 
 const rootElement = document.getElementById("app")!;
