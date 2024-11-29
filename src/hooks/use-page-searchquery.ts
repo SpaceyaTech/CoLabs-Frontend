@@ -29,7 +29,8 @@ export function usePageSearchQuery(path: ValidRoutes) {
       });
 
     }
-  }, [debouncedValue, navigate, sq,page]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedValue, navigate, page]);
   function updatePage(page: number) {
     startTransition(() => {
       navigate({

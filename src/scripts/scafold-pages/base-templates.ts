@@ -43,7 +43,7 @@ export function ${capitalpagename}Page({}: ${capitalpagename}PageProps) {
   const { debouncedValue, isDebouncing, keyword, setKeyword } =
     usePageSearchQuery("/${path}");
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="min-h-screen flex h-full w-full gap-5 flex-col items-center ">
       <Helmet title="${pageTitle}" description="The list of ${pageTitle}" />
       <ListPageHeader
         title="${capitalpagename}"
@@ -61,7 +61,7 @@ export function ${capitalpagename}Page({}: ${capitalpagename}PageProps) {
         }
       />
 
-      <div className="m-3 flex h-full w-full items-center justify-center p-5">
+     <div className="m-3 flex h-full w-full items-center justify-center p-5">
         <Suspense fallback={<CardsListSuspenseFallback />}>
           <${capitalpagename}List keyword={keyword} />
         </Suspense>
@@ -111,24 +111,29 @@ export function ${capitalpagename}List({ keyword = "" }: ${capitalpagename}ListP
     );
   }
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
-      <ul className="w-[90%] flex flex-wrap justify-center gap-2">
+    <div className="w-full h-full flex flex-col items-center justify-between ">
+      <ul className="w-[95%] min-h-[80vh] flex flex-wrap justify-center p-2 gap-2">
         {data.items.map((item) => {
           return (
             <li
               key={item.id}
               className="h-56 w-[95%] sm:w-[45%] lg:w-[30%] rounded-xl bg-base-300 p-4 flex justify-center items-center gap-2 "
             >
-              <div className="flex flex-col gap-2 w-full justify-center">
-                {item.id}
+              <div className="flex flex-col gap-2 w-full h-full justify-between">
+              <div className="flex  gap-2 w-full h-full justify-between">
+              <h1 className="text-2xl font-bold">
+              {item.id}
+              </h1>
+              <Update${capitalpagename}form item={item} />
+              </div>
                 <Link
                   to={\`/${path}/\${item.id}/\`}
-                  className="text-primary"
+                  className="text-primary-foreground bg-primary p-2  w-full flex justify-between"
                 >
-                  see details
+                  <div>see details</div>
+                   ➡️
                 </Link>
               </div>
-              <Update${capitalpagename}form item={item} />
             </li>
           );
         })}

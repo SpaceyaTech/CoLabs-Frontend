@@ -28,7 +28,7 @@ interface One${capitalpagename}PageProps {
 
 export function One${capitalpagename}Page({}: One${capitalpagename}PageProps) {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="w-full h-full min-h-screen flex flex-col items-center justify-center">
       <Suspense
         fallback={
           <div className=" min-h-screen h-full flex justify-center items-center w-full">
@@ -73,8 +73,10 @@ export function One${capitalpagename}Details({}: One${capitalpagename}DetailsPro
     );
   }
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="w-full h-full min-h-[90vh] flex  flex-col items-center justify-center">
+      <div className="text-5xl font-bold border border-primary p-10 rounded-2xl">
       {JSON.stringify(data, null, 2)}
+    </div>
     </div>
   );
 }

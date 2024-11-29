@@ -1,20 +1,14 @@
-// /-components/query-options/#{pagename}-query-option
-
-export function rootPageQeuryOptionsTemplate(
-  pagename: string
-) {
-  const capitalpagename = pagename.charAt(0).toUpperCase() + pagename.slice(1);
-  return ` 
+ 
 import { queryOptions } from "@tanstack/react-query";
 
 
-interface ${pagename}QueryOptionPropss {
+interface moneyQueryOptionPropss {
   keyword: string;
     page?: number;
 }
-export function ${pagename}ListQueryOptions({ keyword, page=1 }: ${pagename}QueryOptionPropss) {
+export function moneyListQueryOptions({ keyword, page=1 }: moneyQueryOptionPropss) {
   return queryOptions({
-    queryKey: ["${pagename}_list", keyword,page],
+    queryKey: ["money_list", keyword,page],
     queryFn: () => {
       return new Promise<{
           page: number;
@@ -25,7 +19,7 @@ export function ${pagename}ListQueryOptions({ keyword, page=1 }: ${pagename}Quer
       }>((res) => {
         setTimeout(() => {
           const resArray = Array.from({ length: 30 }, (_, i) => ({
-            id: "${pagename}_id_"+i,
+            id: "money_id_"+i,
           }));
           res({
             page,
@@ -41,23 +35,21 @@ export function ${pagename}ListQueryOptions({ keyword, page=1 }: ${pagename}Quer
     },
   });
 }
-interface one${capitalpagename}QueryOptionPropss {
-  ${pagename}: string;
+interface oneMoneyQueryOptionPropss {
+  money: string;
 }
-export function one${capitalpagename}QueryOptions({ ${pagename} }: one${capitalpagename}QueryOptionPropss) {
+export function oneMoneyQueryOptions({ money }: oneMoneyQueryOptionPropss) {
   return queryOptions({
-    queryKey: ["one_${pagename}", ${pagename}],
+    queryKey: ["one_money", money],
     queryFn: () => {
       return new Promise<{ id: string }>((res) => {
         setTimeout(() => {
           res({
-            id: ${pagename},
+            id: money,
           });
         }, 1000);
       });
     },
   });
 }
-  `;
-
-}
+  
