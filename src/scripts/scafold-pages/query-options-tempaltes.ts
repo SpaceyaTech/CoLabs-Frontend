@@ -17,7 +17,7 @@ export function ${pagename}ListQueryOptions({ keyword }: ${pagename}QueryOptionP
     queryFn: () => {
       return new Promise<{
         items: Array<Record<string, any> & { id: string }>;
-      }>((res, rej) => {
+      }>((res) => {
         setTimeout(() => {
           res({
             items: [{ id: "id_1" }, { id: "id_2" }, { id: "id_3" }],
@@ -34,7 +34,7 @@ export function one${capitalpagename}QueryOptions({ ${pagename} }: one${capitalp
   return queryOptions({
     queryKey: ["one_${pagename}", ${pagename}],
     queryFn: () => {
-      return new Promise<{ id: string }>((res, rej) => {
+      return new Promise<{ id: string }>((res) => {
         setTimeout(() => {
           res({
             id: ${pagename},

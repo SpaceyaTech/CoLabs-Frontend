@@ -24,12 +24,14 @@ export const Route = createFileRoute("/${path}/")({
 // /-components/${capitalpagename}Page
 export function rootPageComponentTemplate(pagename: string, path: string) {
 const capitalpagename = pagename.charAt(0).toUpperCase() + pagename.slice(1);
+const pageTitle = `Collabs | ${pagename}`;
 return `
 import { SearchBox } from "@/components/search/SearchBox";
-import { CardsListSuspenseFallback } from "@/components/wrappers/GenericDataCardsListSuspenseFallback";
-import { ListPageHeader } from "@/components/wrappers/ListPageHeader";
 import { Suspense } from "react";
+import { ListPageHeader } from "@/components/wrappers/ListPageHeader";
+import { Helmet } from "@/components/wrappers/custom-helmet";
 import { usePageSearchQuery } from "@/hooks/use-page-searchquery";
+import { CardsListSuspenseFallback } from "@/components/loaders/GenericDataCardsListSuspenseFallback";
 import { Create${capitalpagename}Form } from "./form/create";
 import { ${capitalpagename}List } from "./list/${capitalpagename}List";
 
@@ -41,6 +43,7 @@ export function ${capitalpagename}Page({}: ${capitalpagename}PageProps) {
     usePageSearchQuery("/${path}");
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
+      <Helmet title="${pageTitle}" description="The list of ${pageTitle}" />
       <ListPageHeader
         title="${capitalpagename}"
         formTrigger={<Create${capitalpagename}Form />}
@@ -74,7 +77,7 @@ export function rootPageListComponentsTemplate(pagename: string, path: string) {
 const capitalpagename = pagename.charAt(0).toUpperCase() + pagename.slice(1);
 return `
 import { ItemNotFound } from "@/components/wrappers/ItemNotFound";
-import { PBReturnedUseQueryError } from "@/lib/pb/components/PBReturnedUseQueryError";
+import { ErrorWrapper } from "@/components/wrappers/ErrorWrapper";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { Update${capitalpagename}form } from "@/routes/${path}/-components/form/update";
@@ -92,7 +95,7 @@ export function ${capitalpagename}List({ keyword = "" }: ${capitalpagename}ListP
   if (error) {
     return (
       <div className="flex h-full min-h-[90vh] w-full flex-col items-center justify-center">
-        <PBReturnedUseQueryError error={error} />
+        <ErrorWrapper error={error} />
       </div>
     );
   }
@@ -131,7 +134,7 @@ export function ${capitalpagename}List({ keyword = "" }: ${capitalpagename}ListP
 }
 
 
-`
+`;
 }
 
 

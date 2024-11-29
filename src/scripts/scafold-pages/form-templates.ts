@@ -17,7 +17,7 @@ export function Create${capitalpagename}Form() {
 
   const mutation = useMutation({
     mutationFn: (value: {}) => {
-      return new Promise<{}>((resolve, reject) => {
+      return new Promise<{}>((resolve) => {
         setTimeout(() => {
           resolve(value);
         }, 2000);
@@ -120,7 +120,7 @@ export function Update${capitalpagename}form({ item }: Update${capitalpagename}f
       trigger={<Edit className="size-5" />}
     >
       <div className="flex h-full max-h-[80vh] w-fit flex-col gap-2 overflow-auto">
-        <Base${capitalpagename}Form mutation={mutation} row={{}} />
+        <Base${capitalpagename}Form mutation={mutation} row={{item}} />
       </div>
     </DiaDrawer>
   );
@@ -139,12 +139,7 @@ export function rootPageBaseFormComponentsTemplate(
 import { UseMutationResult } from "@tanstack/react-query";
 
 interface Base${capitalpagename}FormProps<T extends Record<string, any>> {
-  mutation: UseMutationResult<
-    any,
-    Error,
-    T,
-    unknown
-  >;
+  mutation: UseMutationResult<any,Error,T,unknown>;
   row: T;
   afterSave?: () => void;
 }

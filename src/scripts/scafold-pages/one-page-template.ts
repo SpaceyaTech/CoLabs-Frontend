@@ -54,7 +54,7 @@ export function rootOnePageDetailsComponentsTemplate(
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 import { one${capitalpagename}QueryOptions } from "@/routes/${path}/-query-options/${pagename}-query-option";
-import { PBReturnedUseQueryError } from "@/lib/pb/components/PBReturnedUseQueryError";
+import { ErrorWrapper } from "@/components/wrappers/ErrorWrapper";
 
 interface One${capitalpagename}DetailsProps {
 }
@@ -68,7 +68,7 @@ export function One${capitalpagename}Details({}: One${capitalpagename}DetailsPro
   if (error) {
     return (
       <div className="flex h-full min-h-[90vh] w-full flex-col items-center justify-center">
-        <PBReturnedUseQueryError error={error} />
+           <ErrorWrapper error={error} />
       </div>
     );
   }
