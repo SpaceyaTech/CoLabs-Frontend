@@ -18,9 +18,9 @@ jobs:
     - name: Install Playwright Browsers
       run: pnpm exec playwright install --with-deps
     - name: Lint code
-      run: pnpm exec lint
+      run: pnpm lint
     - name: Run unit tests
-      run: pnpm exec vitest
+      run: pnpm vitest
     - name: Start Vite dev server
       run: pnpm exec vite --port 3000 &
     - name: Run Playwright tests
