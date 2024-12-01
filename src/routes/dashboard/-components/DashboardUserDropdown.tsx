@@ -26,23 +26,23 @@ const { isMobile } = useSidebar();
   }
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <div
-          className="flex p-2 gap-2 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-        >
+      <DropdownMenuTrigger asChild data-test="DashboardUserDropdown">
+        <div className="flex gap-2 p-2 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
           <Avatar className="h-8 w-8 rounded-lg">
             <AvatarImage src={user.avatarUrl} alt={user.username} />
             <AvatarFallback className="rounded-lg">
               {user.username.slice(0, 2)}
             </AvatarFallback>
           </Avatar>
-          <div className={`flex p-1 flex-1 justify-between items-center gap-1 ${compact ? "hidden" : ""}`}>
-          <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">{user.username}</span>
-            <span className="truncate text-xs">{user.email}</span>
+          <div
+            className={`flex flex-1 items-center justify-between gap-1 p-1 ${compact ? "hidden" : ""}`}
+          >
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-semibold">{user.username}</span>
+              <span className="truncate text-xs">{user.email}</span>
+            </div>
+            <ChevronsUpDown className="ml-auto size-4" />
           </div>
-          <ChevronsUpDown className="ml-auto size-4" />
-        </div>
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent
