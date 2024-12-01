@@ -1,4 +1,4 @@
-import { useSidebar } from "@/components/ui/sidebar";
+import { useSidebar } from "@/components/ui/sidebar-extras";
 import { useTheme } from "@/lib/tanstack/router/use-theme";
 import {Sun,Moon} from "lucide-react"
 interface DashboardThemeProps {

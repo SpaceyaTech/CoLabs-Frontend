@@ -10,13 +10,13 @@ import { writeFile, access, mkdir } from "node:fs/promises"
 async function scaffoldPage(pagename: string, path: string) {
   const roootDirpath = `./src/routes${ path}`
   // const roootDirpath = resolve("./src/routes",path)
-  await mkdir(roootDirpath, { recursive: true }).catch((err) => {
-    if (err instanceof Error) {
-      if (err.message.includes("EEXIST")) {
-      }else{
-        throw err
-      }
-    }
+  await mkdir(roootDirpath, { recursive: true }).catch(() => {
+    // if (err instanceof Error) {
+    //   if (err.message.includes("EEXIST")) {
+    //   }else{
+    //     throw err
+    //   }
+    // }
 
   })
   const capitalpagename = pagename.charAt(0).toUpperCase() + pagename.slice(1);
@@ -52,11 +52,11 @@ async function scaffoldPage(pagename: string, path: string) {
     component: rootPageBaseFormComponentsTemplate(pagename),
   };
   const createForm = {
-    path: `}/-components/form/create.tsx`,
+    path: `${rootPath}/-components/form/create.tsx`,
     component: rootPageCreateFormComponentsTemplate(pagename),
   };
   const updateForm = {
-    path: `}/-components/form/update.tsx`,
+    path: `${rootPath}/-components/form/update.tsx`,
     component: rootPageUpdateFormComponentsTemplate(pagename),
   };
 
@@ -95,6 +95,7 @@ async function scaffoldPage(pagename: string, path: string) {
   ]
 
   const allComponentPaths = allPaths.map((path) => {
+    console.log("path======= > ", path.path)
     return ensurePathExistsOrCreate(path.path, path.component)
   })
   await Promise.all(allComponentPaths)

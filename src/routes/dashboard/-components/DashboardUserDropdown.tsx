@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MutationButton } from "@/lib/tanstack/query/MutationButton";
-import { useSidebar } from "@/components/ui/sidebar";
+import { useSidebar } from "@/components/ui/sidebar-extras";
 import { useViewer } from "@/lib/tanstack/query/use-viewer";
 
 interface DashboardUserDropdownProps {

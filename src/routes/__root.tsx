@@ -12,6 +12,8 @@ import { z } from "zod";
 import { Viewer } from "@/lib/tanstack/query/use-viewer";
 
 const searchparams = z.object({
+  sq: z.string().optional(),
+  page: z.number().optional(),
   globalPage: z.number().optional(),
   globalSearch: z.string().optional(),
 });

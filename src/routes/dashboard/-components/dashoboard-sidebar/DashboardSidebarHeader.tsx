@@ -1,5 +1,5 @@
 import { LayoutDashboard } from "lucide-react";
-import { useSidebar } from "@/components/ui/sidebar";
+import { useSidebar } from "@/components/ui/sidebar-extras";
 import { Link, useLocation } from "@tanstack/react-router";
 interface DashboardSidebarHeaderProps {}
 

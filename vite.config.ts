@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
+/// <reference types="vitest" />
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import analyze from "rollup-plugin-analyzer";
 // https://vitejs.dev/config/
@@ -8,7 +9,7 @@ export default defineConfig({
   plugins: [
     TanStackRouterVite({
       routeToken: "layout", // <-- Add this line
-      autoCodeSplitting:true
+      autoCodeSplitting: true,
     }),
     react(),
     tsconfigPaths(),
@@ -22,5 +23,10 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true,
+  },
+  test: {
+    globals: true,
+    include: ["./src"],
+    exclude: ["e2e-tests","node_modules"],
   },
 });

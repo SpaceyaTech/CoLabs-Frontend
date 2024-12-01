@@ -1,5 +1,5 @@
 import { Loader, X } from "lucide-react";
-import { useRef, useTransition } from "react";
+import { useRef } from "react";
 import { Input } from "@/components/ui/input";
 
 interface SearchBoxProps {
@@ -16,7 +16,6 @@ export function SearchBox({
   keyword,
   inputProps,
 }: SearchBoxProps) {
-  const [, startTransition] = useTransition();
   const inputRef = useRef<HTMLInputElement | null>(null);
   return (
     <div className="sticky top-0 w-full">
@@ -27,9 +26,9 @@ export function SearchBox({
           className="w-full bg-base-200/30"
           value={keyword}
           onChange={(e) => {
-            startTransition(() => {
-              setKeyword(e.target.value);
-            });
+            setKeyword(e.target.value);
+            // startTransition(() => {
+            // });
           }}
           {...inputProps}
         />
