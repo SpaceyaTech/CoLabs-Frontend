@@ -26,7 +26,7 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    include: ["./src"],
-    exclude: ["e2e-tests","node_modules"],
+    include: ["./src/**/*.{test,spec}.?(c|m)[jt]s?(x)"],
+    exclude: ["e2e-tests", "node_modules"],
   },
 });

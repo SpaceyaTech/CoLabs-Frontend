@@ -13,6 +13,7 @@
     "playwright": "playwright test --ui",
     "test": "npm run vitest && npm run playwright",
     "build": "tsc -b && vite build",
+    "dryrun":"npm run lint && npm run test && npm run build",
     "preview": "vite preview"
   },
   "dependencies": {
