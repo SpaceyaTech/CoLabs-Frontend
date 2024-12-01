@@ -7,3 +7,7 @@ test("has title", async ({ page }) => {
   await expect(page).toHaveTitle(/Dashboard/);
 });
 
+test("has-navbar", async ({ page }) => {
+  await page.goto("/dashboard");
+  // await expect(page)
+});

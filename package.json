@@ -13,8 +13,9 @@
     "playwright": "playwright test --ui",
     "test": "npm run vitest && npm run playwright",
     "build": "tsc -b && vite build",
-    "dryrun":"npm run lint && npm run test && npm run build",
-    "preview": "vite preview"
+    "dryrun": "npm run lint && npm run test && npm run build",
+    "preview": "vite preview",
+    "test-ct": "playwright test -c playwright-ct.config.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -69,6 +70,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@playwright/experimental-ct-react": "^1.49.0",
     "@playwright/test": "^1.49.0",
     "@tanstack/eslint-plugin-query": "^5.61.6",
     "@tanstack/react-query-devtools": "^5.59.19",
