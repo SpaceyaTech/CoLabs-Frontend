@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: lint and test
 on:
   push:
     branches: [ main, master ]
@@ -17,6 +17,10 @@ jobs:
       run: npm install -g pnpm && pnpm install
     - name: Install Playwright Browsers
       run: pnpm exec playwright install --with-deps
+    - name: Lint code
+      run: pnpm lint
+    - name: Run unit tests
+      run: pnpm vitest
     - name: Start Vite dev server
       run: pnpm exec vite --port 3000 &
     - name: Run Playwright tests
