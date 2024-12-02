@@ -11,7 +11,7 @@
     "vitest": "vitest",
     "vitest:ui": "vitest --ui",
     "playwright": "playwright test --ui",
-    "test": "npm run vitest && npm run playwright",
+    "test": "vitest run && playwright test",
     "build": "tsc -b && vite build",
     "dryrun": "npm run lint && npm run test && npm run build",
     "preview": "vite preview",
