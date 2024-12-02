@@ -4,7 +4,7 @@ interface DashboardpostProjectButtonProps {}
 
 export function DashboardpostProjectButton({}: DashboardpostProjectButtonProps) {
   return (
-    <Button>
+    <Button data-test="DashboardpostProjectButton">
       Post a project <Plus />
     </Button>
   );

@@ -1,4 +1,3 @@
-
 lockfileVersion: '9.0'
 
 settings:
@@ -160,6 +159,9 @@ importers:
       '@eslint/js':
         specifier: ^9.13.0
         version: 9.13.0
+      '@playwright/experimental-ct-react':
+        specifier: ^1.49.0
+        version: 1.49.0(@types/node@22.10.1)(vite@5.4.10(@types/node@22.10.1))
       '@playwright/test':
         specifier: ^1.49.0
         version: 1.49.0
@@ -758,6 +760,15 @@ packages:
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
+
+  '@playwright/experimental-ct-core@1.49.0':
+    resolution: {integrity: sha512-Tl/JekIQOyHIctFvzmHaSB8SuBTbOYcIdrb5HMwMc70i86XbPnQfDp65zgzAuvUiDN1u1k+aIpygJ8ZqnRYgVw==}
+    engines: {node: '>=18'}
+
+  '@playwright/experimental-ct-react@1.49.0':
+    resolution: {integrity: sha512-zkCKItOwMHJsyqXagYmpv/iVCjnjpT+NWvLS8HFec1HuU28kI3AhzcIhKJvZbQLiJV+fL99wFhcJnOjHZm5VAA==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   '@playwright/test@1.49.0':
     resolution: {integrity: sha512-DMulbwQURa8rNIQrf94+jPJQ4FmOVdpE5ZppRNvWVjvhC+6sOeo28r8MgIpQRYouXRtt/FCCXU7zn20jnHR4Qw==}
@@ -3687,6 +3698,37 @@ snapshots:
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
+
+  '@playwright/experimental-ct-core@1.49.0(@types/node@22.10.1)':
+    dependencies:
+      playwright: 1.49.0
+      playwright-core: 1.49.0
+      vite: 5.4.10(@types/node@22.10.1)
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - terser
+
+  '@playwright/experimental-ct-react@1.49.0(@types/node@22.10.1)(vite@5.4.10(@types/node@22.10.1))':
+    dependencies:
+      '@playwright/experimental-ct-core': 1.49.0(@types/node@22.10.1)
+      '@vitejs/plugin-react': 4.3.3(vite@5.4.10(@types/node@22.10.1))
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - vite
 
   '@playwright/test@1.49.0':
     dependencies:

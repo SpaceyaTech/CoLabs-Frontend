@@ -25,7 +25,6 @@ export default defineConfig({
     host: true,
   },
   test: {
-    globals: true,
     include: ["./src/**/*.{test,spec}.?(c|m)[jt]s?(x)"],
     exclude: ["e2e-tests", "node_modules"],
   },
