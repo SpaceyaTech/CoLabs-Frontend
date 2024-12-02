@@ -6,6 +6,10 @@ async function checkLinkNameAndNavigateToIt(page: Page, locator: Locator,mobile=
     await expect(await locator.nth(index).textContent()).toBe(link.name);
     await locator.nth(index).click();
     await expect(page).toHaveTitle(`Dashboard - ${link.name}`);
+    const breadCrumbs = await page.locator('[data-test="OneTSRBreadCrumb"]');
+    await expect(await breadCrumbs.count()).toBeGreaterThan(0)
+    const breadCrumbName = link.href.split("/").pop();
+    await expect(await breadCrumbs.first().textContent()).toBe(breadCrumbName);
     await page.goBack();
     if(mobile){
       // open the mobile sidebar again
@@ -70,3 +74,5 @@ test("test mobile dashboard sidebar", async ({ page }) => {
   await expect(await mobileSidebarLinks.count()).toBe(dashboard_routes.length);
   await checkLinkNameAndNavigateToIt(page, mobileSidebarLinks,true);
 });
+
+

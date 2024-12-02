@@ -22,7 +22,10 @@ export function TSRBreadCrumbs({}: TSRBreadCrumbsProps) {
   const { breadcrumb_routes } = useTSRBreadCrumbs();
   if (breadcrumb_routes.length < 2) return null;
   return (
-    <div className="gap-0.1 flex  flex-wrap p-1 px-3 md:justify-end">
+    <div
+      data-test="TSRBreadCrumbs"
+      className="gap-0.1 flex flex-wrap p-1 px-3 md:justify-end"
+    >
       <Breadcrumb>
         <BreadcrumbList>
           {breadcrumb_routes.map((crumb) => {
@@ -32,7 +35,10 @@ export function TSRBreadCrumbs({}: TSRBreadCrumbsProps) {
             ) {
               return (
                 <BreadcrumbItem key={crumb.path}>
-                  <BreadcrumbPage className="hover:text-accent-text line-clamp-1 cursor-pointer text-xs hover:max-w-fit hover:duration-300 hover:animate-in hover:fade-in">
+                  <BreadcrumbPage
+                    data-test="OneTSRBreadCrumb"
+                    className="hover:text-accent-text line-clamp-1 cursor-pointer text-xs hover:max-w-fit hover:duration-300 hover:animate-in hover:fade-in"
+                  >
                     {crumb.name}
                   </BreadcrumbPage>
                 </BreadcrumbItem>
