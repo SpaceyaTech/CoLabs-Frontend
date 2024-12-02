@@ -29,19 +29,22 @@ export function DashboardLayout({ sidebar_props }: DashboardLayoutProps) {
   return (
     <SidebarProvider defaultOpen={false}>
       <Helmet title="Dashboard" description="Dashboard" />
-      <SidebarInset>
+      <SidebarInset >
         <div className="h-full " >
         <header className="sticky top-0 z-30 flex w-full flex-col gap-2 bg-base-100">
           <DashboardLayoutHeader />
           <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
+            <SidebarTrigger className="-ml-1" data-test="DashboardLayoutSidebarTrigger"/>
             <Separator orientation="vertical" className="mr-2 h-4" />
             <TSRBreadCrumbs />
           </div>
         </header>
         {/* main content */}
         <div className="flex  h-full w-full gap-2 ">
-          <Sidebar className="top-[20%]" collapsible="icon" {...sidebar_props}>
+          <Sidebar 
+          data-test="DashboardLayoutSidebar" 
+          className="top-[20%]" 
+          collapsible="icon" {...sidebar_props}>
             <SidebarHeader>
               <DashboardSidebarHeader />
             </SidebarHeader>
