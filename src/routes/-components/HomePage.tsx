@@ -4,6 +4,7 @@ import RepositoriesSection from "./RepositoriesSection";
 
 import { projects } from "@/data/projects";
 import { ToolsSection } from "./tools-section/ToolsSection";
+import { Footer } from "./Footer";
 
 export function HomePage() {
   return (
@@ -18,8 +19,9 @@ export function HomePage() {
           Go to Dashboard
         </Link>
       </div>
-      <ToolsSection/>
+      <ToolsSection />
       <RepositoriesSection projects={projects} />
+      <Footer />
     </div>
   );
 }
