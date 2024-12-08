@@ -5,7 +5,7 @@ import { Link } from "@tanstack/react-router";
 
 export default function Footer() {
   return (
-    <footer className="mt-8 pl-4">
+    <footer className="mt-8 pl-4" data-test="Footer">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between lg:justify-around">
         <div className="flex items-center justify-start gap-4">
           {/* Social Icons */}

@@ -4,7 +4,10 @@ import robot from "../../assets/robot assistant standing and looking.png";
 import ellipse from "../../assets/ellipse.png";
 export const FooterCTA = () => {
   return (
-    <div className="relative flex flex-col items-center gap-4 p-4 md:gap-10 lg:flex lg:flex-row lg:p-[100px] lg:pl-[20%]">
+    <div
+      data-test="FooterCTA"
+      className="relative flex flex-col items-center gap-4 p-4 md:gap-10 lg:flex lg:flex-row lg:p-[100px] lg:pl-[20%]"
+    >
       <div className="z-10 lg:flex lg:w-1/2 lg:flex-col lg:gap-6">
         <p className="text-[32px] font-bold text-white lg:text-[55px] lg:leading-[60.5px]">
           Experience counts. Get it on Colabs.
