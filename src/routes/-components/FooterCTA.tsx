@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import rocketIcon from "../../assets/rocket.png";
-import robot from "../../assets/robot assistant standing and looking.png";
+import robot from "../../assets/robot-assistant.png";
 import ellipse from "../../assets/ellipse.png";
 export const FooterCTA = () => {
   return (
