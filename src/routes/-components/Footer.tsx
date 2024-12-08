@@ -1,45 +1,47 @@
+import ColabsLogo from "../../assets/logo-container.png";
+import XIcon from "../../assets/x-icon.png";
+import LinkedinIcon from "../../assets/linkedin-icon.png";
 import { Link } from "@tanstack/react-router";
-import rocketIcon from "../../assets/rocket.png";
-import robot from "../../assets/robot assistant standing and looking.png";
-import ellipse from "../../assets/ellipse.png";
-export const Footer = () => {
+
+export default function Footer() {
   return (
-    <div className="relative flex flex-col items-center gap-4 p-4 md:gap-10 lg:flex lg:flex-row lg:p-[100px] lg:pl-[20%]">
-      <div className="z-10 lg:flex lg:w-1/2 lg:flex-col lg:gap-6">
-        <p className="text-[32px] font-bold text-white lg:text-[55px] lg:leading-[60.5px]">
-          Experience counts. Get it on Colabs.
-        </p>
-        <p className="font-ff-inconsolata text-lg font-bold leading-6 text-[#9f9c9c] lg:text-xl">
-          Colabs is where you cut your teeth on enterprise projects. We have
-          over 100 repositories on all tech tracks, carefully picked for you.
-        </p>
-        <div className="mt-5 flex flex-col gap-2 md:flex-row md:justify-around lg:justify-start lg:gap-4">
-          <Link
-            to="/auth/signup"
-            search={{ returnTo: "/dashboard" }}
-            className="btn bg-brand-green-6 px-4 py-2 text-white md:w-[40%] lg:w-auto lg:text-lg"
-          >
-            Join Colabs for free
+    <footer className="mt-8 pl-4">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between lg:justify-around">
+        <div className="flex items-center justify-start gap-4">
+          {/* Social Icons */}
+          <Link to="/">
+            <img src={ColabsLogo} alt="Colabs logo" />
           </Link>
-          <Link
-            to="/dashboard/hackathons"
-            className="btn bg-brand-green-8 px-4 py-2 text-brand-green-7 outline outline-1 outline-brand-green-8 md:w-[40%] lg:w-auto lg:text-lg"
+          <a href="http://www.x.com" target="_blank" rel="noopener noreferrer">
+            <img src={XIcon} alt="X Icon" className="h-6 w-6 object-contain" />{" "}
+          </a>
+          <a
+            href="http://www.linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Launch a Hackathon <img src={rocketIcon} alt="Rocket icon" />
-          </Link>
+            <img
+              src={LinkedinIcon}
+              alt="Linkedin Icon"
+              className="h-6 w-6 object-contain"
+            />
+          </a>
+        </div>
+
+        {/* Internal Links */}
+        <div className="my-5 flex flex-col gap-2 text-[#feffff] md:flex-row md:items-center md:gap-3 md:pr-4 lg:justify-between lg:gap-6">
+          <Link to="/">About</Link>
+          <Link to="/dashboard/hackathons">Hackathons</Link>
+          <Link to="/dashboard/leaderboards">Leaderboard</Link>
+          <Link to="/">Privacy & Terms</Link>
+          <Link to="/">Cookies</Link>
         </div>
       </div>
 
-      <img
-        src={robot}
-        alt="Standing robot"
-        className="z-10 mt-4 pl-[30%] md:mt-6 md:w-[50%] md:pl-[15%] lg:w-auto"
-      />
-      <img
-        src={ellipse}
-        alt="ellipse background"
-        className="absolute bottom-0 right-2 top-96 z-0 md:right-2 md:top-0 lg:top-10"
-      />
-    </div>
+      {/* Footer copyright notice */}
+      <p className="mb-8 text-xs font-medium text-[#BEB8B8] md:text-center md:text-sm">
+        &copy; 2024 Colabs by SpaceYaTech. All rights reserved.
+      </p>
+    </footer>
   );
-};
+}
