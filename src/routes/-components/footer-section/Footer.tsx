@@ -1,6 +1,6 @@
-import ColabsLogo from "../../assets/logo-container.png";
-import XIcon from "../../assets/x-icon.png";
-import LinkedinIcon from "../../assets/linkedin-icon.png";
+import ColabsLogo from "@/assets/logo-container.png";
+import XIcon from "@/assets/x-icon.png";
+import LinkedinIcon from "@/assets/linkedin-icon.png";
 import { Link } from "@tanstack/react-router";
 
 export default function Footer() {
