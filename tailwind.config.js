@@ -8,6 +8,7 @@ export default {
     extend: {
       fontFamily: {
         "ff-poppins": ["Poppins", "sans-serif"],
+        "ff-inconsolata": ["Inconsolata", "monospace"],
       },
       colors: {
         brand: {
@@ -29,6 +30,9 @@ export default {
             3: "#19FDC7",
             4: "#144E40",
             5: "#294740",
+            6: "#2D8067",
+            7: "#9AF5E0",
+            8: "#294740CC",
           },
         },
         sidebar: {
@@ -41,6 +45,7 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
+        heading: "E9EDEC",
       },
     },
   },
