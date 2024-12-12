@@ -25,7 +25,10 @@ export default defineConfig({
     host: true,
   },
   test: {
+    globals: true,
+    environment: "jsdom",
     include: ["./src/**/*.{test,spec}.?(c|m)[jt]s?(x)"],
     exclude: ["e2e-tests", "node_modules"],
+    setupFiles: "./tests/setup.ts",
   },
 });
