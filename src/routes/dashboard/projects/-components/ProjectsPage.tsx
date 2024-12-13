@@ -6,7 +6,7 @@ import { Helmet } from "@/components/wrappers/custom-helmet";
 import { usePageSearchQuery } from "@/hooks/use-page-searchquery";
 import { CardsListSuspenseFallback } from "@/components/loaders/GenericDataCardsListSuspenseFallback";
 import { CreateProjectsForm } from "./form/create";
-import { ProjectsList } from "./list/ProjectsList";
+import { ProjectsFallbackList, ProjectsList } from "./list/ProjectsList";
 
 interface ProjectsPageProps {
 }
@@ -15,8 +15,11 @@ export function ProjectsPage({}: ProjectsPageProps) {
   const { debouncedValue, isDebouncing, keyword, setKeyword } =
     usePageSearchQuery("/dashboard/projects");
   return (
-    <div className="min-h-screen flex h-full w-full gap-5 flex-col items-center ">
-      <Helmet title="Collabs | projects" description="The list of Collabs | projects" />
+    <div className="flex h-full min-h-screen w-full flex-col items-center gap-5">
+      <Helmet
+        title="Collabs | projects"
+        description="The list of Collabs | projects"
+      />
       <ListPageHeader
         title="Projects"
         formTrigger={<CreateProjectsForm />}
@@ -33,8 +36,8 @@ export function ProjectsPage({}: ProjectsPageProps) {
         }
       />
 
-     <div className="m-3 flex h-full w-full items-center justify-center p-5">
-        <Suspense fallback={<CardsListSuspenseFallback />}>
+      <div className="m-3 flex h-full w-full items-center justify-center p-5">
+        <Suspense fallback={<ProjectsFallbackList />}>
           <ProjectsList keyword={keyword} />
         </Suspense>
       </div>
