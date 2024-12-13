@@ -1,4 +1,5 @@
 import { LandingPageNavbar } from "@/components/navigation/LandingPageNavbar";
+import { HeroSection } from "./HeroSection";
 import { Link } from "@tanstack/react-router";
 import RepositoriesSection from "./RepositoriesSection";
 
@@ -12,6 +13,7 @@ export function HomePage() {
     <div className="flex h-full min-h-screen w-full flex-col">
       <LandingPageNavbar />
       <div className="flex h-full min-h-screen w-full flex-col items-center justify-center gap-3 font-ff-poppins">
+        <HeroSection />
         {/* landing page goes here  */}
         <p className="rounded-2xl border border-primary p-5 text-3xl">
           Landing page goes here

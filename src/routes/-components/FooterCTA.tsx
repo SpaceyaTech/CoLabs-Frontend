@@ -9,7 +9,7 @@ export const FooterCTA = () => {
       className="relative flex flex-col items-center gap-4 p-4 md:gap-10 md:p-10 lg:flex lg:flex-row lg:pl-[20%]"
     >
       <div className="z-10 lg:flex lg:w-1/2 lg:flex-col lg:gap-6">
-        <p className="text-[32px] font-bold text-white lg:text-[55px] lg:leading-[60.5px]">
+        <p className="text-[32px] font-bold text-heading lg:text-[55px] lg:leading-[60.5px]">
           Experience counts. Get it on Colabs.
         </p>
         <p className="font-ff-inconsolata text-lg font-bold leading-6 text-[#9f9c9c] lg:text-xl">
