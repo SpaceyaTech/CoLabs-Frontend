@@ -1,5 +1,11 @@
 # Testing
 
+>[!NOTE]
+> Prefer e2e  (playwright) fro testing the ui instead of unit tests. and uase the tooling like recording of tests and locators.
+> use unit tests for units of logic and functions only 
+
+
+
 ```sh
 npm run test
 ```
