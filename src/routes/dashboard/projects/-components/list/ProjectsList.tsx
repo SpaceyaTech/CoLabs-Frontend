@@ -32,9 +32,8 @@ export function ProjectsList({ keyword = "" }: ProjectsListProps) {
   }
   return (
     <div className="flex h-full w-full flex-col items-center justify-between">
-      <ul className="flex min-h-[80vh] w-[95%] flex-wrap justify-center gap-2 p-2">
+      <ul className="flex ] w-[95%] flex-wrap justify-center gap-2 p-2">
         {data.items.map((item) => {
-                // return <ProjectFallbackCard key={idx} />;
           return <ProjectCard key={item.id} project={item} />;
         })}
       </ul>

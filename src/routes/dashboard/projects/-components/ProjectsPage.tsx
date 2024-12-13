@@ -4,7 +4,6 @@ import { Suspense } from "react";
 import { ListPageHeader } from "@/components/wrappers/ListPageHeader";
 import { Helmet } from "@/components/wrappers/custom-helmet";
 import { usePageSearchQuery } from "@/hooks/use-page-searchquery";
-import { CardsListSuspenseFallback } from "@/components/loaders/GenericDataCardsListSuspenseFallback";
 import { CreateProjectsForm } from "./form/create";
 import { ProjectsFallbackList, ProjectsList } from "./list/ProjectsList";
 

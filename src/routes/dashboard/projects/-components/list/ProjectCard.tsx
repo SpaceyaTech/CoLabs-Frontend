@@ -6,7 +6,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div className="flex w-full flex-col gap-1 rounded-2xl border-[1px] border-[#294740] bg-[#292E2F] px-4 py-3">
+    <div className="flex w-full h-fit flex-col gap-1 rounded-2xl border-[1px] border-[#294740] bg-[#292E2F] px-4 py-3">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold tracking-tight text-[#FFFFFF]">
           {project.name}
