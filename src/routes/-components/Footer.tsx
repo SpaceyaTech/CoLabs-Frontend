@@ -9,16 +9,26 @@ export default function Footer() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between lg:justify-around">
         <div className="flex items-center justify-start gap-4">
           {/* Social Icons */}
-          <Link to="/">
+          <Link to="/" className="z-10">
             <img src={ColabsLogo} alt="Colabs logo" />
           </Link>
-          <a href="http://www.x.com" target="_blank" rel="noopener noreferrer">
-            <img src={XIcon} alt="X Icon" className="h-6 w-6 object-contain" />{" "}
-          </a>
           <a
-            href="http://www.linkedin.com"
+            href="https://www.x.com"
             target="_blank"
             rel="noopener noreferrer"
+            className="z-10"
+          >
+            <img
+              src={XIcon}
+              alt="X Icon"
+              className="z-10 h-6 w-6 object-contain"
+            />{" "}
+          </a>
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="z-10"
           >
             <img
               src={LinkedinIcon}
