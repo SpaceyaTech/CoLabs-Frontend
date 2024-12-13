@@ -28,3 +28,4 @@ tsconfig.node.tsbuildinfo
 /blob-report/
 /playwright/.cache/
 tsconfig.app.tsbuildinfo
+codealike.json
