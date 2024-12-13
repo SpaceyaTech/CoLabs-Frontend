@@ -21,12 +21,14 @@ import { Route as AuthSignupImport } from './routes/auth/signup'
 import { Route as MoneyMoneyIndexImport } from './routes/money/$money/index'
 import { Route as DashboardTeamsIndexImport } from './routes/dashboard/teams/index'
 import { Route as DashboardProjectsIndexImport } from './routes/dashboard/projects/index'
-import { Route as DashboardOsProjectsIndexImport } from './routes/dashboard/os-projects/index'
+import { Route as DashboardOsprojectsIndexImport } from './routes/dashboard/osprojects/index'
 import { Route as DashboardMembersIndexImport } from './routes/dashboard/members/index'
 import { Route as DashboardLeaderboardsIndexImport } from './routes/dashboard/leaderboards/index'
 import { Route as DashboardInboxIndexImport } from './routes/dashboard/inbox/index'
 import { Route as DashboardHackathonsIndexImport } from './routes/dashboard/hackathons/index'
 import { Route as DashboardChallengesIndexImport } from './routes/dashboard/challenges/index'
+import { Route as DashboardProjectsProjectsIndexImport } from './routes/dashboard/projects/$projects/index'
+import { Route as DashboardOsprojectsOsprojectsIndexImport } from './routes/dashboard/osprojects/$osprojects/index'
 
 // Create/Update Routes
 
@@ -90,9 +92,9 @@ const DashboardProjectsIndexRoute = DashboardProjectsIndexImport.update({
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
 
-const DashboardOsProjectsIndexRoute = DashboardOsProjectsIndexImport.update({
-  id: '/os-projects/',
-  path: '/os-projects/',
+const DashboardOsprojectsIndexRoute = DashboardOsprojectsIndexImport.update({
+  id: '/osprojects/',
+  path: '/osprojects/',
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
 
@@ -127,6 +129,20 @@ const DashboardChallengesIndexRoute = DashboardChallengesIndexImport.update({
   path: '/challenges/',
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
+
+const DashboardProjectsProjectsIndexRoute =
+  DashboardProjectsProjectsIndexImport.update({
+    id: '/projects/$projects/',
+    path: '/projects/$projects/',
+    getParentRoute: () => DashboardLayoutRoute,
+  } as any)
+
+const DashboardOsprojectsOsprojectsIndexRoute =
+  DashboardOsprojectsOsprojectsIndexImport.update({
+    id: '/osprojects/$osprojects/',
+    path: '/osprojects/$osprojects/',
+    getParentRoute: () => DashboardLayoutRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -216,11 +232,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardMembersIndexImport
       parentRoute: typeof DashboardLayoutImport
     }
-    '/dashboard/os-projects/': {
-      id: '/dashboard/os-projects/'
-      path: '/os-projects'
-      fullPath: '/dashboard/os-projects'
-      preLoaderRoute: typeof DashboardOsProjectsIndexImport
+    '/dashboard/osprojects/': {
+      id: '/dashboard/osprojects/'
+      path: '/osprojects'
+      fullPath: '/dashboard/osprojects'
+      preLoaderRoute: typeof DashboardOsprojectsIndexImport
       parentRoute: typeof DashboardLayoutImport
     }
     '/dashboard/projects/': {
@@ -244,6 +260,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MoneyMoneyIndexImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/osprojects/$osprojects/': {
+      id: '/dashboard/osprojects/$osprojects/'
+      path: '/osprojects/$osprojects'
+      fullPath: '/dashboard/osprojects/$osprojects'
+      preLoaderRoute: typeof DashboardOsprojectsOsprojectsIndexImport
+      parentRoute: typeof DashboardLayoutImport
+    }
+    '/dashboard/projects/$projects/': {
+      id: '/dashboard/projects/$projects/'
+      path: '/projects/$projects'
+      fullPath: '/dashboard/projects/$projects'
+      preLoaderRoute: typeof DashboardProjectsProjectsIndexImport
+      parentRoute: typeof DashboardLayoutImport
+    }
   }
 }
 
@@ -256,9 +286,11 @@ interface DashboardLayoutRouteChildren {
   DashboardInboxIndexRoute: typeof DashboardInboxIndexRoute
   DashboardLeaderboardsIndexRoute: typeof DashboardLeaderboardsIndexRoute
   DashboardMembersIndexRoute: typeof DashboardMembersIndexRoute
-  DashboardOsProjectsIndexRoute: typeof DashboardOsProjectsIndexRoute
+  DashboardOsprojectsIndexRoute: typeof DashboardOsprojectsIndexRoute
   DashboardProjectsIndexRoute: typeof DashboardProjectsIndexRoute
   DashboardTeamsIndexRoute: typeof DashboardTeamsIndexRoute
+  DashboardOsprojectsOsprojectsIndexRoute: typeof DashboardOsprojectsOsprojectsIndexRoute
+  DashboardProjectsProjectsIndexRoute: typeof DashboardProjectsProjectsIndexRoute
 }
 
 const DashboardLayoutRouteChildren: DashboardLayoutRouteChildren = {
@@ -268,9 +300,12 @@ const DashboardLayoutRouteChildren: DashboardLayoutRouteChildren = {
   DashboardInboxIndexRoute: DashboardInboxIndexRoute,
   DashboardLeaderboardsIndexRoute: DashboardLeaderboardsIndexRoute,
   DashboardMembersIndexRoute: DashboardMembersIndexRoute,
-  DashboardOsProjectsIndexRoute: DashboardOsProjectsIndexRoute,
+  DashboardOsprojectsIndexRoute: DashboardOsprojectsIndexRoute,
   DashboardProjectsIndexRoute: DashboardProjectsIndexRoute,
   DashboardTeamsIndexRoute: DashboardTeamsIndexRoute,
+  DashboardOsprojectsOsprojectsIndexRoute:
+    DashboardOsprojectsOsprojectsIndexRoute,
+  DashboardProjectsProjectsIndexRoute: DashboardProjectsProjectsIndexRoute,
 }
 
 const DashboardLayoutRouteWithChildren = DashboardLayoutRoute._addFileChildren(
@@ -290,10 +325,12 @@ export interface FileRoutesByFullPath {
   '/dashboard/inbox': typeof DashboardInboxIndexRoute
   '/dashboard/leaderboards': typeof DashboardLeaderboardsIndexRoute
   '/dashboard/members': typeof DashboardMembersIndexRoute
-  '/dashboard/os-projects': typeof DashboardOsProjectsIndexRoute
+  '/dashboard/osprojects': typeof DashboardOsprojectsIndexRoute
   '/dashboard/projects': typeof DashboardProjectsIndexRoute
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
   '/money/$money': typeof MoneyMoneyIndexRoute
+  '/dashboard/osprojects/$osprojects': typeof DashboardOsprojectsOsprojectsIndexRoute
+  '/dashboard/projects/$projects': typeof DashboardProjectsProjectsIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -308,10 +345,12 @@ export interface FileRoutesByTo {
   '/dashboard/inbox': typeof DashboardInboxIndexRoute
   '/dashboard/leaderboards': typeof DashboardLeaderboardsIndexRoute
   '/dashboard/members': typeof DashboardMembersIndexRoute
-  '/dashboard/os-projects': typeof DashboardOsProjectsIndexRoute
+  '/dashboard/osprojects': typeof DashboardOsprojectsIndexRoute
   '/dashboard/projects': typeof DashboardProjectsIndexRoute
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
   '/money/$money': typeof MoneyMoneyIndexRoute
+  '/dashboard/osprojects/$osprojects': typeof DashboardOsprojectsOsprojectsIndexRoute
+  '/dashboard/projects/$projects': typeof DashboardProjectsProjectsIndexRoute
 }
 
 export interface FileRoutesById {
@@ -328,10 +367,12 @@ export interface FileRoutesById {
   '/dashboard/inbox/': typeof DashboardInboxIndexRoute
   '/dashboard/leaderboards/': typeof DashboardLeaderboardsIndexRoute
   '/dashboard/members/': typeof DashboardMembersIndexRoute
-  '/dashboard/os-projects/': typeof DashboardOsProjectsIndexRoute
+  '/dashboard/osprojects/': typeof DashboardOsprojectsIndexRoute
   '/dashboard/projects/': typeof DashboardProjectsIndexRoute
   '/dashboard/teams/': typeof DashboardTeamsIndexRoute
   '/money/$money/': typeof MoneyMoneyIndexRoute
+  '/dashboard/osprojects/$osprojects/': typeof DashboardOsprojectsOsprojectsIndexRoute
+  '/dashboard/projects/$projects/': typeof DashboardProjectsProjectsIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -349,10 +390,12 @@ export interface FileRouteTypes {
     | '/dashboard/inbox'
     | '/dashboard/leaderboards'
     | '/dashboard/members'
-    | '/dashboard/os-projects'
+    | '/dashboard/osprojects'
     | '/dashboard/projects'
     | '/dashboard/teams'
     | '/money/$money'
+    | '/dashboard/osprojects/$osprojects'
+    | '/dashboard/projects/$projects'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -366,10 +409,12 @@ export interface FileRouteTypes {
     | '/dashboard/inbox'
     | '/dashboard/leaderboards'
     | '/dashboard/members'
-    | '/dashboard/os-projects'
+    | '/dashboard/osprojects'
     | '/dashboard/projects'
     | '/dashboard/teams'
     | '/money/$money'
+    | '/dashboard/osprojects/$osprojects'
+    | '/dashboard/projects/$projects'
   id:
     | '__root__'
     | '/'
@@ -384,10 +429,12 @@ export interface FileRouteTypes {
     | '/dashboard/inbox/'
     | '/dashboard/leaderboards/'
     | '/dashboard/members/'
-    | '/dashboard/os-projects/'
+    | '/dashboard/osprojects/'
     | '/dashboard/projects/'
     | '/dashboard/teams/'
     | '/money/$money/'
+    | '/dashboard/osprojects/$osprojects/'
+    | '/dashboard/projects/$projects/'
   fileRoutesById: FileRoutesById
 }
 
@@ -442,9 +489,11 @@ export const routeTree = rootRoute
         "/dashboard/inbox/",
         "/dashboard/leaderboards/",
         "/dashboard/members/",
-        "/dashboard/os-projects/",
+        "/dashboard/osprojects/",
         "/dashboard/projects/",
-        "/dashboard/teams/"
+        "/dashboard/teams/",
+        "/dashboard/osprojects/$osprojects/",
+        "/dashboard/projects/$projects/"
       ]
     },
     "/auth/signup": {
@@ -483,8 +532,8 @@ export const routeTree = rootRoute
       "filePath": "dashboard/members/index.tsx",
       "parent": "/dashboard"
     },
-    "/dashboard/os-projects/": {
-      "filePath": "dashboard/os-projects/index.tsx",
+    "/dashboard/osprojects/": {
+      "filePath": "dashboard/osprojects/index.tsx",
       "parent": "/dashboard"
     },
     "/dashboard/projects/": {
@@ -497,6 +546,14 @@ export const routeTree = rootRoute
     },
     "/money/$money/": {
       "filePath": "money/$money/index.tsx"
+    },
+    "/dashboard/osprojects/$osprojects/": {
+      "filePath": "dashboard/osprojects/$osprojects/index.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/projects/$projects/": {
+      "filePath": "dashboard/projects/$projects/index.tsx",
+      "parent": "/dashboard"
     }
   }
 }

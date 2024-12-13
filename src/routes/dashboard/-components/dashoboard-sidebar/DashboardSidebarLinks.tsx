@@ -63,7 +63,7 @@ export function DashboardSidebarLinks({}: DashboardSidebarLinksProps) {
                             <span data-test="DashboardSidebarLinkName" className="text-base">{item.name}</span>
                           )}
                         </Link>
-                        {item.href === "/dashboard/os-projects" && <Plus />}
+                        {item.href === "/dashboard/osprojects" && <Plus />}
                         {item.href === "/dashboard/teams" && <Plus />}
                       </span>
                     </TooltipTrigger>
