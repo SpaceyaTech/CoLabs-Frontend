@@ -6,9 +6,9 @@ export const FooterCTA = () => {
   return (
     <div
       data-test="FooterCTA"
-      className="relative flex flex-col items-center gap-4 border border-red-600 p-4 md:gap-10 md:p-10 lg:flex lg:flex-row lg:justify-around"
+      className="relative flex flex-col items-center gap-4 p-4 md:gap-10 md:p-10 lg:flex lg:flex-row lg:justify-around"
     >
-      <div className="lg:flex-0 z-10 p-4 lg:flex lg:w-1/2 lg:flex-col lg:gap-6">
+      <div className="z-10 p-4 lg:ml-[4%] lg:flex lg:w-1/2 lg:flex-col lg:gap-6">
         <h1 className="text-[32px] font-bold text-heading lg:text-[55px] lg:leading-[60.5px]">
           Experience counts. Get it on Colabs.
         </h1>
