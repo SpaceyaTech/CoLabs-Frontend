@@ -6,12 +6,12 @@ export const FooterCTA = () => {
   return (
     <div
       data-test="FooterCTA"
-      className="relative flex flex-col items-center gap-4 p-4 md:gap-10 md:p-10 lg:flex lg:flex-row lg:pl-[20%]"
+      className="relative flex flex-col items-center gap-4 p-4 md:gap-10 md:p-10 lg:flex lg:flex-row lg:justify-around"
     >
-      <div className="z-10 lg:flex lg:w-1/2 lg:flex-col lg:gap-6">
-        <p className="text-[32px] font-bold text-white lg:text-[55px] lg:leading-[60.5px]">
+      <div className="z-10 p-4 lg:ml-[4%] lg:flex lg:w-1/2 lg:flex-col lg:gap-6">
+        <h1 className="text-[32px] font-bold text-heading lg:text-[55px] lg:leading-[60.5px]">
           Experience counts. Get it on Colabs.
-        </p>
+        </h1>
         <p className="font-ff-inconsolata text-lg font-bold leading-6 text-[#9f9c9c] lg:text-xl">
           Colabs is where you cut your teeth on enterprise projects. We have
           over 100 repositories on all tech tracks, carefully picked for you.
@@ -36,7 +36,7 @@ export const FooterCTA = () => {
       <img
         src={robot}
         alt="Standing robot"
-        className="z-10 mt-4 pl-[30%] md:mt-6 md:w-[50%] md:pl-[15%] lg:w-auto"
+        className="z-10 mt-4 pl-[30%] md:mt-6 md:w-[50%] md:pl-[15%] lg:h-auto lg:max-w-[40%] lg:object-contain"
       />
       <img
         src={ellipse}

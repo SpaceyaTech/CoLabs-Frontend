@@ -23,6 +23,7 @@ export default {
             7: "#635D5D",
             8: "#B3B8B7",
             9: "#f3faf8", //#B3B8B7CC
+            10: "D9D9D9",
           },
           green: {
             1: "#14A97C",
@@ -35,6 +36,9 @@ export default {
             8: "#294740CC",
           },
         },
+        // Text colors
+        heading: "E9EDEC",
+
         sidebar: {
           DEFAULT: "oklch(var(--sidebar-background))",
           foreground: "oklch(var(--sidebar-foreground))",
@@ -45,7 +49,6 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
-        heading: "E9EDEC",
       },
     },
   },
