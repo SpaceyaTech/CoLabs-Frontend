@@ -22,8 +22,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <ul className="flex gap-2 text-sm font-medium">
           Langs:
           {project.languages.slice(0, 3).map((lang) => (
-            <li key={lang} className="">
-              {lang},
+            <li key={lang.name} style={{ color: lang.color }} className="">
+              {lang.name},
             </li>
           ))}
           ...

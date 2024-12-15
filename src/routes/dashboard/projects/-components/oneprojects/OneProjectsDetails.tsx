@@ -36,8 +36,8 @@ export function OneProjectsDetails({}: OneProjectsDetailsProps) {
         <ul className="flex gap-2">
           Langs:
           {project.languages.slice(0, 3).map((lang) => (
-            <li key={lang} className="badge badge-primary badge-outline">
-              {lang},
+            <li key={lang.name} style={{ color: lang.color }} className="badge badge-primary badge-outline">
+              {lang.name},
             </li>
           ))}
         </ul>

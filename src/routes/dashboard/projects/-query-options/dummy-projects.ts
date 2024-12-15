@@ -10,7 +10,7 @@ export type Project = {
   type: typeof projectType[number];
   platform: typeof platforms[number];
   compensation: typeof compensation[number];
-  languages: string[];
+  languages: {name:string;color:string}[];
   issuesCount: number;
   link: string;
   forksCount: number;
@@ -29,15 +29,14 @@ export const generateProjects = (count: number): Project[] => {
     );
   }
   const programing_langs = [
-    "JavaScript",
-    "TypeScript",
-    "Python",
-    "Java",
-    "Swift",
-    "Kotlin",
-    "Dart",
-    "Vue",
-    "Rails",
+    {name:"JavaScript",color:"#f1e05a"},
+    {name:"TypeScript",color:"#2b7489"},
+    {name:"Python",color:"#3572A5"},
+    {name:"Java",color:"#b07219"},
+    {name:"Swift",color:"#ffac45"},
+    {name:"Kotlin",color:"#A97BFF"},
+    {name:"Dart",color:"#00B4AB"},
+    {name:"Rails",color:"#CC0000"},
   ];
 
   for (let i = 0; i < count; i++) {
