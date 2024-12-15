@@ -38,7 +38,7 @@ export const FooterCTA = () => {
       <img
         src={robot}
         alt="Standing robot"
-        className="absolute -right-[15%] sm:right-[5%] md:right-[2%] top-[40%] md:top-[35%] lg:top-[10%]"
+        className="absolute z-10 -right-[15%] sm:right-[5%] md:right-[2%] top-[40%] md:top-[35%] lg:top-[10%]"
       />
       <img
         src={ellipse}

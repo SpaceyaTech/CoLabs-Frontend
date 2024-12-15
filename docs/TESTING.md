@@ -66,7 +66,11 @@ test("has colabs text", async ({ page }) => {
     ).toHaveText("Colabs");
 });
 ```
+use features like the locator picker int the playwright vsocede extension to find to use in the tests
 
 ## Helpful resources
-- [Playwright tips](https://youtu.be/ZF1W6FxWOiA?si=AkHqOwLDedPJ3PC6)
+![playwright-vscode-panel](playwright-vscode-panel.png) 
+
+
+- [☝️ elaborarted in this video below](https://youtu.be/ZF1W6FxWOiA?si=AkHqOwLDedPJ3PC6)
 - [Advice on what to test](https://youtu.be/4-_0aTlkqK0?si=my5IJnAmtcIOhpX9)

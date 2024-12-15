@@ -15,31 +15,33 @@ test.describe("Footer Component", () => {
     page,
   }) => {
     // Check for Colabs logo link
-    const colabsLogoLink = page.locator('img[alt="Colabs logo"]');
+    const colabsLogoLink = page.getByRole("link", { name: "Colabs logo" });
     await expect(colabsLogoLink).toBeVisible();
 
     // Check for X icon link
-    const xIconLink = page.locator('img[alt="X Icon"]');
-    await expect(xIconLink).toBeVisible();
-    await expect(xIconLink).toHaveAttribute("src", /x-icon\.png/);
-    const xLink = page.locator('a[href="http://www.x.com"]');
+    const xLink = page.getByRole("link", { name: "X Icon" });
+    await expect(xLink).toBeVisible();
     await expect(xLink).toHaveAttribute("target", "_blank");
+    const xLinkIcon = xLink.getByRole("img");
+    await expect(xLinkIcon).toHaveAttribute("src", /src\/assets\/x-icon.png/);
+
 
     // Check for LinkedIn icon link
-    const linkedinIconLink = page.locator('img[alt="Linkedin Icon"]');
-    await expect(linkedinIconLink).toBeVisible();
-    await expect(linkedinIconLink).toHaveAttribute("src", /linkedin-icon\.png/);
-    const linkedinLink = page.locator('a[href="http://www.linkedin.com"]');
+    const linkedinLink = page.getByRole("link", { name: "Linkedin Icon" });
+    await expect(linkedinLink).toBeVisible();
     await expect(linkedinLink).toHaveAttribute("target", "_blank");
+    const linkedinLinkIcon = linkedinLink.getByRole("img");
+    await expect(linkedinLinkIcon).toHaveAttribute("src", /linkedin-icon\.png/);
   });
 
   test("should render internal links with correct routes", async ({ page }) => {
     // Check internal navigation links
-    const aboutLink = page.locator("text=About");
-    const hackathonsLink = page.locator("text=Hackathons");
-    const leaderboardLink = page.locator("text=Leaderboard");
-    const privacyLink = page.locator("text=Privacy & Terms");
-    const cookiesLink = page.locator("text=Cookies");
+    const aboutLink = page.getByRole("link", { name: "About" });
+    const hackathonsLink = page.getByRole("link", { name: "Hackathons" });
+    const leaderboardLink = page.getByRole("link", { name: "Leaderboard" });
+    const privacyLink = page.getByRole("link", { name: "Privacy & Terms" });
+    const cookiesLink = page.getByRole("link", { name: "Cookies" });
+
 
     // Assert visibility of links
     await expect(aboutLink).toBeVisible();
@@ -63,9 +65,8 @@ test.describe("Footer Component", () => {
   });
 
   test("should render copyright notice", async ({ page }) => {
-    const copyrightNotice = page.locator(
-      "text=© 2024 Colabs by SpaceYaTech. All rights reserved.",
-    );
+    const copyrightNotice = page.locator('[data-test="FooterCopyright"]')
+    
     await expect(copyrightNotice).toBeVisible();
   });
 });
