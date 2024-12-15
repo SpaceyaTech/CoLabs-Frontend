@@ -29,6 +29,6 @@ export default defineConfig({
     environment: "jsdom",
     include: ["./src/**/*.{test,spec}.?(c|m)[jt]s?(x)"],
     exclude: ["e2e-tests", "node_modules"],
-    setupFiles: "./tests/setup.ts",
+    setupFiles: "./src/lib/vitest/utils/index.tsx",
   },
 });
