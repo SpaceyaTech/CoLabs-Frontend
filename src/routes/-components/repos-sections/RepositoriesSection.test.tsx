@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import RepositoriesSection, { ALL_LANGS } from "./RepositoriesSection";
 import { projects } from "@/data/projects";
-import { renderWithRouter } from "../../../tests/utils";
+import { renderWithRouter } from "@/lib/vitest/utils";
+import RepositoriesSection, { ALL_LANGS } from "./RepositoriesSection";
 
 describe("Repositories Section", () => {
   it("should render the section heading", () => {

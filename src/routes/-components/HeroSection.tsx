@@ -1,9 +1,9 @@
-import astronaut from "../../assets/Astronaut-herosection.png";
-import rocketIcon from "../../assets/rocket.png";
-import fred from "../../assets/hero-section/fred.png";
-import ian from "../../assets/hero-section/ian.png";
-import katrina from "../../assets/hero-section/katrina.png";
-import sharon from "../../assets/hero-section/sharon.png";
+import astronaut from "@/assets/Astronaut-herosection.png";
+import rocketIcon from "@/assets/rocket.png";
+import fred from "@/assets/hero-section/fred.png";
+import ian from "@/assets/hero-section/ian.png";
+import katrina from "@/assets/hero-section/katrina.png";
+import sharon from "@/assets/hero-section/sharon.png";
 import { Link } from "@tanstack/react-router";
 
 export const HeroSection = () => {
@@ -13,7 +13,7 @@ export const HeroSection = () => {
     //border border-red-500
     <div
       data-test="HeroSection"
-      className="flex flex-col items-center gap-4 p-4 md:mt-2 md:p-5 lg:mt-4 lg:flex lg:flex-row lg:justify-around"
+      className="flex flex-col min-h-screen items-center gap-4 p-4 md:mt-2 md:p-5 lg:mt-4 lg:flex lg:flex-row lg:justify-around"
     >
       <div className="flex flex-col gap-4 p-4 lg:flex lg:w-1/2 lg:flex-col lg:gap-6">
         <h1 className="pb-2 text-[25px] font-bold text-heading md:text-[30px] lg:text-[55px] lg:leading-[60.5px]">

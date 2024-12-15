@@ -1,12 +1,12 @@
-import ColabsLogo from "../../assets/logo-container.png";
-import XIcon from "../../assets/x-icon.png";
-import LinkedinIcon from "../../assets/linkedin-icon.png";
+import ColabsLogo from "@/assets/logo-container.png";
+import XIcon from "@/assets/x-icon.png";
+import LinkedinIcon from "@/assets/linkedin-icon.png";
 import { Link } from "@tanstack/react-router";
 
 export default function Footer() {
   return (
-    <footer className="mt-8 pl-4 md:mt-48 lg:mt-96" data-test="Footer">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between lg:justify-around">
+    <footer className="" data-test="Footer">
+      <div className="flex flex-col  md:flex-row md:items-center md:justify-between lg:justify-around">
         <div className="flex items-center justify-start gap-4">
           {/* Social Icons */}
           <Link to="/" className="z-10">
