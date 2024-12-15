@@ -10,7 +10,7 @@ export const FooterCTA = () => {
       data-test="FooterCTA"
       className="relative flex min-h-[150vh] items-center gap-4 p-4 md:gap-10 md:p-10 lg:flex lg:flex-row lg:justify-around"
     >
-      <div className="absolute left-[5%] top-[20%] z-10 p-4 lg:flex lg:w-1/2 lg:flex-col lg:gap-6">
+      <div className="absolute left-[5%] top-[2%] md:top-[5%] lg:top-[20%] z-10 p-4 lg:flex lg:w-1/2 lg:flex-col lg:gap-6">
         <h1 className="text-[32px] font-bold text-heading lg:text-[55px] lg:leading-[60.5px]">
           Experience counts. Get it on Colabs.
         </h1>
@@ -38,12 +38,12 @@ export const FooterCTA = () => {
       <img
         src={robot}
         alt="Standing robot"
-        className="absolute right-[5%] top-[10%]"
+        className="absolute -right-[15%] sm:right-[5%] md:right-[2%] top-[40%] md:top-[35%] lg:top-[10%]"
       />
       <img
         src={ellipse}
         alt="ellipse background"
-        className="right-0 absolute top-[10%] w-[50%] "
+        className="right-0 absolute top-[50%] md:top-[50%] w-full md:w-[65%] lg:top-[10%] lg:w-[50%] "
       />
     </div>
   );
