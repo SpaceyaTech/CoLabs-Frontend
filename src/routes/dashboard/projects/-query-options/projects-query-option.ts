@@ -53,7 +53,7 @@ export function oneProjectsQueryOptions({
   return queryOptions({
     queryKey: ["one_projects", projects],
     queryFn: () => {
-      return new Promise<{ id: string }>((res, rej) => {
+      return new Promise<Project>((res, rej) => {
         setTimeout(() => {
           const oneProject = projectsArray.find((item) => item.id === projects);
           if (oneProject) {

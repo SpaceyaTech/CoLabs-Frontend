@@ -7,11 +7,13 @@ interface OneProjectsPageProps {
 
 export function OneProjectsPage({}: OneProjectsPageProps) {
   return (
-    <div className="w-full h-full min-h-screen flex flex-col items-center justify-center">
+    <div className="w-full h-full min-h-screen flex flex-col items-center">
       <Suspense
         fallback={
-          <div className=" min-h-screen h-full flex justify-center items-center w-full">
-            <div className="bg-base-300 text-2xl skeleton h-56 w-[70%] md:w-[60%] flex justify-center items-center">Loading</div>
+          <div className=" min-h-screen h-full flex flex-col items-center  w-full p-2 gap-2">
+            <div className="bg-base-300 text-2xl skeleton h-56 w-[95%] flex justify-center items-center"/>
+            <div className="bg-base-300 text-2xl skeleton h-[60vh] w-[95%] flex justify-center items-center"/>
+
           </div>
         }
       >
