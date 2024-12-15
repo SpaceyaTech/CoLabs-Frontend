@@ -1,4 +1,4 @@
-import { Project } from "@/routes/-components/RepositoriesSection";
+import { Project } from "@/routes/-components/repos-sections/RepositoriesSection";
 
 export const projects: Project[] = [
   {

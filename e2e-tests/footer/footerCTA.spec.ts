@@ -36,7 +36,11 @@ test.describe("FooterCTA Component", () => {
   });
 
   test("should render the Launch a Hackathon button", async ({ page }) => {
-    const hackathonButton = await page.locator("text=Launch a Hackathon");
+    const hackathonButton = await page
+      .locator('[data-test="FooterCTA"]')
+      .getByRole("link", {
+        name: "Launch a Hackathon Rocket icon",
+      });
     await expect(hackathonButton).toBeVisible();
     await expect(hackathonButton).toHaveAttribute(
       "href",
@@ -45,8 +49,14 @@ test.describe("FooterCTA Component", () => {
   });
 
   test("should display images", async ({ page }) => {
-    const robotImage = await page.locator('img[alt="Standing robot"]');
-    const ellipseImage = await page.locator('img[alt="ellipse background"]');
+    const robotImage = await page
+      .locator('[data-test="FooterCTA"]')
+      .getByRole("img", {
+        name: "Standing robot",
+      });
+    const ellipseImage = await page.getByRole("img", {
+      name: "ellipse background",
+    });
 
     await expect(robotImage).toBeVisible();
     await expect(ellipseImage).toBeVisible();
@@ -63,7 +73,11 @@ test.describe("FooterCTA Component", () => {
   });
 
   test("Launch a Hackathon button navigates correctly", async ({ page }) => {
-    const hackathonButton = await page.locator("text=Launch a Hackathon");
+    const hackathonButton = await page
+      .locator('[data-test="FooterCTA"]')
+      .getByRole("link", {
+        name: "Launch a Hackathon Rocket icon",
+      });
     await expect(hackathonButton).toBeVisible();
     //setting this up to force a click because the rocket icon is in the way of the button
     await hackathonButton.click({ force: true });
