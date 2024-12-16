@@ -25,7 +25,7 @@ export function OneProjectsDetails({}: OneProjectsDetailsProps) {
     <div className="flex h-full w-full flex-col gap-3 p-5">
       <div className="flex items-center justify-between">
         <h2 className="text-5xl font-bold tracking-tight text-[#FFFFFF]">
-          {project.name}
+          {project.title}
         </h2>
         <span className="rounded-full border-[1px] border-[#1F7964] px-4 py-3 text-base text-[#FFFFFF]">
           Issues: {project.issuesCount}

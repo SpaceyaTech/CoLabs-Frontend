@@ -11,7 +11,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
     className="flex w-full h-fit flex-col gap-1 rounded-2xl hover:brightness-125 border-[1px] border-[#294740] bg-[#292E2F] px-4 py-3">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold tracking-tight text-[#FFFFFF]">
-          {project.name}
+          {project.title}
         </h2>
         <span className="rounded-full border-[1px] border-[#1F7964] px-4 py-3 text-base text-[#FFFFFF]">
           Issues: {project.issuesCount}

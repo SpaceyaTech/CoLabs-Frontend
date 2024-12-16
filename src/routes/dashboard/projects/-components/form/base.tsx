@@ -1,6 +1,5 @@
-
 import { useForm, Controller } from "react-hook-form";
-import { X } from "lucide-react";
+import { UsersRound, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -21,50 +20,67 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { UseMutationResult } from "@tanstack/react-query";
 import { Project } from "../../-query-options/dummy-projects";
+import { Textarea } from "@/components/ui/textarea";
 
 interface BaseProjectsFormProps<T extends Record<string, any>> {
-  mutation: UseMutationResult<any,Error,T,unknown>;
-  row: Project;
+  mutation: UseMutationResult<any, Error, T, unknown>;
+  row?: Project;
   afterSave?: () => void;
 }
-export function BaseProjectsForm<T extends Record<string, any>>({row}: BaseProjectsFormProps<T>) {
-    const { register, handleSubmit, control, watch } = useForm<Project>(
-      {
-        defaultValues: {
-          compensation: row.compensation??{
-            type: "Non-monetized",
-          },
-          description: row.description??"",
-          forksCount: row.forksCount??"",
-          id: row.id??"",
-          issuesCount: row.issuesCount??"",
-          link: row.link??"",
-          name: row.name??"",
-          ownner: row.ownner??"",
-          platform: row.platform??"",
-          starCount: row.starCount??"",
-          type: row.type??"",
-          languages: row.languages??[],
-        },
+export function BaseProjectsForm<T extends Record<string, any>>({
+  row,
+}: BaseProjectsFormProps<T>) {
+  const { register, handleSubmit, control, watch } = useForm<Project>({
+    defaultValues: {
+      id: row?.id ?? "",
+      title: row?.title ?? "",
+      description: row?.description ?? "",
+      compensation: row?.compensation ?? {
+        type: "Non-monetized",
       },
-    );
+      platform: row?.platform ?? "web",
+      type: row?.type ?? "public",
+      owner: row?.owner ?? "",
+      collaborators: row?.collaborators ?? [],
+      // forksCount: row?.forksCount??0,
+      // issuesCount: row?.issuesCount??0,
+      // starCount: row?.starCount??0,
+      // link: row?.link??"",
+      // languages: row?.languages??[],
+    },
+  });
 
-    const onSubmit = (data: Project) => {
-      console.log(data);
-    };
+  const onSubmit = (data: Project) => {
+    console.log(data);
+  };
   return (
-    <Card className="w-full max-w-2xl bg-gray-900 text-white">
+    <Card className="border-px w-full rounded-xl border-[#1D5045] bg-[#23292CCC] text-white">
       <CardHeader>
-        <CardTitle className="text-xl font-medium">Add a project</CardTitle>
+        <CardTitle className="text-xl font-medium flex gap-3">
+          <UsersRound className="text-accent" />
+          Add a project
+        </CardTitle>
       </CardHeader>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <CardContent className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="title">Project title</Label>
+        <CardContent className="flex flex-col gap-2 ">
+          {/* project title */}
+          <div className="min-h-16">
+            <Label htmlFor="title" className="sr-only">Project title</Label>
             <Input
-              id="name"
-              className="border-gray-700 bg-gray-800"
-              {...register("name", { required: true })}
+              id="title"
+              placeholder="Project title"
+              className="bg-transparent font-bold border-none text-3xl px-0 mx-0"
+              {...register("title", { required: true })}
+            />
+          </div>
+          {/* project description */}
+          <div className="">
+            <Label htmlFor="description" className="">Project description</Label>
+            <Textarea
+              id="description"
+              placeholder="Project description"
+              className=" border-[1px] rounded-lg  text-lg "
+              {...register("description", { required: true })}
             />
           </div>
 
@@ -110,75 +126,30 @@ export function BaseProjectsForm<T extends Record<string, any>>({row}: BaseProje
                     Per milestone
                   </Label>
 
-                      <Controller
-                        name="compensation"
-                        control={control}
-                        render={({ field }) => (
-                          <Select
-                            onValueChange={field.onChange}
-                            defaultValue={field.value.type}
-                          >
-                            <SelectTrigger className="border-gray-700 bg-gray-800">
-                              <SelectValue
-                                placeholder="Select monetization type"
-                              />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="monetized">
-                                Monetized
-                              </SelectItem>
-                              <SelectItem value="non-monetized">
-                                Non-monetized
-                              </SelectItem>
-                            </SelectContent>
-                          </Select>
-                        )}
-                      />
-              
-            
+                  <Controller
+                    name="compensation"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value.type}
+                      >
+                        <SelectTrigger className="border-gray-700 bg-gray-800">
+                          <SelectValue placeholder="Select monetization type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="monetized">Monetized</SelectItem>
+                          <SelectItem value="non-monetized">
+                            Non-monetized
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
                 </div>
               </div>
-              {/* <Input
-                id="price"
-                type="number"
-                className="border-gray-700 bg-gray-800"
-                {...register("price", { required: true })}
-              /> */}
             </div>
-
-            {/* <div className="space-y-2">
-              <Label>Duration</Label>
-              <Controller
-                name="duration"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <SelectTrigger className="border-gray-700 bg-gray-800">
-                      <SelectValue placeholder="Select duration" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="0-1">0-1 month</SelectItem>
-                      <SelectItem value="1-3">1-3 months</SelectItem>
-                      <SelectItem value="3-6">3-6 months</SelectItem>
-                      <SelectItem value="6+">6+ months</SelectItem>
-                    </SelectContent>
-                  </Select>
-                )}
-              />
-            </div> */}
           </div>
-
-          {/* <div className="space-y-2">
-            <Label htmlFor="githubRepo">GitHub repo link</Label>
-            <Input
-              id="githubRepo"
-              className="border-gray-700 bg-gray-800"
-              {...register("githubRepo", { required: true })}
-            />
-          </div> */}
 
           <div className="space-y-2">
             <Label>Invite others to this project (optional)</Label>
@@ -191,29 +162,29 @@ export function BaseProjectsForm<T extends Record<string, any>>({row}: BaseProje
                   const input = e.currentTarget;
                   const value = input.value.trim();
                   if (value) {
-                    const invitees = watch("invitees");
-                    const newInvitees = [...invitees, value];
-                    control._formValues.invitees = newInvitees;
+                    const collaborators = watch("collaborators");
+                    const newcollaborators = [...collaborators, value];
+                    control._formValues.collaborators = newcollaborators;
                     input.value = "";
                   }
                 }
               }}
             />
             <div className="mt-2 flex flex-wrap gap-2">
-              {watch("invitees").map((invitee, index) => (
+              {watch("collaborators").map((item, index) => (
                 <div
                   key={index}
                   className="flex items-center gap-1 rounded bg-gray-800 px-2 py-1 text-sm"
                 >
-                  {invitee}
+                  {item}
                   <button
                     type="button"
                     onClick={() => {
-                      const invitees = watch("invitees");
-                      const newInvitees = invitees.filter(
+                      const collaborators = watch("collaborators");
+                      const newcollaborators = collaborators.filter(
                         (_, i) => i !== index,
                       );
-                      control._formValues.invitees = newInvitees;
+                      control._formValues.collaborators = newcollaborators;
                     }}
                   >
                     <X className="h-3 w-3" />
@@ -235,5 +206,3 @@ export function BaseProjectsForm<T extends Record<string, any>>({row}: BaseProje
     </Card>
   );
 }
- 
- 

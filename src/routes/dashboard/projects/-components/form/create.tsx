@@ -51,7 +51,7 @@ export function CreateProjectsForm() {
       }
     >
       <div className="flex h-full max-h-[80vh] w-fit flex-col gap-2 overflow-auto">
-        <BaseProjectsForm mutation={mutation} row={{}} />
+        <BaseProjectsForm mutation={mutation}  />
       </div>
     </DiaDrawer>
   );

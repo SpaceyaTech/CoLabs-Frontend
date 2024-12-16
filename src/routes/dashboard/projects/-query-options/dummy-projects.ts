@@ -14,7 +14,7 @@ export type NonMonetized = {
 };
 export type Project = {
   id: string;
-  name: string;
+  title: string;
   description: string;
   type: (typeof projectType)[number];
   platform: (typeof platforms)[number];
@@ -25,7 +25,8 @@ export type Project = {
   forksCount: number;
   starCount: number;
   lastCommitDate: string;
-  ownner: string;
+  owner: string;
+  collaborators: string[];
 };
 
 export const generateProjects = (count: number): Project[] => {
@@ -51,7 +52,7 @@ export const generateProjects = (count: number): Project[] => {
   for (let i = 0; i < count; i++) {
     projects.push({
       id: faker.string.uuid(), // Assuming faker is working correctly
-      name: faker.commerce.productName(),
+      title: faker.commerce.productName(),
       type: faker.helpers.arrayElement(projectType),
       description: faker.lorem.sentence(),
       languages: faker.helpers.arrayElements(programing_langs, 3),
@@ -77,7 +78,15 @@ export const generateProjects = (count: number): Project[] => {
           : {
               type: "Non-monetized",
             },
-      ownner: faker.person.firstName(),
+      owner: faker.person.firstName(),
+      collaborators: faker.helpers.arrayElements(
+        [
+          faker.person.firstName(),
+          faker.person.firstName(),
+          faker.person.firstName(),
+        ],
+        3,
+      ),
     });
   }
 
