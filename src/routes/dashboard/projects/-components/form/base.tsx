@@ -38,8 +38,9 @@ export function BaseProjectsForm<T extends Record<string, any>>({
       compensation: row?.compensation ?? {
         type: "Non-monetized",
       },
+      monetized:row?.monetized??false,
       platform: row?.platform ?? "web",
-      type: row?.type ?? "public",
+      type: row?.type ?? "open-source",
       owner: row?.owner ?? "",
       collaborators: row?.collaborators ?? [],
       // forksCount: row?.forksCount??0,
@@ -56,57 +57,67 @@ export function BaseProjectsForm<T extends Record<string, any>>({
   return (
     <Card className="border-px w-full rounded-xl border-[#1D5045] bg-[#23292CCC] text-white">
       <CardHeader>
-        <CardTitle className="text-xl font-medium flex gap-3">
+        <CardTitle className="flex gap-3 text-xl font-medium">
           <UsersRound className="text-accent" />
           Add a project
         </CardTitle>
       </CardHeader>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <CardContent className="flex flex-col gap-2 ">
+        <CardContent className="flex flex-col gap-2">
           {/* project title */}
           <div className="min-h-16">
-            <Label htmlFor="title" className="sr-only">Project title</Label>
+            <Label htmlFor="title" className="sr-only">
+              Project title
+            </Label>
             <Input
               id="title"
               placeholder="Project title"
-              className="bg-transparent font-bold border-none text-3xl px-0 mx-0"
+              className="mx-0 border-none bg-transparent px-0 text-3xl font-bold"
               {...register("title", { required: true })}
             />
           </div>
           {/* project description */}
           <div className="">
-            <Label htmlFor="description" className="">Project description</Label>
+            <Label htmlFor="description" className="sr-only">
+              Project description
+            </Label>
             <Textarea
               id="description"
               placeholder="Project description"
-              className=" border-[1px] rounded-lg  text-lg "
+              className="mx-0 rounded-lg border-none bg-transparent px-0 text-lg"
               {...register("description", { required: true })}
             />
           </div>
 
           <div className="grid grid-cols-2 gap-6">
+            {/* project type open-source or private */}
             <div className="space-y-2">
               <Label>Project Type</Label>
               <Controller
                 name="type"
                 control={control}
-                render={({ field }) => (
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <SelectTrigger className="border-gray-700 bg-gray-800">
-                      <SelectValue placeholder="Select type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="open-source">Open source</SelectItem>
-                      <SelectItem value="private">Private</SelectItem>
-                    </SelectContent>
-                  </Select>
-                )}
+                render={({ field }) => {
+                  return (
+                    <Select
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger className="border-gray-700 bg-gray-800">
+                        <SelectValue placeholder="Select type">
+                          {field.value}
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="open-source">Open source</SelectItem>
+                        <SelectItem value="private">Private</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  );
+                }}
               />
             </div>
-
+            {/* repo owner */}
             <div className="space-y-2">
               <Label htmlFor="owner">Owner</Label>
               <Input
@@ -119,35 +130,31 @@ export function BaseProjectsForm<T extends Record<string, any>>({
 
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
+              {/* monetized or non monetizde */}
               <div className="flex items-center justify-between">
-                <Label htmlFor="price">Price (KES)</Label>
-                <div className="flex items-center space-x-2">
-                  <Label htmlFor="perMilestone" className="text-sm">
-                    Per milestone
-                  </Label>
-
-                  <Controller
-                    name="compensation"
-                    control={control}
-                    render={({ field }) => (
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value.type}
-                      >
-                        <SelectTrigger className="border-gray-700 bg-gray-800">
-                          <SelectValue placeholder="Select monetization type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="monetized">Monetized</SelectItem>
-                          <SelectItem value="non-monetized">
-                            Non-monetized
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    )}
-                  />
-                </div>
+                <Controller
+                  name="compensation"
+                  control={control}
+                  render={({ field }) => (
+                    <div className="flex items-center space-x-2">
+                      <Switch id="monetized" onVolumeChange={field.onChange} />
+                      <Label htmlFor="monetized">Monetized?</Label>
+                    </div>
+                  )}
+                />
+                {watch("compensation")&&<div>uwu monetized</div>}
+                <Controller
+                  name="compensation"
+                  control={control}
+                  render={({ field }) => (
+                    <div className="flex items-center space-x-2">
+                      <Switch id="monetized" onVolumeChange={field.onChange} />
+                      <Label htmlFor="monetized">Monetized?</Label>
+                    </div>
+                  )}
+                />
               </div>
+  
             </div>
           </div>
 
