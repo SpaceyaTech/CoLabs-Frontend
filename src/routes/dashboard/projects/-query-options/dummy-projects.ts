@@ -1,22 +1,31 @@
 import { faker } from "@faker-js/faker";
+const projectType = ["private", "public"] as const;
+const platforms = ["web", "mobile", "desktop"] as const;
+const compensation = ["Non-monetized", "Monetized"] as const;
 
-const projectType = ["private", "public"] as const 
-const platforms = ["web", "mobile", "desktop"] as const
-const compensation =["Non-monetized", "Monetized"] as const
+export type Monetized = {
+  type: "Monetized";
+  amount: number;
+  currency: string;
+  frequency: "Per Hour" | "Per Month" | "Per Milestone" | "Per Project";
+};
+export type NonMonetized = {
+  type: "Non-monetized";
+};
 export type Project = {
   id: string;
   name: string;
   description: string;
-  type: typeof projectType[number];
-  platform: typeof platforms[number];
-  compensation: typeof compensation[number];
-  languages: {name:string;color:string}[];
+  type: (typeof projectType)[number];
+  platform: (typeof platforms)[number];
+  compensation: Monetized | NonMonetized;
+  languages: { name: string; color: string }[];
   issuesCount: number;
   link: string;
   forksCount: number;
   starCount: number;
   lastCommitDate: string;
-  ownner:string;
+  ownner: string;
 };
 
 export const generateProjects = (count: number): Project[] => {
@@ -29,14 +38,14 @@ export const generateProjects = (count: number): Project[] => {
     );
   }
   const programing_langs = [
-    {name:"JavaScript",color:"#f1e05a"},
-    {name:"TypeScript",color:"#2b7489"},
-    {name:"Python",color:"#3572A5"},
-    {name:"Java",color:"#b07219"},
-    {name:"Swift",color:"#ffac45"},
-    {name:"Kotlin",color:"#A97BFF"},
-    {name:"Dart",color:"#00B4AB"},
-    {name:"Rails",color:"#CC0000"},
+    { name: "JavaScript", color: "#f1e05a" },
+    { name: "TypeScript", color: "#2b7489" },
+    { name: "Python", color: "#3572A5" },
+    { name: "Java", color: "#b07219" },
+    { name: "Swift", color: "#ffac45" },
+    { name: "Kotlin", color: "#A97BFF" },
+    { name: "Dart", color: "#00B4AB" },
+    { name: "Rails", color: "#CC0000" },
   ];
 
   for (let i = 0; i < count; i++) {
@@ -52,8 +61,23 @@ export const generateProjects = (count: number): Project[] => {
       starCount: faker.number.int({ min: 0, max: 1000 }),
       lastCommitDate: faker.date.past().toISOString().split("T")[0],
       platform: faker.helpers.arrayElement(platforms),
-      compensation: faker.helpers.arrayElement(compensation),
-      ownner:faker.person.firstName()
+      compensation:
+        faker.helpers.arrayElement(compensation) === "Monetized"
+          ? {
+              type: "Monetized",
+              amount: faker.number.int({ min: 0, max: 100 }),
+              currency: faker.finance.currencyCode(),
+              frequency: faker.helpers.arrayElement([
+                "Per Hour",
+                "Per Month",
+                "Per Milestone",
+                "Per Project",
+              ]),
+            }
+          : {
+              type: "Non-monetized",
+            },
+      ownner: faker.person.firstName(),
     });
   }
 

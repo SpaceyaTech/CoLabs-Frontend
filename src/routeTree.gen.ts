@@ -25,6 +25,7 @@ import { Route as DashboardLeaderboardsIndexImport } from './routes/dashboard/le
 import { Route as DashboardInboxIndexImport } from './routes/dashboard/inbox/index'
 import { Route as DashboardHackathonsIndexImport } from './routes/dashboard/hackathons/index'
 import { Route as DashboardChallengesIndexImport } from './routes/dashboard/challenges/index'
+import { Route as DashboardProjectsSubmitIndexImport } from './routes/dashboard/projects/submit/index'
 import { Route as DashboardProjectsProjectsIndexImport } from './routes/dashboard/projects/$projects/index'
 import { Route as DashboardOsprojectsOsprojectsIndexImport } from './routes/dashboard/osprojects/$osprojects/index'
 
@@ -115,6 +116,13 @@ const DashboardChallengesIndexRoute = DashboardChallengesIndexImport.update({
   path: '/challenges/',
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
+
+const DashboardProjectsSubmitIndexRoute =
+  DashboardProjectsSubmitIndexImport.update({
+    id: '/projects/submit/',
+    path: '/projects/submit/',
+    getParentRoute: () => DashboardLayoutRoute,
+  } as any)
 
 const DashboardProjectsProjectsIndexRoute =
   DashboardProjectsProjectsIndexImport.update({
@@ -246,6 +254,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardProjectsProjectsIndexImport
       parentRoute: typeof DashboardLayoutImport
     }
+    '/dashboard/projects/submit/': {
+      id: '/dashboard/projects/submit/'
+      path: '/projects/submit'
+      fullPath: '/dashboard/projects/submit'
+      preLoaderRoute: typeof DashboardProjectsSubmitIndexImport
+      parentRoute: typeof DashboardLayoutImport
+    }
   }
 }
 
@@ -263,6 +278,7 @@ interface DashboardLayoutRouteChildren {
   DashboardTeamsIndexRoute: typeof DashboardTeamsIndexRoute
   DashboardOsprojectsOsprojectsIndexRoute: typeof DashboardOsprojectsOsprojectsIndexRoute
   DashboardProjectsProjectsIndexRoute: typeof DashboardProjectsProjectsIndexRoute
+  DashboardProjectsSubmitIndexRoute: typeof DashboardProjectsSubmitIndexRoute
 }
 
 const DashboardLayoutRouteChildren: DashboardLayoutRouteChildren = {
@@ -278,6 +294,7 @@ const DashboardLayoutRouteChildren: DashboardLayoutRouteChildren = {
   DashboardOsprojectsOsprojectsIndexRoute:
     DashboardOsprojectsOsprojectsIndexRoute,
   DashboardProjectsProjectsIndexRoute: DashboardProjectsProjectsIndexRoute,
+  DashboardProjectsSubmitIndexRoute: DashboardProjectsSubmitIndexRoute,
 }
 
 const DashboardLayoutRouteWithChildren = DashboardLayoutRoute._addFileChildren(
@@ -301,6 +318,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
   '/dashboard/osprojects/$osprojects': typeof DashboardOsprojectsOsprojectsIndexRoute
   '/dashboard/projects/$projects': typeof DashboardProjectsProjectsIndexRoute
+  '/dashboard/projects/submit': typeof DashboardProjectsSubmitIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -319,6 +337,7 @@ export interface FileRoutesByTo {
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
   '/dashboard/osprojects/$osprojects': typeof DashboardOsprojectsOsprojectsIndexRoute
   '/dashboard/projects/$projects': typeof DashboardProjectsProjectsIndexRoute
+  '/dashboard/projects/submit': typeof DashboardProjectsSubmitIndexRoute
 }
 
 export interface FileRoutesById {
@@ -339,6 +358,7 @@ export interface FileRoutesById {
   '/dashboard/teams/': typeof DashboardTeamsIndexRoute
   '/dashboard/osprojects/$osprojects/': typeof DashboardOsprojectsOsprojectsIndexRoute
   '/dashboard/projects/$projects/': typeof DashboardProjectsProjectsIndexRoute
+  '/dashboard/projects/submit/': typeof DashboardProjectsSubmitIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -360,6 +380,7 @@ export interface FileRouteTypes {
     | '/dashboard/teams'
     | '/dashboard/osprojects/$osprojects'
     | '/dashboard/projects/$projects'
+    | '/dashboard/projects/submit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -377,6 +398,7 @@ export interface FileRouteTypes {
     | '/dashboard/teams'
     | '/dashboard/osprojects/$osprojects'
     | '/dashboard/projects/$projects'
+    | '/dashboard/projects/submit'
   id:
     | '__root__'
     | '/'
@@ -395,6 +417,7 @@ export interface FileRouteTypes {
     | '/dashboard/teams/'
     | '/dashboard/osprojects/$osprojects/'
     | '/dashboard/projects/$projects/'
+    | '/dashboard/projects/submit/'
   fileRoutesById: FileRoutesById
 }
 
@@ -447,7 +470,8 @@ export const routeTree = rootRoute
         "/dashboard/projects/",
         "/dashboard/teams/",
         "/dashboard/osprojects/$osprojects/",
-        "/dashboard/projects/$projects/"
+        "/dashboard/projects/$projects/",
+        "/dashboard/projects/submit/"
       ]
     },
     "/auth/signup": {
@@ -501,6 +525,10 @@ export const routeTree = rootRoute
     },
     "/dashboard/projects/$projects/": {
       "filePath": "dashboard/projects/$projects/index.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/projects/submit/": {
+      "filePath": "dashboard/projects/submit/index.tsx",
       "parent": "/dashboard"
     }
   }
