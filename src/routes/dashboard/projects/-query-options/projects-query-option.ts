@@ -9,7 +9,7 @@ interface projectsQueryOptionPropss {
 function filterProjects(projects: Project[], keyword: string) {
   return projects
     .filter((item) =>
-      item.name.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()),
+      item.title.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()),
     )
 }
 

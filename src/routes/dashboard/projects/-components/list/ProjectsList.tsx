@@ -30,6 +30,7 @@ export function ProjectsList({ keyword = "" }: ProjectsListProps) {
       </div>
     );
   }
+
   return (
     <div className="flex h-full w-full flex-col items-center justify-between">
       <ul className="flex ] w-[95%] flex-wrap justify-center gap-2 p-2">
