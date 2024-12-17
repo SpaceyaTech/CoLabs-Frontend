@@ -21,6 +21,7 @@ import { Switch } from "@/components/ui/switch";
 import { UseMutationResult } from "@tanstack/react-query";
 import { Project } from "../../-query-options/dummy-projects";
 import { Textarea } from "@/components/ui/textarea";
+import { dummyCurremcies } from "@/data/currency";
 
 interface BaseProjectsFormProps<T extends Record<string, any>> {
   mutation: UseMutationResult<any, Error, T, unknown>;
@@ -30,26 +31,28 @@ interface BaseProjectsFormProps<T extends Record<string, any>> {
 export function BaseProjectsForm<T extends Record<string, any>>({
   row,
 }: BaseProjectsFormProps<T>) {
-  const { register, handleSubmit, control, watch } = useForm<Project>({
-    defaultValues: {
-      id: row?.id ?? "",
-      title: row?.title ?? "",
-      description: row?.description ?? "",
-      compensation: row?.compensation ?? {
-        type: "Non-monetized",
+  const { register, handleSubmit, control, watch, setValue } = useForm<Project>(
+    {
+      defaultValues: {
+        id: row?.id ?? "",
+        title: row?.title ?? "",
+        description: row?.description ?? "",
+        compensation: row?.compensation ?? {
+          type: "Non-monetized",
+        },
+        monetized: row?.monetized ?? false,
+        platform: row?.platform ?? "web",
+        type: row?.type ?? "open-source",
+        owner: row?.owner ?? "",
+        collaborators: row?.collaborators ?? [],
+        // forksCount: row?.forksCount??0,
+        // issuesCount: row?.issuesCount??0,
+        // starCount: row?.starCount??0,
+        // link: row?.link??"",
+        // languages: row?.languages??[],
       },
-      monetized:row?.monetized??false,
-      platform: row?.platform ?? "web",
-      type: row?.type ?? "open-source",
-      owner: row?.owner ?? "",
-      collaborators: row?.collaborators ?? [],
-      // forksCount: row?.forksCount??0,
-      // issuesCount: row?.issuesCount??0,
-      // starCount: row?.starCount??0,
-      // link: row?.link??"",
-      // languages: row?.languages??[],
     },
-  });
+  );
 
   const onSubmit = (data: Project) => {
     console.log(data);
@@ -63,7 +66,7 @@ export function BaseProjectsForm<T extends Record<string, any>>({
         </CardTitle>
       </CardHeader>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <CardContent className="flex flex-col gap-2">
+        <CardContent className="flex flex-col gap-5">
           {/* project title */}
           <div className="min-h-16">
             <Label htmlFor="title" className="sr-only">
@@ -89,9 +92,9 @@ export function BaseProjectsForm<T extends Record<string, any>>({
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="flex w-full items-center justify-between gap-5">
             {/* project type open-source or private */}
-            <div className="space-y-2">
+            <div className="min-w-[70%] space-y-1">
               <Label>Project Type</Label>
               <Controller
                 name="type"
@@ -117,48 +120,145 @@ export function BaseProjectsForm<T extends Record<string, any>>({
                 }}
               />
             </div>
-            {/* repo owner */}
-            <div className="space-y-2">
-              <Label htmlFor="owner">Owner</Label>
-              <Input
-                id="owner"
-                className="border-gray-700 bg-gray-800"
-                {...register("owner", { required: true })}
-              />
-            </div>
+            <Controller
+              name="monetized"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <div className="flex flex-col items-center gap-2 space-x-2">
+                    <Label htmlFor="monetized">Monetized?</Label>
+                    <Switch
+                      id="monetized"
+                      checked={field.value}
+                      onCheckedChange={(e) => {
+                        field.onChange(e);
+                        if (e) {
+                          setValue("compensation", {
+                            type: "Monetized",
+                            amount: 2000,
+                            currency: "USD",
+                            frequency: "Per Project",
+                          });
+                        } else {
+                          setValue("compensation", {
+                            type: "Non-monetized",
+                          });
+                        }
+                      }}
+                    />
+                  </div>
+                );
+              }}
+            />
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
-            <div className="space-y-2">
+          <div className="flex flex-col gap-2">
+            <div className="space-y-1">
               {/* monetized or non monetizde */}
               <div className="flex items-center justify-between">
-                <Controller
-                  name="compensation"
-                  control={control}
-                  render={({ field }) => (
-                    <div className="flex items-center space-x-2">
-                      <Switch id="monetized" onVolumeChange={field.onChange} />
-                      <Label htmlFor="monetized">Monetized?</Label>
+                {watch("monetized") && (
+                  // price , and payment frequency
+                  <div className="flex items-center w-full gap-5">
+                    {/* compensation amount */}
+                    <div className="space-y-1 flex-2">
+                      <Label htmlFor="amount">Amount</Label>
+                      <Controller
+                        name="compensation.amount"
+                        control={control}
+                        render={({ field }) => (
+                          <Input
+                            id="amount"
+                            className="border-gray-700 bg-gray-800"
+                            {...register("compensation.amount", {
+                              required: true,
+                            })}
+                            onChange={(e) => {
+                              field.onChange(e);
+                            }}
+                          />
+                        )}
+                      />
                     </div>
-                  )}
-                />
-                {watch("compensation")&&<div>uwu monetized</div>}
-                <Controller
-                  name="compensation"
-                  control={control}
-                  render={({ field }) => (
-                    <div className="flex items-center space-x-2">
-                      <Switch id="monetized" onVolumeChange={field.onChange} />
-                      <Label htmlFor="monetized">Monetized?</Label>
+                    {/* compensation frequency */}
+                    <div className="space-y-1 flex-1">
+                      <Label htmlFor="compensation.currency">currency</Label>
+                      <Controller
+                        name="compensation.currency"
+                        control={control}
+                        render={({ field }) => {
+                          return (
+                            <Select
+                              name="compensation.currency"
+                              value={field.value}
+                              onValueChange={(e) => field.onChange(e)}
+                              defaultValue={field.value}
+                            >
+                              <SelectTrigger className="border-gray-700 bg-gray-800">
+                                <SelectValue placeholder="Select type">
+                                  {field.value}
+                                </SelectValue>
+                              </SelectTrigger>
+                              <SelectContent>
+                                {dummyCurremcies.map((currency) => (
+                                  <SelectItem
+                                    key={currency.code}
+                                    value={currency.code}
+                                  >
+                                    {currency.name}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          );
+                        }}
+                      />
                     </div>
-                  )}
-                />
+                    {/* compensation frequency */}
+                    <div className="space-y-1">
+                      <Label htmlFor="compensation.frequency">Frequency</Label>
+                      <Controller
+                        name="compensation.frequency"
+                        control={control}
+                        render={({ field }) => {
+                          return (
+                            <Select
+                              name="compensation.frequency"
+                              value={field.value}
+                              onValueChange={(e) => field.onChange(e)}
+                              defaultValue={field.value}
+                            >
+                              <SelectTrigger className="border-gray-700 bg-gray-800">
+                                {/* "Per Hour" | "Per Month" | "Per Milestone" | "Per Project" */}
+                                <SelectValue placeholder="Select type">
+                                  {field.value}
+                                </SelectValue>
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="Per Hour">
+                                  Per Hour
+                                </SelectItem>
+                                <SelectItem value="Per Month">
+                                  Per Month
+                                </SelectItem>
+                                <SelectItem value="Per Milestone">
+                                  Per Milestone
+                                </SelectItem>
+                                <SelectItem value="Per Project">
+                                  Per Project
+                                </SelectItem>
+                              </SelectContent>
+                            </Select>
+                          );
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
-  
             </div>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-1">
             <Label>Invite others to this project (optional)</Label>
             <Input
               className="border-gray-700 bg-gray-800"
