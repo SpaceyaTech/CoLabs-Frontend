@@ -19,7 +19,6 @@ export type Project = {
   type: (typeof projectType)[number];
   platform: (typeof platforms)[number];
   compensation: Monetized | NonMonetized;
-  monetized:boolean;
   languages: { name: string; color: string }[];
   issuesCount: number;
   link: string;
@@ -63,7 +62,6 @@ export const generateProjects = (count: number): Project[] => {
       starCount: faker.number.int({ min: 0, max: 1000 }),
       lastCommitDate: faker.date.past().toISOString().split("T")[0],
       platform: faker.helpers.arrayElement(platforms),
-      monetized:faker.datatype.boolean(),
       compensation:
         faker.helpers.arrayElement(compensation) === "Monetized"
           ? {

@@ -21,7 +21,8 @@ import { Switch } from "@/components/ui/switch";
 import { UseMutationResult } from "@tanstack/react-query";
 import { Project } from "../../-query-options/dummy-projects";
 import { Textarea } from "@/components/ui/textarea";
-import { dummyCurremcies } from "@/data/currency";
+import { getDefaultCurency } from "@/utils/time";
+import { MonetizationFields } from "./MonetizationFields";
 
 interface BaseProjectsFormProps<T extends Record<string, any>> {
   mutation: UseMutationResult<any, Error, T, unknown>;
@@ -31,7 +32,7 @@ interface BaseProjectsFormProps<T extends Record<string, any>> {
 export function BaseProjectsForm<T extends Record<string, any>>({
   row,
 }: BaseProjectsFormProps<T>) {
-  const { register, handleSubmit, control, watch, setValue } = useForm<Project>(
+  const form = useForm<Project>(
     {
       defaultValues: {
         id: row?.id ?? "",
@@ -40,7 +41,6 @@ export function BaseProjectsForm<T extends Record<string, any>>({
         compensation: row?.compensation ?? {
           type: "Non-monetized",
         },
-        monetized: row?.monetized ?? false,
         platform: row?.platform ?? "web",
         type: row?.type ?? "open-source",
         owner: row?.owner ?? "",
@@ -53,6 +53,7 @@ export function BaseProjectsForm<T extends Record<string, any>>({
       },
     },
   );
+  const { register, handleSubmit, control, watch, setValue } = form
 
   const onSubmit = (data: Project) => {
     console.log(data);
@@ -92,7 +93,7 @@ export function BaseProjectsForm<T extends Record<string, any>>({
             />
           </div>
 
-          <div className="flex w-full items-center justify-between gap-5">
+          <div className="flex w-full items-center gap-5">
             {/* project type open-source or private */}
             <div className="min-w-[70%] space-y-1">
               <Label>Project Type</Label>
@@ -107,7 +108,9 @@ export function BaseProjectsForm<T extends Record<string, any>>({
                       defaultValue={field.value}
                     >
                       <SelectTrigger className="border-gray-700 bg-gray-800">
-                        <SelectValue placeholder="Select type">
+                        <SelectValue
+                          placeholder="Select type"
+                        >
                           {field.value}
                         </SelectValue>
                       </SelectTrigger>
@@ -120,8 +123,9 @@ export function BaseProjectsForm<T extends Record<string, any>>({
                 }}
               />
             </div>
+
             <Controller
-              name="monetized"
+              name="compensation.type"
               control={control}
               render={({ field }) => {
                 return (
@@ -129,20 +133,17 @@ export function BaseProjectsForm<T extends Record<string, any>>({
                     <Label htmlFor="monetized">Monetized?</Label>
                     <Switch
                       id="monetized"
-                      checked={field.value}
+                      className="border-accent"
+                      checked={field.value === "Monetized"}
                       onCheckedChange={(e) => {
-                        field.onChange(e);
+                        // field.onChange(e);
                         if (e) {
-                          setValue("compensation", {
-                            type: "Monetized",
-                            amount: 2000,
-                            currency: "USD",
-                            frequency: "Per Project",
-                          });
+                          field.onChange("Monetized");
+                          setValue("compensation.currency", getDefaultCurency());
+                          setValue("compensation.amount", 1000);
+                          setValue("compensation.frequency", "Per Milestone");
                         } else {
-                          setValue("compensation", {
-                            type: "Non-monetized",
-                          });
+                          field.onChange("Non-monetized");
                         }
                       }}
                     />
@@ -151,112 +152,8 @@ export function BaseProjectsForm<T extends Record<string, any>>({
               }}
             />
           </div>
-
-          <div className="flex flex-col gap-2">
-            <div className="space-y-1">
-              {/* monetized or non monetizde */}
-              <div className="flex items-center justify-between">
-                {watch("monetized") && (
-                  // price , and payment frequency
-                  <div className="flex items-center w-full gap-5">
-                    {/* compensation amount */}
-                    <div className="space-y-1 flex-2">
-                      <Label htmlFor="amount">Amount</Label>
-                      <Controller
-                        name="compensation.amount"
-                        control={control}
-                        render={({ field }) => (
-                          <Input
-                            id="amount"
-                            className="border-gray-700 bg-gray-800"
-                            {...register("compensation.amount", {
-                              required: true,
-                            })}
-                            onChange={(e) => {
-                              field.onChange(e);
-                            }}
-                          />
-                        )}
-                      />
-                    </div>
-                    {/* compensation frequency */}
-                    <div className="space-y-1 flex-1">
-                      <Label htmlFor="compensation.currency">currency</Label>
-                      <Controller
-                        name="compensation.currency"
-                        control={control}
-                        render={({ field }) => {
-                          return (
-                            <Select
-                              name="compensation.currency"
-                              value={field.value}
-                              onValueChange={(e) => field.onChange(e)}
-                              defaultValue={field.value}
-                            >
-                              <SelectTrigger className="border-gray-700 bg-gray-800">
-                                <SelectValue placeholder="Select type">
-                                  {field.value}
-                                </SelectValue>
-                              </SelectTrigger>
-                              <SelectContent>
-                                {dummyCurremcies.map((currency) => (
-                                  <SelectItem
-                                    key={currency.code}
-                                    value={currency.code}
-                                  >
-                                    {currency.name}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          );
-                        }}
-                      />
-                    </div>
-                    {/* compensation frequency */}
-                    <div className="space-y-1">
-                      <Label htmlFor="compensation.frequency">Frequency</Label>
-                      <Controller
-                        name="compensation.frequency"
-                        control={control}
-                        render={({ field }) => {
-                          return (
-                            <Select
-                              name="compensation.frequency"
-                              value={field.value}
-                              onValueChange={(e) => field.onChange(e)}
-                              defaultValue={field.value}
-                            >
-                              <SelectTrigger className="border-gray-700 bg-gray-800">
-                                {/* "Per Hour" | "Per Month" | "Per Milestone" | "Per Project" */}
-                                <SelectValue placeholder="Select type">
-                                  {field.value}
-                                </SelectValue>
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="Per Hour">
-                                  Per Hour
-                                </SelectItem>
-                                <SelectItem value="Per Month">
-                                  Per Month
-                                </SelectItem>
-                                <SelectItem value="Per Milestone">
-                                  Per Milestone
-                                </SelectItem>
-                                <SelectItem value="Per Project">
-                                  Per Project
-                                </SelectItem>
-                              </SelectContent>
-                            </Select>
-                          );
-                        }}
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+            {/* monetization */}
+          <MonetizationFields form={form} />
 
           <div className="space-y-1">
             <Label>Invite others to this project (optional)</Label>
