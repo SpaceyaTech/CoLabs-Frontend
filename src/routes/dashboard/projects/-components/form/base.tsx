@@ -10,19 +10,12 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
+
 import { UseMutationResult } from "@tanstack/react-query";
 import { Project } from "../../-query-options/dummy-projects";
 import { Textarea } from "@/components/ui/textarea";
-import { getDefaultCurency } from "@/utils/time";
-import { MonetizationFields } from "./MonetizationFields";
+import { MonetizationFields } from "./fomrm-parts/MonetizationFields";
+import { ProjectTypeFields } from "./fomrm-parts/ProjectTypeFields";
 
 interface BaseProjectsFormProps<T extends Record<string, any>> {
   mutation: UseMutationResult<any, Error, T, unknown>;
@@ -53,7 +46,7 @@ export function BaseProjectsForm<T extends Record<string, any>>({
       },
     },
   );
-  const { register, handleSubmit, control, watch, setValue } = form
+  const { register, handleSubmit, control, watch } = form
 
   const onSubmit = (data: Project) => {
     console.log(data);
@@ -92,66 +85,8 @@ export function BaseProjectsForm<T extends Record<string, any>>({
               {...register("description", { required: true })}
             />
           </div>
-
-          <div className="flex w-full items-center gap-5">
-            {/* project type open-source or private */}
-            <div className="min-w-[70%] space-y-1">
-              <Label>Project Type</Label>
-              <Controller
-                name="type"
-                control={control}
-                render={({ field }) => {
-                  return (
-                    <Select
-                      value={field.value}
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <SelectTrigger className="border-gray-700 bg-gray-800">
-                        <SelectValue
-                          placeholder="Select type"
-                        >
-                          {field.value}
-                        </SelectValue>
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="open-source">Open source</SelectItem>
-                        <SelectItem value="private">Private</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  );
-                }}
-              />
-            </div>
-
-            <Controller
-              name="compensation.type"
-              control={control}
-              render={({ field }) => {
-                return (
-                  <div className="flex flex-col items-center gap-2 space-x-2">
-                    <Label htmlFor="monetized">Monetized?</Label>
-                    <Switch
-                      id="monetized"
-                      className="border-accent"
-                      checked={field.value === "Monetized"}
-                      onCheckedChange={(e) => {
-                        // field.onChange(e);
-                        if (e) {
-                          field.onChange("Monetized");
-                          setValue("compensation.currency", getDefaultCurency());
-                          setValue("compensation.amount", 1000);
-                          setValue("compensation.frequency", "Per Milestone");
-                        } else {
-                          field.onChange("Non-monetized");
-                        }
-                      }}
-                    />
-                  </div>
-                );
-              }}
-            />
-          </div>
+          {/* {/* project type */}
+          <ProjectTypeFields form={form} />
             {/* monetization */}
           <MonetizationFields form={form} />
 

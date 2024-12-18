@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/select";
 import { dummyCurremcies } from "@/data/currency";
 import { Controller, UseFormReturn } from "react-hook-form";
-import { Project } from "../../-query-options/dummy-projects";
+import { Project } from "@/routes/dashboard/projects/-query-options/dummy-projects";
 
 interface MonetizationFieldsProps {
   form: UseFormReturn<Project, any, undefined>;
