@@ -16,6 +16,7 @@ import { Project } from "../../-query-options/dummy-projects";
 import { Textarea } from "@/components/ui/textarea";
 import { MonetizationFields } from "./fomrm-parts/MonetizationFields";
 import { ProjectTypeFields } from "./fomrm-parts/ProjectTypeFields";
+import { InviteUsersField } from "./fomrm-parts/InviteUsersField";
 
 interface BaseProjectsFormProps<T extends Record<string, any>> {
   mutation: UseMutationResult<any, Error, T, unknown>;
@@ -46,7 +47,7 @@ export function BaseProjectsForm<T extends Record<string, any>>({
       },
     },
   );
-  const { register, handleSubmit, control, watch } = form
+  const { register, handleSubmit } = form
 
   const onSubmit = (data: Project) => {
     console.log(data);
@@ -60,16 +61,16 @@ export function BaseProjectsForm<T extends Record<string, any>>({
         </CardTitle>
       </CardHeader>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <CardContent className="flex flex-col gap-5">
+        <CardContent className="flex flex-col gap-2 w-full">
           {/* project title */}
-          <div className="min-h-16">
+          <div className="">
             <Label htmlFor="title" className="sr-only">
               Project title
             </Label>
             <Input
               id="title"
               placeholder="Project title"
-              className="mx-0 border-none bg-transparent px-0 text-3xl font-bold"
+              className="mx-0 border-none bg-transparent px-0 text-xl font-bold"
               {...register("title", { required: true })}
             />
           </div>
@@ -89,49 +90,9 @@ export function BaseProjectsForm<T extends Record<string, any>>({
           <ProjectTypeFields form={form} />
             {/* monetization */}
           <MonetizationFields form={form} />
+          {/* invite users */}
+          <InviteUsersField form={form} />
 
-          <div className="space-y-1">
-            <Label>Invite others to this project (optional)</Label>
-            <Input
-              className="border-gray-700 bg-gray-800"
-              placeholder="Type one or more usernames, separated by a comma and press Return or Enter"
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === "Return") {
-                  e.preventDefault();
-                  const input = e.currentTarget;
-                  const value = input.value.trim();
-                  if (value) {
-                    const collaborators = watch("collaborators");
-                    const newcollaborators = [...collaborators, value];
-                    control._formValues.collaborators = newcollaborators;
-                    input.value = "";
-                  }
-                }
-              }}
-            />
-            <div className="mt-2 flex flex-wrap gap-2">
-              {watch("collaborators").map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-1 rounded bg-gray-800 px-2 py-1 text-sm"
-                >
-                  {item}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const collaborators = watch("collaborators");
-                      const newcollaborators = collaborators.filter(
-                        (_, i) => i !== index,
-                      );
-                      control._formValues.collaborators = newcollaborators;
-                    }}
-                  >
-                    <X className="h-3 w-3" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
         </CardContent>
         <CardFooter className="justify-end space-x-2">
           <Button variant="outline" type="button">

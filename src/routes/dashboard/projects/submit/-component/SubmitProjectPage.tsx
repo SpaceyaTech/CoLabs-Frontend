@@ -38,7 +38,7 @@ export function SubmitProjectPage({}:SubmitProjectPageProps){
 return (
   <div className="flex h-full w-full flex-col items-center justify-center">
     <Suspense fallback={<div>Loading</div>}>
-      <div className="flex h-full  md:w-[70%] flex-col pt-[2%] gap-2 overflow-auto">
+      <div className="flex h-full w-full p-3 lg:w-[70%]  flex-col pt-[2%] gap-2 overflow-auto">
         <BaseProjectsForm mutation={mutation} />
       </div>
     </Suspense>

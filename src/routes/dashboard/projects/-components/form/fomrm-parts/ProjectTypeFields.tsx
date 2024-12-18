@@ -33,7 +33,7 @@ export function ProjectTypeFields({ form }: ProjectTypeFieldsProps) {
                 onValueChange={field.onChange}
                 defaultValue={field.value}
               >
-                <SelectTrigger className="border-gray-700 bg-gray-800">
+                <SelectTrigger className="rounded border border-[#737776CC] bg-transparent">
                   <SelectValue placeholder="Select type">
                     {field.value}
                   </SelectValue>

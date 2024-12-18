@@ -35,7 +35,7 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
                   onValueChange={(e) => field.onChange(e)}
                   defaultValue={field.value}
                 >
-                  <SelectTrigger className="w-full border-gray-700 bg-gray-800">
+                  <SelectTrigger className="w-full rounded border border-[#737776CC] bg-transparent" >
                     <SelectValue placeholder="Select currency">
                       {field.value}
                     </SelectValue>
@@ -62,7 +62,7 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
             render={({ field }) => (
               <Input
                 id="amount"
-                className="w-full border-gray-700 bg-gray-800"
+                className="w-full rounded border border-[#737776CC] bg-transparent"
                 {...register("compensation.amount", {
                   required: true,
                 })}
@@ -88,7 +88,7 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
                   onValueChange={(e) => field.onChange(e)}
                   defaultValue={field.value}
                 >
-                  <SelectTrigger className="w-full border-gray-700 bg-gray-800">
+                  <SelectTrigger className="w-full rounded border border-[#737776CC] bg-transparent">
                     {/* "Per Hour" | "Per Month" | "Per Milestone" | "Per Project" */}
                     <SelectValue placeholder="Select type">
                       {field.value}
