@@ -21,7 +21,7 @@ export function ProjectTypeFields({ form }: ProjectTypeFieldsProps) {
   return (
     <div className="flex w-full items-center gap-5">
       {/* project type open-source or private */}
-      <div className="min-w-[70%] space-y-1">
+      <div className="min-w-[70%] space-y-2">
         <Label>Project Type</Label>
         <Controller
           name="type"
@@ -66,6 +66,7 @@ export function ProjectTypeFields({ form }: ProjectTypeFieldsProps) {
                     setValue("compensation.currency", getDefaultCurency());
                     setValue("compensation.amount", 1000);
                     setValue("compensation.frequency", "Per Milestone");
+                    setValue("compensation.duration", 6);
                   } else {
                     field.onChange("Non-monetized");
                   }

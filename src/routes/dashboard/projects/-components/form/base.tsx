@@ -1,4 +1,4 @@
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { UsersRound, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
 import { UseMutationResult } from "@tanstack/react-query";
 import { Project } from "../../-query-options/dummy-projects";
 import { Textarea } from "@/components/ui/textarea";
@@ -39,10 +38,10 @@ export function BaseProjectsForm<T extends Record<string, any>>({
         type: row?.type ?? "open-source",
         owner: row?.owner ?? "",
         collaborators: row?.collaborators ?? [],
+        link: row?.link??"",
         // forksCount: row?.forksCount??0,
         // issuesCount: row?.issuesCount??0,
         // starCount: row?.starCount??0,
-        // link: row?.link??"",
         // languages: row?.languages??[],
       },
     },
@@ -61,7 +60,7 @@ export function BaseProjectsForm<T extends Record<string, any>>({
         </CardTitle>
       </CardHeader>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <CardContent className="flex flex-col gap-2 w-full">
+        <CardContent className="flex flex-col gap-5 w-full">
           {/* project title */}
           <div className="">
             <Label htmlFor="title" className="sr-only">

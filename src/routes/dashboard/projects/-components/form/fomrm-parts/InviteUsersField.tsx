@@ -9,66 +9,88 @@ interface InviteUsersFieldProps {
 }
 
 export function InviteUsersField({ form }: InviteUsersFieldProps) {
-  const { control, watch } = form;
+  const { control, watch,register } = form;
   const collaborators = watch("collaborators");
   return (
-    <div className="space-y-1">
-      <Label>Invite others to this project (optional)</Label>
-      <Controller
-        name="collaborators"
-        control={control}
-        render={({ field }) => {
-          return (
-            <div className="flex flex-col gap-2">
-              <div className="mt-2 flex flex-wrap gap-2">
-                {collaborators.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-1 rounded border-[1px] border-[#445F5866] bg-[#595C5F66] px-2 py-1 text-[#A7A9A8]"
-                  >
-                    {item}
-                    <button
-                      type="button"
-                      className="text-accent"
-                      onClick={() => {
-                        const newcollaborators = collaborators.filter(
-                          (_, i) => i !== index,
-                        );
-                        field.onChange(newcollaborators);
-                      }}
-                    >
-                      <X className="size-4" />
-                    </button>
-                  </div>
-                ))}
-              </div>
-
+    <div className="flex w-full flex-col md:flex-row  gap-3">
+      <div className="space-y-2 w-full">
+        <Label className="inline-flex">GitHub repo link</Label>
+        <Controller
+          name="link"
+          control={control}
+          render={({ field }) => {
+            return (
               <Input
-                className="rounded border border-[#737776CC] bg-transparent "
-                placeholder="Type one or more usernames, separated by a comma and press Return or Enter"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === "Return") {
-                    e.preventDefault();
-                    const input = e.currentTarget;
-                    const value = input.value.trim();
-                    console.log(" ====  value  ==== ", value);
-                    if (value) {
-                      const newcollaborators = [...collaborators, value];
-                      field.onChange(newcollaborators);
-                      // input.value = "";
-                    }
-                  }
-                }}
+                {...field}
+                className="w-full rounded border border-[#737776CC] bg-transparent"
+                type="url"
+                placeholder="repository link"
+                {...register("link", { required: true })}
               />
-              <div className="text-[#8A8C8C]">
-                Type one or more usernames, separated by a comma and press
-                Return or Enter
-              </div>
-            </div>
-          );
-        }}
-      />
+            );
+          }}
+        />
+      </div>
 
+      <div className="space-y-2 w-full">
+        <Label className="inline-flex gap-1">
+          Invite others to this project{" "}
+          <div className="text-[#A7A9A8CC]"> (optional)</div>
+        </Label>
+        <Controller
+          name="collaborators"
+          control={control}
+          render={({ field }) => {
+            return (
+              <div className="flex flex-col gap-2">
+                <div className="flex flex-wrap gap-2">
+                  {collaborators.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-1 rounded border-[1px] border-[#445F5866] bg-[#595C5F66] px-2 py-1 text-[#A7A9A8]"
+                    >
+                      {item}
+                      <button
+                        type="button"
+                        className="text-accent"
+                        onClick={() => {
+                          const newcollaborators = collaborators.filter(
+                            (_, i) => i !== index,
+                          );
+                          field.onChange(newcollaborators);
+                        }}
+                      >
+                        <X className="size-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                <Input
+                  className="rounded border border-[#737776CC] bg-transparent"
+                  placeholder="collaborator username"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === "Return") {
+                      e.preventDefault();
+                      const input = e.currentTarget;
+                      const value = input.value.trim();
+                      if (value) {
+                        const newcollaborators = [...collaborators, value];
+                        field.onChange(newcollaborators);
+                        input.value = "";
+                      }
+                    }
+                  }}
+                />
+                <div className="text-[#8A8C8C]">
+                  Type one or more usernames, separated by a comma and press
+                  Return or Enter
+                </div>
+              </div>
+            );
+          }}
+        />
+      </div>
     </div>
   );
 }

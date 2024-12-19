@@ -8,6 +8,7 @@ export type Monetized = {
   amount: number;
   currency: string;
   frequency: "Per Hour" | "Per Month" | "Per Milestone" | "Per Project";
+  duration: number;
 };
 export type NonMonetized = {
   type: "Non-monetized";
@@ -68,6 +69,7 @@ export const generateProjects = (count: number): Project[] => {
               type: "Monetized",
               amount: faker.number.int({ min: 0, max: 100 }),
               currency: faker.finance.currencyCode(),
+              duration: faker.number.int({ min: 0, max: 100 }),
               frequency: faker.helpers.arrayElement([
                 "Per Hour",
                 "Per Month",
