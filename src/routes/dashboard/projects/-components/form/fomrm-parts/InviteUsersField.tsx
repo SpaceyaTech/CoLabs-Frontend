@@ -9,11 +9,16 @@ interface InviteUsersFieldProps {
 }
 
 export function InviteUsersField({ form }: InviteUsersFieldProps) {
-  const { control, watch,register } = form;
+  const {
+    control,
+    watch,
+    register,
+    formState: { errors },
+  } = form;
   const collaborators = watch("collaborators");
   return (
-    <div className="flex w-full flex-col md:flex-row  gap-3">
-      <div className="space-y-2 w-full">
+    <div className="flex w-full flex-col gap-3 md:flex-row">
+      <div className={`w-full space-y-2`}>
         <Label className="inline-flex">GitHub repo link</Label>
         <Controller
           name="link"
@@ -22,17 +27,18 @@ export function InviteUsersField({ form }: InviteUsersFieldProps) {
             return (
               <Input
                 {...field}
-                className="w-full rounded border border-[#737776CC] bg-transparent"
+                className={`w-full rounded border border-[#737776CC] bg-transparent ${errors.link ? "border-error" : ""}`}
                 type="url"
                 placeholder="repository link"
-                {...register("link", { required: true })}
+                {...register("link")}
               />
             );
           }}
         />
+        {errors.link && <p className="text-error">{errors.link.message}</p>}
       </div>
 
-      <div className="space-y-2 w-full">
+      <div className="w-full space-y-2">
         <Label className="inline-flex gap-1">
           Invite others to this project{" "}
           <div className="text-[#A7A9A8CC]"> (optional)</div>

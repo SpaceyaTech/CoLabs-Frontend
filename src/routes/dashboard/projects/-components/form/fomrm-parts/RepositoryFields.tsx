@@ -29,7 +29,7 @@ export function RepositoryFields({ form }: RepositoryFieldsProps) {
                 className="w-full rounded border border-[#737776CC] bg-transparent"
                 type="url"
                 placeholder="repository link"
-                {...register("link", { required: true })}
+                {...register("link", )}
               />
             );
           }}

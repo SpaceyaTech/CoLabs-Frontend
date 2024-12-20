@@ -30,3 +30,10 @@
 
 run `p/mpm run page users` to scafold a page with these best practices
   
+
+## handling forms
+
+We'll use [react-hook-form](https://react-hook-form.com/) to manage our forms and [zod](https://zod.dev/) to validate our data.
+[quick tutorial on react hhok form + zod](https://www.youtube.com/watch?v=cc_xmawJ8Kg)
+
+then use the useMutation hook

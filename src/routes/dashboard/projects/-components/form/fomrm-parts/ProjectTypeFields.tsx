@@ -16,7 +16,7 @@ interface ProjectTypeFieldsProps {
 }
 
 export function ProjectTypeFields({ form }: ProjectTypeFieldsProps) {
-  const { control,setValue } = form;
+  const { control,setValue,formState: { errors } } = form;
 
   return (
     <div className="flex w-full items-center gap-5">
@@ -33,10 +33,15 @@ export function ProjectTypeFields({ form }: ProjectTypeFieldsProps) {
                 onValueChange={field.onChange}
                 defaultValue={field.value}
               >
-                <SelectTrigger className="rounded border border-[#737776CC] bg-transparent">
+                <SelectTrigger
+                  className={`rounded border border-[#737776CC] bg-transparent ${errors?.type ? "border-error" : ""}`}
+                >
                   <SelectValue placeholder="Select type">
                     {field.value}
                   </SelectValue>
+                  {errors?.type && (
+                    <p className="text-error">{errors?.type?.message}</p>
+                  )}
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="open-source">Open source</SelectItem>
@@ -49,7 +54,7 @@ export function ProjectTypeFields({ form }: ProjectTypeFieldsProps) {
       </div>
 
       <Controller
-        name="compensation.type"
+        name="compensation.monetization_type"
         control={control}
         render={({ field }) => {
           return (
