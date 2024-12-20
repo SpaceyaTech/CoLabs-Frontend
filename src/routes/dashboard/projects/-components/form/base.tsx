@@ -55,7 +55,9 @@ export function BaseProjectsForm<T extends Record<string, any>>({
   const { handleSubmit } = form;
 
   const onSubmit = (data: Project) => {
+    // @ts-expect-error : that objcte is the one i'll use
     mutation.mutate(data)
+
   };
   return (
     <Card className="border-px w-full rounded-xl border-[#1D5045] bg-[#23292CCC] text-white">
