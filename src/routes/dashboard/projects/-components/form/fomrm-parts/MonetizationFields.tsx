@@ -14,6 +14,7 @@ import { Controller, UseFormReturn } from "react-hook-form";
 import { Project } from "@/routes/dashboard/projects/-query-options/dummy-projects";
 import { EllipsisVertical } from "lucide-react";
 import { RHFErrorWrapper } from "@/lib/react-oook-form/RHFWrappers";
+import { RHFTextInput } from "@/lib/react-oook-form/RHFInput";
 
 interface MonetizationFieldsProps {
   form: UseFormReturn<Project, any, undefined>;
@@ -27,10 +28,7 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
     formState: { errors },
   } = form;
 
-
   if (watch("compensation.monetization_type") === "Monetized") {
-
-
     return (
       // price , and payment frequency
       <div className={`flex w-full flex-col gap-1`}>
@@ -84,7 +82,7 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
               />
             </div>
 
-            <Controller
+            {/* <Controller
               name="compensation.amount"
               control={control}
               render={({ field }) => {
@@ -108,18 +106,26 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
                   </div>
                 );
               }}
+            /> */}
+            <RHFTextInput
+              form={form}
+              fieldKey={"compensation.amount"}
+              inputProps={{
+                type: "number",
+              }}
+              placeholder="Amount"
             />
           </div>
 
           {/* compensation duration */}
-          <div className="w-full flex-grow space-y-1 md:w-fit">
+          {/* <div className="w-full flex-grow space-y-1 md:w-fit">
             <Label htmlFor="compensation.duration">Duration (Months)</Label>
             <Controller
               name="compensation.duration"
               control={control}
               render={({ field }) => (
                 <Input
-                  style={{border: "3px solid oklch(var(--er))"}}
+                  style={{ border: "3px solid oklch(var(--er))" }}
                   id="compensation.duration"
                   type="number"
                   className="w-full rounded border border-[#737776CC] bg-transparent"
@@ -130,8 +136,17 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
                 />
               )}
             />
-           <RHFErrorWrapper form={form} fieldKey={"compensation.duration"} />
-          </div>
+            <RHFErrorWrapper form={form} fieldKey={"compensation.duration"} />
+          </div> */}
+          <RHFTextInput
+            form={form}
+            fieldKey={"compensation.duration"}
+            label="Duration (Months)"
+            inputProps={{
+              type: "number",
+            }}
+            placeholder="Duration (Months)"
+          />
         </div>
       </div>
     );
