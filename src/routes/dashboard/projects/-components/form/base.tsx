@@ -8,15 +8,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { UseMutationResult } from "@tanstack/react-query";
 import { Project, projectSchema } from "../../-query-options/dummy-projects";
-import { Textarea } from "@/components/ui/textarea";
 import { MonetizationFields } from "./fomrm-parts/MonetizationFields";
 import { ProjectTypeFields } from "./fomrm-parts/ProjectTypeFields";
 import { InviteUsersField } from "./fomrm-parts/InviteUsersField";
 import { zodResolver } from '@hookform/resolvers/zod';
+import { FormDescription } from "./fomrm-parts/FormDescription";
 interface BaseProjectsFormProps<T extends Record<string, any>> {
   mutation: UseMutationResult<any, Error, T, unknown>;
   row?: Project;
@@ -62,31 +61,8 @@ export function BaseProjectsForm<T extends Record<string, any>>({
       </CardHeader>
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardContent className="flex flex-col gap-5 w-full">
-          {/* project title */}
-          <div className="">
-            <Label htmlFor="title" className="sr-only">
-              Project title
-            </Label>
-            <Input
-              id="title"
-              placeholder="Project title"
-              className="mx-0 border-none bg-transparent px-0 text-xl font-bold"
-              {...register("title")}
-            />
-            {errors.title && <p className="text-xs text-error-content">{errors.title.message}</p>}
-          </div>
-          {/* project description */}
-          <div className="">
-            <Label htmlFor="description" className="sr-only">
-              Project description
-            </Label>
-            <Textarea
-              id="description"
-              placeholder="Project description"
-              className="mx-0 rounded-lg border-none bg-transparent px-0 text-lg"
-              {...register("description")}
-            />
-          </div>
+          {/* Title and description */}
+          <FormDescription form={form}/>
           {/* {/* project type */}
           <ProjectTypeFields form={form} />
             {/* monetization */}

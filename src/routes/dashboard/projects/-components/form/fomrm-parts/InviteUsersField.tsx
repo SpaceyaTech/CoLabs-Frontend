@@ -3,6 +3,7 @@ import { Controller, UseFormReturn } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
+import { RHFTextInput } from "@/lib/react-oook-form/RHFInput";
 
 interface InviteUsersFieldProps {
   form: UseFormReturn<Project, any, undefined>;
@@ -12,37 +13,22 @@ export function InviteUsersField({ form }: InviteUsersFieldProps) {
   const {
     control,
     watch,
-    register,
     formState: { errors },
   } = form;
   const collaborators = watch("collaborators");
   return (
     <div className="flex w-full flex-col gap-3 md:flex-row">
-      <div className={`w-full space-y-1`}>
-        <Label className="inline-flex">GitHub repo link</Label>
-        <Controller
-          name="link"
-          control={control}
-          render={({ field }) => {
-            return (
-              <Input
-                {...field}
-                className={`w-full rounded border border-[#737776CC] bg-transparent ${errors?.link ? "border-2 border-error" : ""}`}
-                type="url"
-                placeholder="repository link"
-                {...register("link")}
-              />
-            );
-          }}
-        />
-        {errors.link && (
-          <p className="text-xs italic text-error-content">
-            {errors.link.message}
-          </p>
-        )}
-      </div>
+      <RHFTextInput
+        form={form}
+        fieldKey={"link"}
+        label={"GitHub repo link"}
+        inputProps={{
+          type: "url",
+        }}
+        placeholder="repository link"
+      />
 
-      <div className="w-full space-y-1">
+      <div className="w-full flex flex-col gap-1">
         <Label className="inline-flex gap-1">
           Invite others to this project{" "}
           <div className="text-[#A7A9A8CC]"> (optional)</div>
@@ -102,6 +88,11 @@ export function InviteUsersField({ form }: InviteUsersFieldProps) {
             );
           }}
         />
+        {errors.collaborators && (
+          <p className="text-error-content text-xs italic">
+            {errors?.collaborators?.message}
+          </p>
+        )}
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ export function RHFTextInput<T extends UseFormReturn<any, any, undefined>>({
     fieldKey,
   );
   return (
-    <div className={twMerge("flex flex-col gap-1", containerClassName)}>
+    <div className={twMerge("flex flex-col gap-1 w-full", containerClassName)}>
       {label && (
         <Label className={twMerge("inline-flex gap-1", labelClassName)}>
           {label}
