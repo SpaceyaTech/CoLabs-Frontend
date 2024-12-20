@@ -38,7 +38,7 @@ const compensation = ["Non-monetized", "Monetized"] as const;
 
 export const projectSchema = z.object({
   id: z.string(),
-  title: z.string(),
+  title: z.string().min(10),
   description: z.string(),
   type: z.enum(projectType),
   platform: z.enum(platforms),
@@ -61,7 +61,7 @@ export const projectSchema = z.object({
   ]),
   languages: z.array(z.object({ name: z.string(), color: z.string() })),
   issuesCount: z.number(),
-  link: z.string(),
+  link: z.string().url(),
   forksCount: z.number(),
   starCount: z.number(),
   lastCommitDate: z.string(),

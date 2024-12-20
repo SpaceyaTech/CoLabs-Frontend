@@ -10,9 +10,10 @@ import {
   SelectTrigger as RawSelectTrigger,
   SelectIcon as RawSelectIcon,
 } from "@radix-ui/react-select";
-import { Controller, FieldError, UseFormReturn } from "react-hook-form";
+import { Controller, UseFormReturn } from "react-hook-form";
 import { Project } from "@/routes/dashboard/projects/-query-options/dummy-projects";
 import { EllipsisVertical } from "lucide-react";
+import { RHFErrorWrapper } from "@/lib/react-oook-form/RHFWrappers";
 
 interface MonetizationFieldsProps {
   form: UseFormReturn<Project, any, undefined>;
@@ -25,46 +26,17 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
     watch,
     formState: { errors },
   } = form;
+
+
   if (watch("compensation.monetization_type") === "Monetized") {
-    const getCompensationErrors = (
-      errs: typeof errors.compensation | undefined,
-    ) => {
-      if (!errs) return undefined;
-      const monetizationError: {
-        monetization_type?: string;
-        amount?: string;
-        frequency?: string;
-        duration?: string;
-      } = {
-        monetization_type: undefined,
-        amount: undefined,
-        frequency: undefined,
-        duration: undefined,
-      };
-      if (errs.monetization_type) {
-        monetizationError["monetization_type"] = (
-          errs.monetization_type as FieldError
-        ).message;
-      }
-      if ("amount" in errs && errs.amount) {
-        monetizationError["amount"] = (errs.amount as FieldError).message;
-      }
-      if ("frequency" in errs && errs.frequency) {
-        monetizationError["frequency"] = (errs.frequency as FieldError).message;
-      }
-      if ("duration" in errs && errs.duration) {
-        monetizationError["duration"] = (errs.duration as FieldError).message;
-      }
-      return monetizationError;
-    };
-    const compensationErrors = getCompensationErrors(errors?.compensation);
-    const amountErrors = (errors?.compensation as any)?.amount.message;
+
+
     return (
       // price , and payment frequency
-      <div className={`flex w-full flex-col gap-0.5`}>
+      <div className={`flex w-full flex-col gap-1`}>
         <div className="flex w-full flex-wrap items-center gap-2">
-          <div className={`w-full flex-grow space-y-2 md:w-fit`}>
-            <div className="flex w-full items-center justify-between gap-1">
+          <div className={`w-full flex-grow space-y-1 md:w-fit`}>
+            <div className="flex w-full items-center justify-between gap-2">
               <Label htmlFor="amount" className="inline-flex gap-1">
                 Price (KES)
               </Label>
@@ -117,24 +89,22 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
               control={control}
               render={({ field }) => {
                 const amountErrors = (errors?.compensation as any)?.amount
-                  .message;
-                console.log(amountErrors);
+                  ?.message;
                 return (
-                  <div>
+                  <div className="mt-4 w-full flex-grow gap-1">
                     <Input
                       id="amount"
                       className={`w-full rounded border border-[#737776CC] bg-transparent ${amountErrors ? "border-4 border-error" : ""}`}
-                      {...register("compensation.amount", {
-              
-                      })}
+                      {...register("compensation.amount", {})}
                       type="number"
                       onChange={(e) => {
-                        field.onChange(e);
+                        field.onChange(Number(e.target.value));
                       }}
                     />
-                    {amountErrors && (
-                      <div className="text-error-content">{amountErrors}</div>
-                    )}
+                    <RHFErrorWrapper
+                      form={form}
+                      fieldKey={"compensation.amount"}
+                    />
                   </div>
                 );
               }}
@@ -142,13 +112,14 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
           </div>
 
           {/* compensation duration */}
-          <div className="w-full flex-grow space-y-2 md:w-fit">
+          <div className="w-full flex-grow space-y-1 md:w-fit">
             <Label htmlFor="compensation.duration">Duration (Months)</Label>
             <Controller
               name="compensation.duration"
               control={control}
               render={({ field }) => (
                 <Input
+                  style={{border: "3px solid oklch(var(--er))"}}
                   id="compensation.duration"
                   type="number"
                   className="w-full rounded border border-[#737776CC] bg-transparent"
@@ -159,11 +130,9 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
                 />
               )}
             />
+           <RHFErrorWrapper form={form} fieldKey={"compensation.duration"} />
           </div>
         </div>
-        {errors?.compensation && (
-          <p className="text-error">{errors?.compensation?.message}</p>
-        )}
       </div>
     );
   }

@@ -43,11 +43,12 @@ export function BaseProjectsForm<T extends Record<string, any>>({
       // starCount: row?.starCount??0,
       // languages: row?.languages??[],
     },
+    mode: "onTouched",
     resolver: zodResolver(projectSchema),
   });
   const { register, handleSubmit,formState:{errors} } = form
 
-  console.log("=========  errors  ============ ",errors);
+
   const onSubmit = (data: Project) => {
     console.log(data);
   };
@@ -72,6 +73,7 @@ export function BaseProjectsForm<T extends Record<string, any>>({
               className="mx-0 border-none bg-transparent px-0 text-xl font-bold"
               {...register("title")}
             />
+            {errors.title && <p className="text-xs text-error-content">{errors.title.message}</p>}
           </div>
           {/* project description */}
           <div className="">
