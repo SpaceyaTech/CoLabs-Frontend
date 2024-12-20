@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { UsersRound, X } from "lucide-react";
+import { UsersRound} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
 import { UseMutationResult } from "@tanstack/react-query";
 import { Project, projectSchema } from "../../-query-options/dummy-projects";
 import { MonetizationFields } from "./fomrm-parts/MonetizationFields";
@@ -19,7 +18,7 @@ import { FormDescription } from "./fomrm-parts/FormDescription";
 interface BaseProjectsFormProps<T extends Record<string, any>> {
   mutation: UseMutationResult<any, Error, T, unknown>;
   row?: Project;
-  afterSave?: () => void;
+  afterSave?: () => void
 }
 export function BaseProjectsForm<T extends Record<string, any>>({
   row,
@@ -45,7 +44,7 @@ export function BaseProjectsForm<T extends Record<string, any>>({
     mode: "onTouched",
     resolver: zodResolver(projectSchema),
   });
-  const { register, handleSubmit,formState:{errors} } = form
+  const {handleSubmit } = form
 
 
   const onSubmit = (data: Project) => {
@@ -60,22 +59,25 @@ export function BaseProjectsForm<T extends Record<string, any>>({
         </CardTitle>
       </CardHeader>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <CardContent className="flex flex-col gap-5 w-full">
+        <CardContent className="flex w-full flex-col gap-5">
           {/* Title and description */}
-          <FormDescription form={form}/>
+          <FormDescription form={form} />
           {/* {/* project type */}
           <ProjectTypeFields form={form} />
-            {/* monetization */}
+          {/* monetization */}
           <MonetizationFields form={form} />
           {/* invite users */}
           <InviteUsersField form={form} />
-
         </CardContent>
         <CardFooter className="justify-end space-x-2">
-          <Button variant="outline" type="button">
+          <Button variant="ghost" type="button" className="bg-[#2F3A38]">
             Cancel
           </Button>
-          <Button className="bg-emerald-600 hover:bg-emerald-700" type="submit">
+          <Button
+            disabled={!form.formState.isValid}
+            className="bg-emerald-600 hover:bg-emerald-700"
+            type="submit"
+          >
             Create project
           </Button>
         </CardFooter>

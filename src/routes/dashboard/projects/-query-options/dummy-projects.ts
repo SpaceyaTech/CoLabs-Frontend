@@ -38,8 +38,8 @@ const compensation = ["Non-monetized", "Monetized"] as const;
 
 export const projectSchema = z.object({
   id: z.string(),
-  title: z.string().min(10),
-  description: z.string(),
+  title: z.string().min(5),
+  description: z.string().min(12),
   type: z.enum(projectType),
   platform: z.enum(platforms),
   compensation: z.union([
@@ -68,7 +68,7 @@ export const projectSchema = z.object({
   owner: z.string(),
   collaborators: z.array(z.string()),
 });
-
+export const updateProjectSchema = projectSchema.partial();
 export type Project = z.infer<typeof projectSchema>;
 
 
