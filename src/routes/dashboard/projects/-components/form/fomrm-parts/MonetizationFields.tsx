@@ -13,6 +13,7 @@ import { Controller, UseFormReturn } from "react-hook-form";
 import { Project } from "@/routes/dashboard/projects/-query-options/dummy-projects";
 import { EllipsisVertical } from "lucide-react";
 import { RHFTextInput } from "@/lib/react-oook-form/RHFInput";
+import { RHFErrorWrapper } from "@/lib/react-oook-form/RHFWrappers";
 
 interface MonetizationFieldsProps {
   form: UseFormReturn<Project, any, undefined>;
@@ -29,8 +30,8 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
     return (
       // price , and payment frequency
       <div className={`flex w-full flex-col gap-1`}>
-        <div className="flex w-full flex-col md:flex-row items-center gap-2">
-          <div className={`w-full flex flex-col `}>
+        <div className="flex w-full flex-col items-center gap-2 md:flex-row">
+          <div className={`flex w-full flex-col`}>
             <div className="flex w-full items-center justify-between gap-2">
               <Label htmlFor="amount" className="inline-flex gap-1">
                 Price (KES)
@@ -47,7 +48,7 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
                       defaultValue={field.value}
                     >
                       <RawSelectTrigger
-                        className={`flex w-fit items-center justify-between gap-3 rounded text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 ${errors?.type ? "border-error text-xs text-error" : ""}`}
+                        className={`flex w-fit items-center justify-between gap-3 rounded text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 ${errors?.type ? "border-4 border-error text-error" : ""}`}
                       >
                         {/* "Per Hour" | "Per Month" | "Per Milestone" | "Per Project" */}
                         <SelectValue placeholder="Select type">
@@ -76,6 +77,10 @@ export function MonetizationFields({ form }: MonetizationFieldsProps) {
                     </Select>
                   );
                 }}
+              />
+              <RHFErrorWrapper
+                form={form}
+                fieldKey={"compensation.frequency"}
               />
             </div>
             <RHFTextInput

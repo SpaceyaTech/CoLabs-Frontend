@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
 import { RHFTextInput } from "@/lib/react-oook-form/RHFInput";
+import { RHFErrorWrapper } from "@/lib/react-oook-form/RHFWrappers";
 
 interface InviteUsersFieldProps {
   form: UseFormReturn<Project, any, undefined>;
@@ -28,7 +29,7 @@ export function InviteUsersField({ form }: InviteUsersFieldProps) {
         placeholder="repository link"
       />
 
-      <div className="w-full flex flex-col gap-1">
+      <div className="flex w-full flex-col gap-1">
         <Label className="inline-flex gap-1">
           Invite others to this project{" "}
           <div className="text-[#A7A9A8CC]"> (optional)</div>
@@ -88,11 +89,7 @@ export function InviteUsersField({ form }: InviteUsersFieldProps) {
             );
           }}
         />
-        {errors.collaborators && (
-          <p className="text-error-content text-xs italic">
-            {errors?.collaborators?.message}
-          </p>
-        )}
+        <RHFErrorWrapper form={form} fieldKey={"collaborators"} />
       </div>
     </div>
   );

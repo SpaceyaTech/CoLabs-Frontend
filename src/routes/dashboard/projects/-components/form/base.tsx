@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { UsersRound} from "lucide-react";
+import { UsersRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,17 +13,16 @@ import { Project } from "@/routes/dashboard/projects/-query-options/dummy-projec
 import { MonetizationFields } from "./fomrm-parts/MonetizationFields";
 import { ProjectTypeFields } from "./fomrm-parts/ProjectTypeFields";
 import { InviteUsersField } from "./fomrm-parts/InviteUsersField";
-import { zodResolver } from '@hookform/resolvers/zod';
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FormDescription } from "./fomrm-parts/FormDescription";
 import { z } from "zod";
 
-type GenericZodSchema= z.ZodObject<z.ZodRawShape>;
+type GenericZodSchema = z.ZodObject<z.ZodRawShape>;
 interface BaseProjectsFormProps<T extends Record<string, any>> {
   mutation: UseMutationResult<any, Error, T, unknown>;
   row?: Project;
   afterSave?: () => void;
-  zodSchema:GenericZodSchema
-  
+  zodSchema: GenericZodSchema;
 }
 export function BaseProjectsForm<T extends Record<string, any>>({
   row,
@@ -56,8 +55,7 @@ export function BaseProjectsForm<T extends Record<string, any>>({
 
   const onSubmit = (data: Project) => {
     // @ts-expect-error : that objcte is the one i'll use
-    mutation.mutate(data)
-
+    mutation.mutate(data);
   };
   return (
     <Card className="border-px w-full rounded-xl border-[#1D5045] bg-[#23292CCC] text-white">

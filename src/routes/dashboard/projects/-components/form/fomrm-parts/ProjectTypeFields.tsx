@@ -10,13 +10,18 @@ import {
 import { Controller, UseFormReturn } from "react-hook-form";
 import { Switch } from "@/components/ui/switch";
 import { Project } from "@/routes/dashboard/projects/-query-options/dummy-projects";
+import { RHFErrorWrapper } from "@/lib/react-oook-form/RHFWrappers";
 
 interface ProjectTypeFieldsProps {
   form: UseFormReturn<Project, any, undefined>;
 }
 
 export function ProjectTypeFields({ form }: ProjectTypeFieldsProps) {
-  const { control,setValue,formState: { errors } } = form;
+  const {
+    control,
+    setValue,
+    formState: { errors },
+  } = form;
 
   return (
     <div className="flex w-full items-center gap-5">
@@ -34,7 +39,7 @@ export function ProjectTypeFields({ form }: ProjectTypeFieldsProps) {
                 defaultValue={field.value}
               >
                 <SelectTrigger
-                  className={`rounded border border-[#737776CC] bg-transparent ${errors?.type ? "border-error" : ""}`}
+                  className={`rounded border border-[#737776CC] bg-transparent ${errors?.type ? "border-4 border-error" : ""}`}
                 >
                   <SelectValue placeholder="Select type">
                     {field.value}
@@ -51,6 +56,7 @@ export function ProjectTypeFields({ form }: ProjectTypeFieldsProps) {
             );
           }}
         />
+        <RHFErrorWrapper form={form} fieldKey={"type"} />
       </div>
 
       <Controller
@@ -62,7 +68,7 @@ export function ProjectTypeFields({ form }: ProjectTypeFieldsProps) {
               <Label htmlFor="monetized">Monetized?</Label>
               <Switch
                 id="monetized"
-                className="border-accent"
+                className={`border-accent ${errors?.compensation?.monetization_type ? "border-error" : ""}`}
                 checked={field.value === "Monetized"}
                 onCheckedChange={(e) => {
                   // field.onChange(e);
@@ -77,6 +83,7 @@ export function ProjectTypeFields({ form }: ProjectTypeFieldsProps) {
                   }
                 }}
               />
+              <RHFErrorWrapper form={form} fieldKey={"compensation.monetization_type"} />
             </div>
           );
         }}
