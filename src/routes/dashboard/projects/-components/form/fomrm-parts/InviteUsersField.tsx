@@ -14,7 +14,6 @@ export function InviteUsersField({ form }: InviteUsersFieldProps) {
   const {
     control,
     watch,
-    formState: { errors },
   } = form;
   const collaborators = watch("collaborators");
   return (
