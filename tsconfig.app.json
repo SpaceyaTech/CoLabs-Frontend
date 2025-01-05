@@ -27,5 +27,5 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/lib/vitest/setup.ts"]
+  "include": ["src"]
 }
