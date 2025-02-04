@@ -6,9 +6,11 @@ import { Edit } from "lucide-react";
 import { makeHotToast } from "@/components/toasters";
 import { BaseProjectsForm } from "./base";
 import { useMutation } from "@tanstack/react-query";
+import { z } from "zod";
+import { Project } from "../../-query-options/dummy-projects";
 
 interface UpdateProjectsformInterface {
-  item: Record<string, any> & { id: string };
+  item: Project;
 }
 export function UpdateProjectsform({ item }: UpdateProjectsformInterface) {
   const [open, setOpen] = useState(false);
@@ -48,7 +50,7 @@ export function UpdateProjectsform({ item }: UpdateProjectsformInterface) {
       trigger={<Edit className="size-5" />}
     >
       <div className="flex h-full max-h-[80vh] w-fit flex-col gap-2 overflow-auto">
-        <BaseProjectsForm mutation={mutation} row={{item}} />
+        <BaseProjectsForm mutation={mutation} zodSchema={z.object({})} row={item} />
       </div>
     </DiaDrawer>
   );

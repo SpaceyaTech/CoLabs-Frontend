@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as DashboardLayoutImport } from './routes/dashboard/layout'
 import { Route as IndexImport } from './routes/index'
+import { Route as SettingsIndexImport } from './routes/settings/index'
 import { Route as ProfileIndexImport } from './routes/profile/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
@@ -40,6 +41,12 @@ const DashboardLayoutRoute = DashboardLayoutImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SettingsIndexRoute = SettingsIndexImport.update({
+  id: '/settings/',
+  path: '/settings/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -184,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileIndexImport
       parentRoute: typeof rootRoute
     }
+    '/settings/': {
+      id: '/settings/'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/dashboard/challenges/': {
       id: '/dashboard/challenges/'
       path: '/challenges'
@@ -308,6 +322,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/profile': typeof ProfileIndexRoute
+  '/settings': typeof SettingsIndexRoute
   '/dashboard/challenges': typeof DashboardChallengesIndexRoute
   '/dashboard/hackathons': typeof DashboardHackathonsIndexRoute
   '/dashboard/inbox': typeof DashboardInboxIndexRoute
@@ -327,6 +342,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/profile': typeof ProfileIndexRoute
+  '/settings': typeof SettingsIndexRoute
   '/dashboard/challenges': typeof DashboardChallengesIndexRoute
   '/dashboard/hackathons': typeof DashboardHackathonsIndexRoute
   '/dashboard/inbox': typeof DashboardInboxIndexRoute
@@ -348,6 +364,7 @@ export interface FileRoutesById {
   '/auth/': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/profile/': typeof ProfileIndexRoute
+  '/settings/': typeof SettingsIndexRoute
   '/dashboard/challenges/': typeof DashboardChallengesIndexRoute
   '/dashboard/hackathons/': typeof DashboardHackathonsIndexRoute
   '/dashboard/inbox/': typeof DashboardInboxIndexRoute
@@ -370,6 +387,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard/'
     | '/profile'
+    | '/settings'
     | '/dashboard/challenges'
     | '/dashboard/hackathons'
     | '/dashboard/inbox'
@@ -388,6 +406,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/profile'
+    | '/settings'
     | '/dashboard/challenges'
     | '/dashboard/hackathons'
     | '/dashboard/inbox'
@@ -407,6 +426,7 @@ export interface FileRouteTypes {
     | '/auth/'
     | '/dashboard/'
     | '/profile/'
+    | '/settings/'
     | '/dashboard/challenges/'
     | '/dashboard/hackathons/'
     | '/dashboard/inbox/'
@@ -427,6 +447,7 @@ export interface RootRouteChildren {
   AuthSignupRoute: typeof AuthSignupRoute
   AuthIndexRoute: typeof AuthIndexRoute
   ProfileIndexRoute: typeof ProfileIndexRoute
+  SettingsIndexRoute: typeof SettingsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -435,6 +456,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthSignupRoute: AuthSignupRoute,
   AuthIndexRoute: AuthIndexRoute,
   ProfileIndexRoute: ProfileIndexRoute,
+  SettingsIndexRoute: SettingsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -451,7 +473,8 @@ export const routeTree = rootRoute
         "/dashboard",
         "/auth/signup",
         "/auth/",
-        "/profile/"
+        "/profile/",
+        "/settings/"
       ]
     },
     "/": {
@@ -486,6 +509,9 @@ export const routeTree = rootRoute
     },
     "/profile/": {
       "filePath": "profile/index.tsx"
+    },
+    "/settings/": {
+      "filePath": "settings/index.tsx"
     },
     "/dashboard/challenges/": {
       "filePath": "dashboard/challenges/index.tsx",

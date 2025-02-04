@@ -6,6 +6,7 @@ import { Plus } from "lucide-react";
 import { makeHotToast } from "@/components/toasters";
 import { BaseProjectsForm } from "./base";
 import { useMutation } from "@tanstack/react-query";
+import { z } from "zod";
 
 export function CreateProjectsForm() {
   const [open, setOpen] = useState(false);
@@ -51,7 +52,7 @@ export function CreateProjectsForm() {
       }
     >
       <div className="flex h-full max-h-[80vh] w-fit flex-col justify-center gap-2 overflow-auto">
-        <BaseProjectsForm mutation={mutation}  />
+        <BaseProjectsForm zodSchema={z.object({})}  mutation={mutation}  />
       </div>
     </DiaDrawer>
   );
