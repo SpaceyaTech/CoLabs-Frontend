@@ -6,11 +6,11 @@ import { Link, useSearch } from "@tanstack/react-router";
 import { Loader } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 
-interface SigninComponentProps {}
+interface SignupComponentProps {}
 
-export function SigninComponent({}: SigninComponentProps) {
+export function SignupComponent({}: SignupComponentProps) {
   const { returnTo } = useSearch({
-    from: "/auth/",
+    from: "/auth/signup",
   });
   
   const mutation = useMutation({
@@ -39,11 +39,11 @@ export function SigninComponent({}: SigninComponentProps) {
     },
   });
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-5">
+    <div className="flex h-full w-full flex-col gap-2 items-center justify-center p-5">
       <div className="flex h-full w-full flex-col items-center justify-center gap-6 rounded-3xl border border-primary p-[2%] px-[3%] text-white md:w-[60%] lg:w-[40%]">
         <div className="flex h-full flex-col items-center justify-center gap-2">
           <CustomIcons.login className="size-16" />
-          <h1 className="text-2xl">Jump right back in</h1>
+          <h1 className="text-2xl">Welcome to Colabs</h1>
         </div>
         <button
           onClick={() => {
@@ -58,10 +58,7 @@ export function SigninComponent({}: SigninComponentProps) {
         </button>
       </div>
       <div className="flex justify-center gap-2">
-        <Link className="text-primary underline" to="/auth/signup" search={{ returnTo }}>
-          I am not able to log in
-        </Link>
-        {/* I am not able to log in */}
+        I have an account.<Link className="text-primary" to="/auth" search={{ returnTo }}> Log in</Link>
       </div>
     </div>
   );
