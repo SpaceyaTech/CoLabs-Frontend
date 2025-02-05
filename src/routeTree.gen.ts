@@ -13,12 +13,11 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as DashboardLayoutImport } from './routes/dashboard/layout'
 import { Route as IndexImport } from './routes/index'
+import { Route as SettingsIndexImport } from './routes/settings/index'
 import { Route as ProfileIndexImport } from './routes/profile/index'
-import { Route as MoneyIndexImport } from './routes/money/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as AuthSignupImport } from './routes/auth/signup'
-import { Route as MoneyMoneyIndexImport } from './routes/money/$money/index'
 import { Route as DashboardTeamsIndexImport } from './routes/dashboard/teams/index'
 import { Route as DashboardProjectsIndexImport } from './routes/dashboard/projects/index'
 import { Route as DashboardOsProjectsIndexImport } from './routes/dashboard/os-projects/index'
@@ -42,15 +41,15 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ProfileIndexRoute = ProfileIndexImport.update({
-  id: '/profile/',
-  path: '/profile/',
+const SettingsIndexRoute = SettingsIndexImport.update({
+  id: '/settings/',
+  path: '/settings/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const MoneyIndexRoute = MoneyIndexImport.update({
-  id: '/money/',
-  path: '/money/',
+const ProfileIndexRoute = ProfileIndexImport.update({
+  id: '/profile/',
+  path: '/profile/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -69,12 +68,6 @@ const AuthIndexRoute = AuthIndexImport.update({
 const AuthSignupRoute = AuthSignupImport.update({
   id: '/auth/signup',
   path: '/auth/signup',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const MoneyMoneyIndexRoute = MoneyMoneyIndexImport.update({
-  id: '/money/$money/',
-  path: '/money/$money/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -167,18 +160,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexImport
       parentRoute: typeof DashboardLayoutImport
     }
-    '/money/': {
-      id: '/money/'
-      path: '/money'
-      fullPath: '/money'
-      preLoaderRoute: typeof MoneyIndexImport
-      parentRoute: typeof rootRoute
-    }
     '/profile/': {
       id: '/profile/'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/settings/': {
+      id: '/settings/'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsIndexImport
       parentRoute: typeof rootRoute
     }
     '/dashboard/challenges/': {
@@ -237,13 +230,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardTeamsIndexImport
       parentRoute: typeof DashboardLayoutImport
     }
-    '/money/$money/': {
-      id: '/money/$money/'
-      path: '/money/$money'
-      fullPath: '/money/$money'
-      preLoaderRoute: typeof MoneyMoneyIndexImport
-      parentRoute: typeof rootRoute
-    }
   }
 }
 
@@ -283,8 +269,8 @@ export interface FileRoutesByFullPath {
   '/auth/signup': typeof AuthSignupRoute
   '/auth': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/money': typeof MoneyIndexRoute
   '/profile': typeof ProfileIndexRoute
+  '/settings': typeof SettingsIndexRoute
   '/dashboard/challenges': typeof DashboardChallengesIndexRoute
   '/dashboard/hackathons': typeof DashboardHackathonsIndexRoute
   '/dashboard/inbox': typeof DashboardInboxIndexRoute
@@ -293,7 +279,6 @@ export interface FileRoutesByFullPath {
   '/dashboard/os-projects': typeof DashboardOsProjectsIndexRoute
   '/dashboard/projects': typeof DashboardProjectsIndexRoute
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
-  '/money/$money': typeof MoneyMoneyIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -301,8 +286,8 @@ export interface FileRoutesByTo {
   '/auth/signup': typeof AuthSignupRoute
   '/auth': typeof AuthIndexRoute
   '/dashboard': typeof DashboardIndexRoute
-  '/money': typeof MoneyIndexRoute
   '/profile': typeof ProfileIndexRoute
+  '/settings': typeof SettingsIndexRoute
   '/dashboard/challenges': typeof DashboardChallengesIndexRoute
   '/dashboard/hackathons': typeof DashboardHackathonsIndexRoute
   '/dashboard/inbox': typeof DashboardInboxIndexRoute
@@ -311,7 +296,6 @@ export interface FileRoutesByTo {
   '/dashboard/os-projects': typeof DashboardOsProjectsIndexRoute
   '/dashboard/projects': typeof DashboardProjectsIndexRoute
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
-  '/money/$money': typeof MoneyMoneyIndexRoute
 }
 
 export interface FileRoutesById {
@@ -321,8 +305,8 @@ export interface FileRoutesById {
   '/auth/signup': typeof AuthSignupRoute
   '/auth/': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/money/': typeof MoneyIndexRoute
   '/profile/': typeof ProfileIndexRoute
+  '/settings/': typeof SettingsIndexRoute
   '/dashboard/challenges/': typeof DashboardChallengesIndexRoute
   '/dashboard/hackathons/': typeof DashboardHackathonsIndexRoute
   '/dashboard/inbox/': typeof DashboardInboxIndexRoute
@@ -331,7 +315,6 @@ export interface FileRoutesById {
   '/dashboard/os-projects/': typeof DashboardOsProjectsIndexRoute
   '/dashboard/projects/': typeof DashboardProjectsIndexRoute
   '/dashboard/teams/': typeof DashboardTeamsIndexRoute
-  '/money/$money/': typeof MoneyMoneyIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -342,8 +325,8 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/auth'
     | '/dashboard/'
-    | '/money'
     | '/profile'
+    | '/settings'
     | '/dashboard/challenges'
     | '/dashboard/hackathons'
     | '/dashboard/inbox'
@@ -352,15 +335,14 @@ export interface FileRouteTypes {
     | '/dashboard/os-projects'
     | '/dashboard/projects'
     | '/dashboard/teams'
-    | '/money/$money'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth/signup'
     | '/auth'
     | '/dashboard'
-    | '/money'
     | '/profile'
+    | '/settings'
     | '/dashboard/challenges'
     | '/dashboard/hackathons'
     | '/dashboard/inbox'
@@ -369,7 +351,6 @@ export interface FileRouteTypes {
     | '/dashboard/os-projects'
     | '/dashboard/projects'
     | '/dashboard/teams'
-    | '/money/$money'
   id:
     | '__root__'
     | '/'
@@ -377,8 +358,8 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/auth/'
     | '/dashboard/'
-    | '/money/'
     | '/profile/'
+    | '/settings/'
     | '/dashboard/challenges/'
     | '/dashboard/hackathons/'
     | '/dashboard/inbox/'
@@ -387,7 +368,6 @@ export interface FileRouteTypes {
     | '/dashboard/os-projects/'
     | '/dashboard/projects/'
     | '/dashboard/teams/'
-    | '/money/$money/'
   fileRoutesById: FileRoutesById
 }
 
@@ -396,9 +376,8 @@ export interface RootRouteChildren {
   DashboardLayoutRoute: typeof DashboardLayoutRouteWithChildren
   AuthSignupRoute: typeof AuthSignupRoute
   AuthIndexRoute: typeof AuthIndexRoute
-  MoneyIndexRoute: typeof MoneyIndexRoute
   ProfileIndexRoute: typeof ProfileIndexRoute
-  MoneyMoneyIndexRoute: typeof MoneyMoneyIndexRoute
+  SettingsIndexRoute: typeof SettingsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -406,9 +385,8 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardLayoutRoute: DashboardLayoutRouteWithChildren,
   AuthSignupRoute: AuthSignupRoute,
   AuthIndexRoute: AuthIndexRoute,
-  MoneyIndexRoute: MoneyIndexRoute,
   ProfileIndexRoute: ProfileIndexRoute,
-  MoneyMoneyIndexRoute: MoneyMoneyIndexRoute,
+  SettingsIndexRoute: SettingsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -425,9 +403,8 @@ export const routeTree = rootRoute
         "/dashboard",
         "/auth/signup",
         "/auth/",
-        "/money/",
         "/profile/",
-        "/money/$money/"
+        "/settings/"
       ]
     },
     "/": {
@@ -457,11 +434,11 @@ export const routeTree = rootRoute
       "filePath": "dashboard/index.tsx",
       "parent": "/dashboard"
     },
-    "/money/": {
-      "filePath": "money/index.tsx"
-    },
     "/profile/": {
       "filePath": "profile/index.tsx"
+    },
+    "/settings/": {
+      "filePath": "settings/index.tsx"
     },
     "/dashboard/challenges/": {
       "filePath": "dashboard/challenges/index.tsx",
@@ -494,9 +471,6 @@ export const routeTree = rootRoute
     "/dashboard/teams/": {
       "filePath": "dashboard/teams/index.tsx",
       "parent": "/dashboard"
-    },
-    "/money/$money/": {
-      "filePath": "money/$money/index.tsx"
     }
   }
 }

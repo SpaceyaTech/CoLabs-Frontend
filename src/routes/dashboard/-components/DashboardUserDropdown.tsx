@@ -12,17 +12,38 @@ import {
 import { MutationButton } from "@/lib/tanstack/query/MutationButton";
 import { useSidebar } from "@/components/ui/sidebar-extras";
 import { useViewer } from "@/lib/tanstack/query/use-viewer";
+import { Link } from "@tanstack/react-router";
+import { useReturnTo } from "@/lib/tanstack/router/use-location";
 
 interface DashboardUserDropdownProps {
-    compact?: boolean;
+  compact?: boolean;
 }
 
-export function DashboardUserDropdown({compact}: DashboardUserDropdownProps) {
-const { isMobile } = useSidebar();
+export function DashboardUserDropdown({ compact }: DashboardUserDropdownProps) {
+  const { isMobile } = useSidebar();
   const { userQuery, logoutMutation } = useViewer();
   const user = userQuery?.data?.record;
-  if(!user){
-    return null
+  const { returnToPath } = useReturnTo();
+
+  if (!user) {
+    return (
+      <div className="flex items-center gap-5">
+        <Link
+          to="/auth"
+          search={{ returnTo: returnToPath }}
+          className="btn btn-sm"
+        >
+          Login
+        </Link>
+        <Link
+          to="/auth"
+          search={{ returnTo: returnToPath }}
+          className="btn btn-primary btn-sm"
+        >
+          Sign up
+        </Link>
+      </div>
+    );
   }
   return (
     <DropdownMenu>

@@ -10,12 +10,12 @@ export function DashboardLayoutHeader({}: DashboardLayoutHeaderProps) {
   return (
     <div
       data-test="DashboardLayoutHeader"
-      className="flex w-full items-center justify-between gap-3 border-b border-b-primary p-1"
+      className="flex w-full items-center justify-between gap-3 border-b border-b-primary p-1 "
     >
       {/* Desktop layout */}
       <div
         data-test="DashboardLayoutHeaderDesktop"
-        className="hidden w-full items-center justify-between gap-3 md:flex"
+        className="hidden w-full items-center justify-between gap-3 md:flex mr-5"
       >
         <Link data-test="DashboardLayoutHeaderLogo" to="/" className="p-4">
           <img src="/colabs.png" alt="logo" className="h-[54px] w-[195px]" />
