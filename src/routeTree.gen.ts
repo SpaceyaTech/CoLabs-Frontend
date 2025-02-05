@@ -17,7 +17,6 @@ import { Route as ProfileIndexImport } from './routes/profile/index'
 import { Route as MoneyIndexImport } from './routes/money/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
-import { Route as AuthSignupImport } from './routes/auth/signup'
 import { Route as MoneyMoneyIndexImport } from './routes/money/$money/index'
 import { Route as DashboardTeamsIndexImport } from './routes/dashboard/teams/index'
 import { Route as DashboardProjectsIndexImport } from './routes/dashboard/projects/index'
@@ -63,12 +62,6 @@ const DashboardIndexRoute = DashboardIndexImport.update({
 const AuthIndexRoute = AuthIndexImport.update({
   id: '/auth/',
   path: '/auth/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AuthSignupRoute = AuthSignupImport.update({
-  id: '/auth/signup',
-  path: '/auth/signup',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -144,13 +137,6 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardLayoutImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/signup': {
-      id: '/auth/signup'
-      path: '/auth/signup'
-      fullPath: '/auth/signup'
-      preLoaderRoute: typeof AuthSignupImport
       parentRoute: typeof rootRoute
     }
     '/auth/': {
@@ -280,7 +266,6 @@ const DashboardLayoutRouteWithChildren = DashboardLayoutRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardLayoutRouteWithChildren
-  '/auth/signup': typeof AuthSignupRoute
   '/auth': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/money': typeof MoneyIndexRoute
@@ -298,7 +283,6 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/auth/signup': typeof AuthSignupRoute
   '/auth': typeof AuthIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/money': typeof MoneyIndexRoute
@@ -318,7 +302,6 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardLayoutRouteWithChildren
-  '/auth/signup': typeof AuthSignupRoute
   '/auth/': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/money/': typeof MoneyIndexRoute
@@ -339,7 +322,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
-    | '/auth/signup'
     | '/auth'
     | '/dashboard/'
     | '/money'
@@ -356,7 +338,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/auth/signup'
     | '/auth'
     | '/dashboard'
     | '/money'
@@ -374,7 +355,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
-    | '/auth/signup'
     | '/auth/'
     | '/dashboard/'
     | '/money/'
@@ -394,7 +374,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardLayoutRoute: typeof DashboardLayoutRouteWithChildren
-  AuthSignupRoute: typeof AuthSignupRoute
   AuthIndexRoute: typeof AuthIndexRoute
   MoneyIndexRoute: typeof MoneyIndexRoute
   ProfileIndexRoute: typeof ProfileIndexRoute
@@ -404,7 +383,6 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardLayoutRoute: DashboardLayoutRouteWithChildren,
-  AuthSignupRoute: AuthSignupRoute,
   AuthIndexRoute: AuthIndexRoute,
   MoneyIndexRoute: MoneyIndexRoute,
   ProfileIndexRoute: ProfileIndexRoute,
@@ -423,7 +401,6 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/dashboard",
-        "/auth/signup",
         "/auth/",
         "/money/",
         "/profile/",
@@ -446,9 +423,6 @@ export const routeTree = rootRoute
         "/dashboard/projects/",
         "/dashboard/teams/"
       ]
-    },
-    "/auth/signup": {
-      "filePath": "auth/signup.tsx"
     },
     "/auth/": {
       "filePath": "auth/index.tsx"

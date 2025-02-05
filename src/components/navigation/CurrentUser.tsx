@@ -61,26 +61,29 @@ export function CurrentUser({}: CurrentUserProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild className="">
         <Avatar>
-          <AvatarImage src={viewer.avatarUrl} alt={viewer.username} />
-          <AvatarFallback>{viewer.username.slice(0, 2)}</AvatarFallback>
+          <AvatarImage src={viewer.image ?? "/profile.png"} alt={viewer.name} />
+          <AvatarFallback>{viewer.name.slice(0, 2)}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-72 border-none p-3">
+      <DropdownMenuContent className="mr-5 border-none bg-gradient-to-r from-primary/40 via-base-100 to-primary/40 p-2">
         {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
         <DropdownMenuSeparator />
         <div className="flex h-full w-full gap-3">
           <Avatar>
-            <AvatarImage src={viewer.avatarUrl} alt={viewer.username} />
-            <AvatarFallback>{viewer.username.slice(0, 2)}</AvatarFallback>
+            <AvatarImage
+              src={viewer.image ?? "/profile.png"}
+              alt={viewer.name}
+            />
+            <AvatarFallback>{viewer.name.slice(0, 2)}</AvatarFallback>
           </Avatar>
           <div className="flex h-full w-full flex-col p-1">
             <div className="i flex h-full w-full items-center gap-1">
               <Mail className="size-3" />
               <span className="text-xs">{viewer.email}</span>
             </div>
-            <span className="text-xs">{viewer.username}</span>
+            <span className="text-xs">{viewer.name}</span>
           </div>
         </div>
         <DropdownMenuSeparator />

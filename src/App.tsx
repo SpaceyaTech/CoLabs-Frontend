@@ -20,7 +20,7 @@ export function App() {
         defaultPreload="intent"
         context={{
           queryClient,
-          viewer: viewer.userQuery.data,
+          viewer: viewer.userQuery.data
         }}
       />
     </>

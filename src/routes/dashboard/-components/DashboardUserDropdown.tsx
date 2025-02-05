@@ -27,18 +27,18 @@ const { isMobile } = useSidebar();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild data-test="DashboardUserDropdown">
-        <div className="flex gap-2 p-2 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+        <div className="flex gap-2">
           <Avatar className="h-8 w-8 rounded-lg">
-            <AvatarImage src={user.avatarUrl} alt={user.username} />
+            <AvatarImage src={user?.image ?? "/profile.png"} alt={user.name} />
             <AvatarFallback className="rounded-lg">
-              {user.username.slice(0, 2)}
+              {user.name.slice(0, 2)}
             </AvatarFallback>
           </Avatar>
           <div
             className={`flex flex-1 items-center justify-between gap-1 p-1 ${compact ? "hidden" : ""}`}
           >
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-semibold">{user.username}</span>
+              <span className="truncate font-semibold">{user.name}</span>
               <span className="truncate text-xs">{user.email}</span>
             </div>
             <ChevronsUpDown className="ml-auto size-4" />
@@ -46,7 +46,7 @@ const { isMobile } = useSidebar();
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+        className="mt-4 w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-xl border-0 bg-gradient-to-r from-primary/40 via-base-100 to-primary/40 p-2"
         side={isMobile ? "bottom" : "right"}
         align="end"
         sideOffset={4}
@@ -54,11 +54,11 @@ const { isMobile } = useSidebar();
         <DropdownMenuLabel className="p-0 font-normal">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar className="h-8 w-8 rounded-lg">
-              <AvatarImage src={user.avatarUrl} alt={user.username} />
+              <AvatarImage src={user.image ?? "/profile.png"} alt={user.name} />
               <AvatarFallback className="rounded-lg">CN</AvatarFallback>
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-semibold">{user.username}</span>
+              <span className="truncate font-semibold">{user.name}</span>
               <span className="truncate text-xs">{user.email}</span>
             </div>
           </div>
@@ -78,14 +78,14 @@ const { isMobile } = useSidebar();
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <MutationButton
-            className="btn-error max-w-[98%]"
-            onClick={() => logoutMutation.mutate()}
-            label="Logout"
-            mutation={logoutMutation}
-          />
-        </DropdownMenuItem>
+        {/* <DropdownMenuItem>
+        </DropdownMenuItem> */}
+        <MutationButton
+          className="btn-error max-w-[98%]"
+          onClick={() => logoutMutation.mutate()}
+          label="Logout"
+          mutation={logoutMutation}
+        />
       </DropdownMenuContent>
     </DropdownMenu>
   );

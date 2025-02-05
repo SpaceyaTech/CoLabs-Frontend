@@ -1,3 +1,4 @@
+import { authClient } from "@/lib/better-auth/client";
 import {
   QueryClient,
   queryOptions,
@@ -13,25 +14,26 @@ import {
 } from "@tanstack/react-router";
 
 export type Viewer = {
-    record: {
-        id: string;
-        name: string;
-        avatarUrl: string;
-        username: string;
-        email: string;
-    };
-    token: string;
-}
+  record?: {
+    id: string;
+    email: string;
+    emailVerified: boolean;
+    name: string;
+    createdAt: Date;
+    updatedAt: Date;
+    image?: string | null | undefined | undefined;
+  };
+  token?: string;
+};
 
 export const viewerqueryOptions = queryOptions({
   queryKey: ["viewer"],
-  queryFn: () => {
-    return new Promise<Viewer>((resolve,) => {
-      const user = { id: "1", name: "John Doe",
-        avatarUrl:"https://picsum.photos/id/1/200/300",
-        email:"a@b.com",username:"johndoe" } satisfies Viewer["record"];
-      resolve({ record: user, token: "token", } satisfies Viewer);
-    });
+  queryFn: async () => {
+    const session = await authClient.getSession();
+    return {
+      record: session?.data?.user,
+      token: session?.data?.session.token
+    }
   },
 
   staleTime: 1000 * 60 * 60,
@@ -40,15 +42,14 @@ export function useViewer() {
   const qc = useQueryClient();
   const logoutMutation = useMutation({
     mutationFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await authClient.signOut();
       qc.invalidateQueries({ queryKey: ["viewer"] });
     },
   });
-  return { userQuery: useSuspenseQuery(viewerqueryOptions), logoutMutation };
+  const userQuery = useSuspenseQuery(viewerqueryOptions);
+  return { userQuery, viewer: userQuery.data,logoutMutation };
 }
 
-export type PocketbaseViewerType =
-  | Viewer
 
 
 type AuthBeforeloadContext = BeforeLoadContextOptions<
@@ -85,7 +86,7 @@ interface AuthGuardProps {
  * @param ctx The context of the route.
  * @param reverse If true, redirect to the returnTo path if a user exists.
  */
-export async function authGuard({ ctx,reverse }: AuthGuardProps) {
+export async function authGuard({ ctx, reverse }: AuthGuardProps) {
   const returnTo = ctx.search?.returnTo ?? "/";
   const user = ctx.context?.viewer;
   // redirect to auth if no user exists
@@ -103,5 +104,4 @@ export async function authGuard({ ctx,reverse }: AuthGuardProps) {
       to: returnTo ?? "/",
     });
   }
-
 }

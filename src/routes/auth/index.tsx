@@ -8,11 +8,11 @@ export const Route = createFileRoute("/auth/")({
   component: SigninPage,
   validateSearch: (search) => searchparams.parse(search),
   async beforeLoad(ctx) {
-    // const viewer = ctx.context?.viewer;
-    // const returnTo = ctx.search?.returnTo ?? "/";
-    // if (viewer?.record) {
-    //   throw redirect({ to: returnTo });
-    // }
+    const viewer = ctx.context?.viewer;
+    const returnTo = ctx.search?.returnTo ?? "/";
+    if (viewer?.record) {
+      throw redirect({ to: returnTo });
+    }
   },
 });
 
