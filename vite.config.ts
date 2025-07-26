@@ -5,6 +5,8 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import analyze from "rollup-plugin-analyzer";
 // https://vitejs.dev/config/
+
+// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     TanStackRouterVite({

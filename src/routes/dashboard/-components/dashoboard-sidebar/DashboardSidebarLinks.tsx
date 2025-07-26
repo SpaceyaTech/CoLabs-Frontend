@@ -42,6 +42,11 @@ export function DashboardSidebarLinks({}: DashboardSidebarLinksProps) {
                           ? `flex w-full gap-3 rounded-lg bg-primary/30 p-1`
                           : `flex w-full gap-3 rounded-sm p-1 hover:bg-base-300`
                       }
+                      className={
+                        pathname === item.href
+                          ? `flex w-full gap-3 rounded-lg bg-primary/30 p-1`
+                          : `flex w-full gap-3 rounded-sm p-1 hover:bg-base-300`
+                      }
                     >
                       <span className="justify-between rounded-sm flex h-full w-full items-center gap-3 p-1">
                         <Link

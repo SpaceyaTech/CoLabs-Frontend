@@ -282,6 +282,7 @@ declare module '@tanstack/react-router' {
 
 interface DashboardLayoutRouteChildren {
   DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardChallengesExampleDataRoute: typeof DashboardChallengesExampleDataRoute
   DashboardChallengesIndexRoute: typeof DashboardChallengesIndexRoute
   DashboardHackathonsIndexRoute: typeof DashboardHackathonsIndexRoute
   DashboardInboxIndexRoute: typeof DashboardInboxIndexRoute
@@ -297,6 +298,7 @@ interface DashboardLayoutRouteChildren {
 
 const DashboardLayoutRouteChildren: DashboardLayoutRouteChildren = {
   DashboardIndexRoute: DashboardIndexRoute,
+  DashboardChallengesExampleDataRoute: DashboardChallengesExampleDataRoute,
   DashboardChallengesIndexRoute: DashboardChallengesIndexRoute,
   DashboardHackathonsIndexRoute: DashboardHackathonsIndexRoute,
   DashboardInboxIndexRoute: DashboardInboxIndexRoute,
@@ -484,6 +486,7 @@ export const routeTree = rootRoute
       "filePath": "dashboard/layout.tsx",
       "children": [
         "/dashboard/",
+        "/dashboard/challenges/ExampleData",
         "/dashboard/challenges/",
         "/dashboard/hackathons/",
         "/dashboard/inbox/",

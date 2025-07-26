@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { themeChange } from "theme-change";
 import { useViewer } from "./lib/tanstack/query/use-viewer";
 import { queryClient, router } from "./main";
+import React from "react";
 
 export function App() {
   useEffect(() => {
