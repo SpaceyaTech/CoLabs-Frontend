@@ -8,7 +8,7 @@ export function useSessionStorage<T>(key: string, initialValue: T) {
 
   React.useEffect(() => {
     sessionStorage.setItem(key, JSON.stringify(state[0]));
-  }, [state[0]]);
+  }, [key, state]);
 
   return state;
 }
@@ -21,5 +21,5 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 
   React.useEffect(() => {
     localStorage.setItem(key, JSON.stringify(state[0]));
-  }, [state[0]]);
+  }, [key, state]);
 }

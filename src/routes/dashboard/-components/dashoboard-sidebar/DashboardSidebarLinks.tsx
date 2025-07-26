@@ -5,8 +5,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from "@/components/ui/sidebar";
+import { useSidebar } from "@/components/ui/sidebar-extras";
 import {
   Tooltip,
   TooltipContent,
@@ -22,9 +22,9 @@ export function DashboardSidebarLinks({}: DashboardSidebarLinksProps) {
   const { state, setOpen, setOpenMobile, isMobile } = useSidebar();
   const { pathname } = useLocation();
   return (
-    <SidebarGroup className="h-full bg-base-100">
-      <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
-      <SidebarMenu className="gap-2">
+    <SidebarGroup data-test="DashboardSidebarLinks" className="h-full ">
+      <SidebarGroupLabel className="sr-only">Dashboard</SidebarGroupLabel>
+      <SidebarMenu className="gap-3">
         {dashboard_routes.map((item) => {
           return (
             <SidebarMenuItem key={item.name}>
@@ -42,9 +42,15 @@ export function DashboardSidebarLinks({}: DashboardSidebarLinksProps) {
                           ? `flex w-full gap-3 rounded-lg bg-primary/30 p-1`
                           : `flex w-full gap-3 rounded-sm p-1 hover:bg-base-300`
                       }
+                      className={
+                        pathname === item.href
+                          ? `flex w-full gap-3 rounded-lg bg-primary/30 p-1`
+                          : `flex w-full gap-3 rounded-sm p-1 hover:bg-base-300`
+                      }
                     >
-                      <span className="justify-betweenrounded-sm flex h-full w-full items-center gap-3 p-1">
+                      <span className="justify-between rounded-sm flex h-full w-full items-center gap-3 p-1">
                         <Link
+                        data-test="DashboardSidebarLink"
                           className="flex w-full gap-3 rounded-sm"
                           to={item.href}
                           onClick={() => {
@@ -59,14 +65,21 @@ export function DashboardSidebarLinks({}: DashboardSidebarLinksProps) {
                           </button>
                           {/* {isMobile&&<span className="text-lg">{item.name}</span>} */}
                           {(state === "expanded" || isMobile) && (
-                            <span className="text-lg">{item.name}</span>
+                            <span data-test="DashboardSidebarLinkName" className="text-base">{item.name}</span>
                           )}
                         </Link>
-                        {item.href === "/dashboard/os-projects" && <Plus />}
+                        {item.href === "/dashboard/osprojects" && <Plus />}
                         {item.href === "/dashboard/teams" && <Plus />}
                       </span>
                     </TooltipTrigger>
-                    <TooltipContent side={"right"}>{item.name}</TooltipContent>
+                    <TooltipContent
+                      className={
+                        state === "expanded" || isMobile ? "hidden" : ""
+                      }
+                      side={"right"}
+                    >
+                      {item.name}
+                    </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
               </SidebarMenuButton>

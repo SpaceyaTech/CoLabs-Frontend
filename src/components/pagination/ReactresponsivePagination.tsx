@@ -11,6 +11,7 @@ export function ListPagination({ total_pages }: ListingsPaginationProps) {
     from: "__root__",
   });
   const navigate = useNavigate({
+    // @ts-expect-error : search param type is possibly undefined but it will exist when we need it
     from: location.pathname,
   });
 
@@ -22,7 +23,7 @@ export function ListPagination({ total_pages }: ListingsPaginationProps) {
         onPageChange={(e) => {
           navigate({
             search: {
-              // @ts-expect-error
+              // @ts-expect-error : search param type is possibly undefined but it will exist when we need it
               globalPage: e,
             },
           });

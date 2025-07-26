@@ -4,14 +4,16 @@ import "@/view-transition/wipe-transition.css";
 import "@/view-transition/slides-transition.css";
 import "@/view-transition/flip-transition.css";
 import "@/view-transition/vertical-transition.css";
-import "./styles.css";
 import "../components/pagination/pagination.css";
+import "./styles.css";
 import { QueryClient } from "@tanstack/react-query";
 import { RootComponent } from "./-components/RootComponent";
 import { z } from "zod";
 import { Viewer } from "@/lib/tanstack/query/use-viewer";
 
 const searchparams = z.object({
+  sq: z.string().optional(),
+  page: z.number().optional(),
   globalPage: z.number().optional(),
   globalSearch: z.string().optional(),
 });

@@ -1,11 +1,29 @@
-import ProjectForm from "./components/ProjectForm"
+import { RouterProvider } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { themeChange } from "theme-change";
+import { useViewer } from "./lib/tanstack/query/use-viewer";
+import { queryClient, router } from "./main";
+import React from "react";
 
-const App = () => {
+export function App() {
+  useEffect(() => {
+    // other view transition styles include "angled", "wipe", "slides", "flip", "vertical"
+    // currently doesn't work in firefox
+    document.documentElement.dataset.style = "vertical";
+    themeChange(false);
+  }, []);
+
+  const viewer = useViewer();
   return (
     <>
-    <ProjectForm />
+      <RouterProvider
+        router={router}
+        defaultPreload="intent"
+        context={{
+          queryClient,
+          viewer: viewer.userQuery.data,
+        }}
+      />
     </>
-  )
+  );
 }
-
-export default App

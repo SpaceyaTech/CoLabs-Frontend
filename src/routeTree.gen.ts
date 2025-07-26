@@ -13,19 +13,22 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as DashboardLayoutImport } from './routes/dashboard/layout'
 import { Route as IndexImport } from './routes/index'
+import { Route as SettingsIndexImport } from './routes/settings/index'
 import { Route as ProfileIndexImport } from './routes/profile/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as AuthSignupImport } from './routes/auth/signup'
 import { Route as DashboardTeamsIndexImport } from './routes/dashboard/teams/index'
 import { Route as DashboardProjectsIndexImport } from './routes/dashboard/projects/index'
-import { Route as DashboardOsProjectsIndexImport } from './routes/dashboard/os-projects/index'
+import { Route as DashboardOsprojectsIndexImport } from './routes/dashboard/osprojects/index'
 import { Route as DashboardMembersIndexImport } from './routes/dashboard/members/index'
 import { Route as DashboardLeaderboardsIndexImport } from './routes/dashboard/leaderboards/index'
 import { Route as DashboardInboxIndexImport } from './routes/dashboard/inbox/index'
 import { Route as DashboardHackathonsIndexImport } from './routes/dashboard/hackathons/index'
 import { Route as DashboardChallengesIndexImport } from './routes/dashboard/challenges/index'
-import { Route as DashboardChallengesExampleDataImport } from './routes/dashboard/challenges/ExampleData'
+import { Route as DashboardProjectsSubmitIndexImport } from './routes/dashboard/projects/submit/index'
+import { Route as DashboardProjectsProjectsIndexImport } from './routes/dashboard/projects/$projects/index'
+import { Route as DashboardOsprojectsOsprojectsIndexImport } from './routes/dashboard/osprojects/$osprojects/index'
 
 // Create/Update Routes
 
@@ -38,6 +41,12 @@ const DashboardLayoutRoute = DashboardLayoutImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SettingsIndexRoute = SettingsIndexImport.update({
+  id: '/settings/',
+  path: '/settings/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -77,9 +86,9 @@ const DashboardProjectsIndexRoute = DashboardProjectsIndexImport.update({
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
 
-const DashboardOsProjectsIndexRoute = DashboardOsProjectsIndexImport.update({
-  id: '/os-projects/',
-  path: '/os-projects/',
+const DashboardOsprojectsIndexRoute = DashboardOsprojectsIndexImport.update({
+  id: '/osprojects/',
+  path: '/osprojects/',
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
 
@@ -115,10 +124,24 @@ const DashboardChallengesIndexRoute = DashboardChallengesIndexImport.update({
   getParentRoute: () => DashboardLayoutRoute,
 } as any)
 
-const DashboardChallengesExampleDataRoute =
-  DashboardChallengesExampleDataImport.update({
-    id: '/challenges/ExampleData',
-    path: '/challenges/ExampleData',
+const DashboardProjectsSubmitIndexRoute =
+  DashboardProjectsSubmitIndexImport.update({
+    id: '/projects/submit/',
+    path: '/projects/submit/',
+    getParentRoute: () => DashboardLayoutRoute,
+  } as any)
+
+const DashboardProjectsProjectsIndexRoute =
+  DashboardProjectsProjectsIndexImport.update({
+    id: '/projects/$projects/',
+    path: '/projects/$projects/',
+    getParentRoute: () => DashboardLayoutRoute,
+  } as any)
+
+const DashboardOsprojectsOsprojectsIndexRoute =
+  DashboardOsprojectsOsprojectsIndexImport.update({
+    id: '/osprojects/$osprojects/',
+    path: '/osprojects/$osprojects/',
     getParentRoute: () => DashboardLayoutRoute,
   } as any)
 
@@ -168,12 +191,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileIndexImport
       parentRoute: typeof rootRoute
     }
-    '/dashboard/challenges/ExampleData': {
-      id: '/dashboard/challenges/ExampleData'
-      path: '/challenges/ExampleData'
-      fullPath: '/dashboard/challenges/ExampleData'
-      preLoaderRoute: typeof DashboardChallengesExampleDataImport
-      parentRoute: typeof DashboardLayoutImport
+    '/settings/': {
+      id: '/settings/'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsIndexImport
+      parentRoute: typeof rootRoute
     }
     '/dashboard/challenges/': {
       id: '/dashboard/challenges/'
@@ -210,11 +233,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardMembersIndexImport
       parentRoute: typeof DashboardLayoutImport
     }
-    '/dashboard/os-projects/': {
-      id: '/dashboard/os-projects/'
-      path: '/os-projects'
-      fullPath: '/dashboard/os-projects'
-      preLoaderRoute: typeof DashboardOsProjectsIndexImport
+    '/dashboard/osprojects/': {
+      id: '/dashboard/osprojects/'
+      path: '/osprojects'
+      fullPath: '/dashboard/osprojects'
+      preLoaderRoute: typeof DashboardOsprojectsIndexImport
       parentRoute: typeof DashboardLayoutImport
     }
     '/dashboard/projects/': {
@@ -231,6 +254,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardTeamsIndexImport
       parentRoute: typeof DashboardLayoutImport
     }
+    '/dashboard/osprojects/$osprojects/': {
+      id: '/dashboard/osprojects/$osprojects/'
+      path: '/osprojects/$osprojects'
+      fullPath: '/dashboard/osprojects/$osprojects'
+      preLoaderRoute: typeof DashboardOsprojectsOsprojectsIndexImport
+      parentRoute: typeof DashboardLayoutImport
+    }
+    '/dashboard/projects/$projects/': {
+      id: '/dashboard/projects/$projects/'
+      path: '/projects/$projects'
+      fullPath: '/dashboard/projects/$projects'
+      preLoaderRoute: typeof DashboardProjectsProjectsIndexImport
+      parentRoute: typeof DashboardLayoutImport
+    }
+    '/dashboard/projects/submit/': {
+      id: '/dashboard/projects/submit/'
+      path: '/projects/submit'
+      fullPath: '/dashboard/projects/submit'
+      preLoaderRoute: typeof DashboardProjectsSubmitIndexImport
+      parentRoute: typeof DashboardLayoutImport
+    }
   }
 }
 
@@ -244,9 +288,12 @@ interface DashboardLayoutRouteChildren {
   DashboardInboxIndexRoute: typeof DashboardInboxIndexRoute
   DashboardLeaderboardsIndexRoute: typeof DashboardLeaderboardsIndexRoute
   DashboardMembersIndexRoute: typeof DashboardMembersIndexRoute
-  DashboardOsProjectsIndexRoute: typeof DashboardOsProjectsIndexRoute
+  DashboardOsprojectsIndexRoute: typeof DashboardOsprojectsIndexRoute
   DashboardProjectsIndexRoute: typeof DashboardProjectsIndexRoute
   DashboardTeamsIndexRoute: typeof DashboardTeamsIndexRoute
+  DashboardOsprojectsOsprojectsIndexRoute: typeof DashboardOsprojectsOsprojectsIndexRoute
+  DashboardProjectsProjectsIndexRoute: typeof DashboardProjectsProjectsIndexRoute
+  DashboardProjectsSubmitIndexRoute: typeof DashboardProjectsSubmitIndexRoute
 }
 
 const DashboardLayoutRouteChildren: DashboardLayoutRouteChildren = {
@@ -257,9 +304,13 @@ const DashboardLayoutRouteChildren: DashboardLayoutRouteChildren = {
   DashboardInboxIndexRoute: DashboardInboxIndexRoute,
   DashboardLeaderboardsIndexRoute: DashboardLeaderboardsIndexRoute,
   DashboardMembersIndexRoute: DashboardMembersIndexRoute,
-  DashboardOsProjectsIndexRoute: DashboardOsProjectsIndexRoute,
+  DashboardOsprojectsIndexRoute: DashboardOsprojectsIndexRoute,
   DashboardProjectsIndexRoute: DashboardProjectsIndexRoute,
   DashboardTeamsIndexRoute: DashboardTeamsIndexRoute,
+  DashboardOsprojectsOsprojectsIndexRoute:
+    DashboardOsprojectsOsprojectsIndexRoute,
+  DashboardProjectsProjectsIndexRoute: DashboardProjectsProjectsIndexRoute,
+  DashboardProjectsSubmitIndexRoute: DashboardProjectsSubmitIndexRoute,
 }
 
 const DashboardLayoutRouteWithChildren = DashboardLayoutRoute._addFileChildren(
@@ -273,15 +324,18 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/profile': typeof ProfileIndexRoute
-  '/dashboard/challenges/ExampleData': typeof DashboardChallengesExampleDataRoute
+  '/settings': typeof SettingsIndexRoute
   '/dashboard/challenges': typeof DashboardChallengesIndexRoute
   '/dashboard/hackathons': typeof DashboardHackathonsIndexRoute
   '/dashboard/inbox': typeof DashboardInboxIndexRoute
   '/dashboard/leaderboards': typeof DashboardLeaderboardsIndexRoute
   '/dashboard/members': typeof DashboardMembersIndexRoute
-  '/dashboard/os-projects': typeof DashboardOsProjectsIndexRoute
+  '/dashboard/osprojects': typeof DashboardOsprojectsIndexRoute
   '/dashboard/projects': typeof DashboardProjectsIndexRoute
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
+  '/dashboard/osprojects/$osprojects': typeof DashboardOsprojectsOsprojectsIndexRoute
+  '/dashboard/projects/$projects': typeof DashboardProjectsProjectsIndexRoute
+  '/dashboard/projects/submit': typeof DashboardProjectsSubmitIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -290,15 +344,18 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/profile': typeof ProfileIndexRoute
-  '/dashboard/challenges/ExampleData': typeof DashboardChallengesExampleDataRoute
+  '/settings': typeof SettingsIndexRoute
   '/dashboard/challenges': typeof DashboardChallengesIndexRoute
   '/dashboard/hackathons': typeof DashboardHackathonsIndexRoute
   '/dashboard/inbox': typeof DashboardInboxIndexRoute
   '/dashboard/leaderboards': typeof DashboardLeaderboardsIndexRoute
   '/dashboard/members': typeof DashboardMembersIndexRoute
-  '/dashboard/os-projects': typeof DashboardOsProjectsIndexRoute
+  '/dashboard/osprojects': typeof DashboardOsprojectsIndexRoute
   '/dashboard/projects': typeof DashboardProjectsIndexRoute
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
+  '/dashboard/osprojects/$osprojects': typeof DashboardOsprojectsOsprojectsIndexRoute
+  '/dashboard/projects/$projects': typeof DashboardProjectsProjectsIndexRoute
+  '/dashboard/projects/submit': typeof DashboardProjectsSubmitIndexRoute
 }
 
 export interface FileRoutesById {
@@ -309,15 +366,18 @@ export interface FileRoutesById {
   '/auth/': typeof AuthIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/profile/': typeof ProfileIndexRoute
-  '/dashboard/challenges/ExampleData': typeof DashboardChallengesExampleDataRoute
+  '/settings/': typeof SettingsIndexRoute
   '/dashboard/challenges/': typeof DashboardChallengesIndexRoute
   '/dashboard/hackathons/': typeof DashboardHackathonsIndexRoute
   '/dashboard/inbox/': typeof DashboardInboxIndexRoute
   '/dashboard/leaderboards/': typeof DashboardLeaderboardsIndexRoute
   '/dashboard/members/': typeof DashboardMembersIndexRoute
-  '/dashboard/os-projects/': typeof DashboardOsProjectsIndexRoute
+  '/dashboard/osprojects/': typeof DashboardOsprojectsIndexRoute
   '/dashboard/projects/': typeof DashboardProjectsIndexRoute
   '/dashboard/teams/': typeof DashboardTeamsIndexRoute
+  '/dashboard/osprojects/$osprojects/': typeof DashboardOsprojectsOsprojectsIndexRoute
+  '/dashboard/projects/$projects/': typeof DashboardProjectsProjectsIndexRoute
+  '/dashboard/projects/submit/': typeof DashboardProjectsSubmitIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -329,15 +389,18 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard/'
     | '/profile'
-    | '/dashboard/challenges/ExampleData'
+    | '/settings'
     | '/dashboard/challenges'
     | '/dashboard/hackathons'
     | '/dashboard/inbox'
     | '/dashboard/leaderboards'
     | '/dashboard/members'
-    | '/dashboard/os-projects'
+    | '/dashboard/osprojects'
     | '/dashboard/projects'
     | '/dashboard/teams'
+    | '/dashboard/osprojects/$osprojects'
+    | '/dashboard/projects/$projects'
+    | '/dashboard/projects/submit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -345,15 +408,18 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/profile'
-    | '/dashboard/challenges/ExampleData'
+    | '/settings'
     | '/dashboard/challenges'
     | '/dashboard/hackathons'
     | '/dashboard/inbox'
     | '/dashboard/leaderboards'
     | '/dashboard/members'
-    | '/dashboard/os-projects'
+    | '/dashboard/osprojects'
     | '/dashboard/projects'
     | '/dashboard/teams'
+    | '/dashboard/osprojects/$osprojects'
+    | '/dashboard/projects/$projects'
+    | '/dashboard/projects/submit'
   id:
     | '__root__'
     | '/'
@@ -362,15 +428,18 @@ export interface FileRouteTypes {
     | '/auth/'
     | '/dashboard/'
     | '/profile/'
-    | '/dashboard/challenges/ExampleData'
+    | '/settings/'
     | '/dashboard/challenges/'
     | '/dashboard/hackathons/'
     | '/dashboard/inbox/'
     | '/dashboard/leaderboards/'
     | '/dashboard/members/'
-    | '/dashboard/os-projects/'
+    | '/dashboard/osprojects/'
     | '/dashboard/projects/'
     | '/dashboard/teams/'
+    | '/dashboard/osprojects/$osprojects/'
+    | '/dashboard/projects/$projects/'
+    | '/dashboard/projects/submit/'
   fileRoutesById: FileRoutesById
 }
 
@@ -380,6 +449,7 @@ export interface RootRouteChildren {
   AuthSignupRoute: typeof AuthSignupRoute
   AuthIndexRoute: typeof AuthIndexRoute
   ProfileIndexRoute: typeof ProfileIndexRoute
+  SettingsIndexRoute: typeof SettingsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -388,6 +458,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthSignupRoute: AuthSignupRoute,
   AuthIndexRoute: AuthIndexRoute,
   ProfileIndexRoute: ProfileIndexRoute,
+  SettingsIndexRoute: SettingsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -404,7 +475,8 @@ export const routeTree = rootRoute
         "/dashboard",
         "/auth/signup",
         "/auth/",
-        "/profile/"
+        "/profile/",
+        "/settings/"
       ]
     },
     "/": {
@@ -420,9 +492,12 @@ export const routeTree = rootRoute
         "/dashboard/inbox/",
         "/dashboard/leaderboards/",
         "/dashboard/members/",
-        "/dashboard/os-projects/",
+        "/dashboard/osprojects/",
         "/dashboard/projects/",
-        "/dashboard/teams/"
+        "/dashboard/teams/",
+        "/dashboard/osprojects/$osprojects/",
+        "/dashboard/projects/$projects/",
+        "/dashboard/projects/submit/"
       ]
     },
     "/auth/signup": {
@@ -438,9 +513,8 @@ export const routeTree = rootRoute
     "/profile/": {
       "filePath": "profile/index.tsx"
     },
-    "/dashboard/challenges/ExampleData": {
-      "filePath": "dashboard/challenges/ExampleData.tsx",
-      "parent": "/dashboard"
+    "/settings/": {
+      "filePath": "settings/index.tsx"
     },
     "/dashboard/challenges/": {
       "filePath": "dashboard/challenges/index.tsx",
@@ -462,8 +536,8 @@ export const routeTree = rootRoute
       "filePath": "dashboard/members/index.tsx",
       "parent": "/dashboard"
     },
-    "/dashboard/os-projects/": {
-      "filePath": "dashboard/os-projects/index.tsx",
+    "/dashboard/osprojects/": {
+      "filePath": "dashboard/osprojects/index.tsx",
       "parent": "/dashboard"
     },
     "/dashboard/projects/": {
@@ -472,6 +546,18 @@ export const routeTree = rootRoute
     },
     "/dashboard/teams/": {
       "filePath": "dashboard/teams/index.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/osprojects/$osprojects/": {
+      "filePath": "dashboard/osprojects/$osprojects/index.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/projects/$projects/": {
+      "filePath": "dashboard/projects/$projects/index.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/projects/submit/": {
+      "filePath": "dashboard/projects/submit/index.tsx",
       "parent": "/dashboard"
     }
   }

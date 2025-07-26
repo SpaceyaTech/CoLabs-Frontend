@@ -20,7 +20,7 @@ export function GenericTable<T extends Record<string, any>>({
   updateItem,
 }: GenericTableProps<T>) {
   const modalRef = useRef<HTMLDialogElement | null>(null);
-  // @ts-expect-error
+  // @ts-expect-error : : The {} type is not assignable to type T but is the best default value 
   const [input, setInput] = useState<T>({});
   const mutation = useMutation({
     mutationFn: (input: T) => {

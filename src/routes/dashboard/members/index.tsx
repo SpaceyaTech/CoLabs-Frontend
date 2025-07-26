@@ -1,3 +1,4 @@
+import { Helmet } from '@/components/wrappers/custom-helmet';
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/dashboard/members/')({
@@ -6,9 +7,10 @@ export const Route = createFileRoute('/dashboard/members/')({
 
 function RouteComponent() {
   return (
-    <div className="w-full min-h-screen h-full flex flex-col items-center justify-center">
+    <div className="flex h-full min-h-screen w-full flex-col items-center justify-center">
+      <Helmet title="Dashboard - Members" description="Dashboard - Members" />
       <h1 className="text-4xl font-bold">Members</h1>
       <p className="text-lg">Welcome to the members page!</p>
     </div>
-  )
+  );
 }

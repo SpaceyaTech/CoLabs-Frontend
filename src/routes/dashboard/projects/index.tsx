@@ -1,14 +1,15 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { ProjectsList } from './-components/ProjectsList'
 
-export const Route = createFileRoute('/dashboard/projects/')({
-  component: RouteComponent,
-})
+import { createFileRoute } from "@tanstack/react-router";
+import { z } from "zod";
+import { ProjectsPage } from "@routes/dashboard/projects/-components/ProjectsPage";
 
-function RouteComponent() {
-  return  <div className='w-full min-h-screen h-full flex flex-col items-center justify-center'>
-    <h1 className='text-4xl font-bold'>Projects</h1>
-    <p className='text-lg'>Welcome to the projects page!</p>
-    <ProjectsList/>
- </div>
-}
+const searchparams = z.object({
+  page: z.number().optional(),
+  sq: z.string().optional(),
+});
+
+export const Route = createFileRoute("/dashboard/projects/")({
+  validateSearch: (search) => searchparams.parse(search),
+  component:ProjectsPage
+});
+

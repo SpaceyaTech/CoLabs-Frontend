@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import './challenges.css'
 import InfoBox from './-components/InfoBox'
 import data from "./ExampleData"; 
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export const Route = createFileRoute('/dashboard/challenges/')({
   component: RouteComponent,
@@ -381,5 +381,5 @@ function RouteComponent() {
     </div>
       </div>
     </div>
-  )
+  );
 }

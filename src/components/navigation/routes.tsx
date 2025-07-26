@@ -24,8 +24,8 @@ export const dashboard_routes = [
     icon: <Trophy />,
   },
   {
-    name: "OS projects",
-    href: "/dashboard/os-projects",
+    name: "OS Projects",
+    href: "/dashboard/osprojects",
     icon: <Layers />,
   },
   {
