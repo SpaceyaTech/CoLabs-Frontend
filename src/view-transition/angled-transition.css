@@ -1,0 +1,16 @@
+/* Angled */
+[data-style="angled"]::view-transition-old(root) {
+  animation: none;
+  z-index: -1;
+}
+
+[data-style="angled"]::view-transition-new(root) {
+  animation: unclip 1s;
+  clip-path: polygon(-100vmax 100%, 100% 100%, 100% -100vmax);
+}
+
+@keyframes unclip {
+  0% {
+    clip-path: polygon(100% 100%, 100% 100%, 100% 100%);
+  }
+}
